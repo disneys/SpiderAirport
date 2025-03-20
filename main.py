@@ -14,6 +14,11 @@ def process_and_write_first_link_content(markdown_url, output_filename="airport.
     found_links = set()  # 用于存储已经找到的链接，确保只处理第一个
     link_found_and_processed = False
 
+    # ... 其他代码 ...
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+    }
+
     try:
         response = requests.get(markdown_url)
         response.raise_for_status()
