@@ -3,11 +3,11 @@ import re
 import base64
 import os
 
-def process_and_update_link_content_final(markdown_url, output_filename="airport.txt", last_link_filename="last_link.txt", raw_content_filename="airport_base64.txt"):
+def process_and_update_link_content_final(markdown_url, output_filename="airport.txt", last_link_filename="last_link.txt", raw_content_filename="airport_base64.yaml"):
     """
     通过 URL 获取 Markdown 文件内容，寻找第一个符合条件的链接，
     如果链接地址与上次不同且成功获取内容，则尝试 Base64 解码后写入 airport.txt，
-    并将原始的 Base64 字符串写入 airport_base64.txt。
+    并将原始的 Base64 字符串写入 airport_base64.yaml。
     """
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
@@ -36,13 +36,13 @@ def process_and_update_link_content_final(markdown_url, output_filename="airport
                     link_response.raise_for_status()
                     latest_content = link_response.text
 
-                    # 保存原始的未解密的 Base64 字符串
+                    # 保存原始的未解密的 Base64 字符串到 airport_base64.yaml
                     with open(raw_content_filename, "w") as outfile_raw:
                         outfile_raw.write(latest_content + "\n")
                     print(f"原始内容已保存到 {raw_content_filename}")
 
                     try:
-                        # 尝试 Base64 解码
+                        # 尝试 Base64 解码并保存到 airport.txt
                         decoded_content = base64.b64decode(latest_content).decode('utf-8')
                         with open(output_filename, "w") as outfile:
                             outfile.write(decoded_content + "\n")
