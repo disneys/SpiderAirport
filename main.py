@@ -36,9 +36,9 @@ def process_and_update_link_content_final(markdown_url, output_filename="airport
                     link_response.raise_for_status()
                     latest_content = link_response.text
 
-                    # 保存原始的未解密的 Base64 字符串到 airport_base64.yaml，使用 UTF-8 编码
+                    # 保存原始的未解密的 Base64 字符串到 airport_base64.yaml，保留原始换行符
                     with open(raw_content_filename, "w", encoding='utf-8') as outfile_raw:
-                        outfile_raw.write(latest_content) # 注意这里去掉了换行符
+                        outfile_raw.write(latest_content)
 
                     print(f"原始内容已保存到 {raw_content_filename}")
 
