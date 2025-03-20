@@ -36,40 +36,41 @@ def process_and_update_link_content_final(markdown_url, output_filename="airport
                     link_response.raise_for_status()
                     latest_content = link_response.text
 
-                    # 保存原始的未解密的 Base64 字符串到 airport_base64.yaml
-                    with open(raw_content_filename, "w") as outfile_raw:
-                        outfile_raw.write(latest_content + "\n")
+                    # 保存原始的未解密的 Base64 字符串到 airport_base64.yaml，使用 UTF-8 编码
+                    with open(raw_content_filename, "w", encoding='utf-8') as outfile_raw:
+                        outfile_raw.write(latest_content) # 注意这里去掉了换行符
+
                     print(f"原始内容已保存到 {raw_content_filename}")
 
                     try:
                         # 尝试 Base64 解码并保存到 airport.txt
                         decoded_content = base64.b64decode(latest_content).decode('utf-8')
-                        with open(output_filename, "w") as outfile:
+                        with open(output_filename, "w", encoding='utf-8') as outfile:
                             outfile.write(decoded_content + "\n")
                         print(f"链接内容已获取并 Base64 解码后保存到 {output_filename}")
                         # 更新上次链接
-                        with open(last_link_filename, "w") as f_last_link:
+                        with open(last_link_filename, "w", encoding='utf-8') as f_last_link:
                             f_last_link.write(first_link)
 
                     except base64.binascii.Error:
                         print("链接内容不是 Base64 编码，跳过解码。")
                         # 更新上次链接 (即使解码失败也更新链接，因为链接地址已变化)
-                        with open(last_link_filename, "w") as f_last_link:
+                        with open(last_link_filename, "w", encoding='utf-8') as f_last_link:
                             f_last_link.write(first_link)
                     except UnicodeDecodeError:
                         # Base64解码后可能不是UTF-8，尝试 latin-1
                         try:
                             decoded_content = base64.b64decode(latest_content).decode('latin-1')
-                            with open(output_filename, "w") as outfile:
+                            with open(output_filename, "w", encoding='utf-8') as outfile:
                                 outfile.write(decoded_content + "\n")
                             print(f"链接内容已获取并 Base64 解码 (latin-1) 后保存到 {output_filename}")
                             # 更新上次链接
-                            with open(last_link_filename, "w") as f_last_link:
+                            with open(last_link_filename, "w", encoding='utf-8') as f_last_link:
                                 f_last_link.write(first_link)
                         except Exception as e:
                             print(f"获取内容尝试 Base64 解码失败: {e}。")
                             # 更新上次链接 (即使解码失败也更新链接，因为链接地址已变化)
-                            with open(last_link_filename, "w") as f_last_link:
+                            with open(last_link_filename, "w", encoding='utf-8') as f_last_link:
                                 f_last_link.write(first_link)
 
                 except requests.exceptions.HTTPError as e:
