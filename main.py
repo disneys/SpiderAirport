@@ -1,76 +1,57 @@
 import requests
 import re
 import base64
+import os
 
-def process_and_write_first_link_content(markdown_url, output_filename="airport.txt"):
+def process_and_update_link_content_final(markdown_url, output_filename="airport.txt", last_link_filename="last_link.txt"):
     """
-    通过 URL 获取 Markdown 文件内容，寻找第一个以 https:// 开头、包含 "mcsslk.xyz" 且后跟 32 位字符串的链接，
-    访问该链接获取内容，尝试 Base64 解码，并将解码后的内容写入到指定的文件中（不包含链接信息）。
-
-    Args:
-        markdown_url (str): 包含链接的 Markdown 文件的 URL。
-        output_filename (str): 输出文件名，默认为 "airport.txt"。
+    通过 URL 获取 Markdown 文件内容，寻找第一个符合条件的链接，
+    如果链接地址与上次不同且成功获取内容（非 403），则 Base64 编码后写入文件。
     """
-    found_links = set()  # 用于存储已经找到的链接，确保只处理第一个
-    link_found_and_processed = False
-
-    # ... 其他代码 ...
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
     }
-
     try:
         response = requests.get(markdown_url)
         response.raise_for_status()
         markdown_content = response.text
 
-        # 使用正则表达式查找以 https:// 开头、包含 "mcsslk.xyz" 且后跟 32 位字母数字字符串的链接
         pattern = r"https://.*?mcsslk\.xyz/[a-zA-Z0-9]{32}"
         links = re.findall(pattern, markdown_content)
 
         if links:
-            with open(output_filename, "w") as outfile:
-                for link in links:
-                    if link not in found_links:
-                        print(f"正在处理链接: {link}")
-                        found_links.add(link)
-                        link_found_and_processed = True  # 标记已找到并处理了链接
+            first_link = links[0]
+            print(f"找到链接: {first_link}")
 
-                        try:
-                            link_response = requests.get(link)
-                            link_response.raise_for_status()
-                            link_content = link_response.text
+            previous_link = None
+            if os.path.exists(last_link_filename):
+                with open(last_link_filename, "r") as f_last_link:
+                    previous_link = f_last_link.read().strip()
 
-                            try:
-                                # 尝试 Base64 解码
-                                decoded_content = base64.b64decode(link_content).decode('utf-8')
-                                outfile.write(decoded_content + "\n")
-                                print(f"  - 成功获取并解码链接内容。")
-                            except base64.binascii.Error:
-                                # 如果不是 Base64，则直接写入
-                                outfile.write(link_content + "\n")
-                                print(f"  - 成功获取链接内容 (非 Base64)。")
-                            except UnicodeDecodeError:
-                                # Base64解码后可能不是UTF-8，尝试其他编码或直接写入原始bytes
-                                try:
-                                    decoded_content = base64.b64decode(link_content).decode('latin-1') # 尝试 latin-1
-                                    outfile.write(decoded_content + "\n")
-                                    print(f"  - 成功获取并解码链接内容 (latin-1)。")
-                                except Exception as e:
-                                    outfile.write(f"无法解码内容 (Base64 或其他常见编码): {e}\n")
-                                    print(f"  - 获取链接内容但无法解码: {e}")
+            if first_link != previous_link:
+                print("链接地址已更改，正在获取内容并更新。")
+                try:
+                    link_response = requests.get(first_link, headers=headers)
+                    link_response.raise_for_status()  # 如果状态码不是 200，会抛出 HTTPError
+                    latest_content = link_response.text
+                    latest_content_encoded = base64.b64encode(latest_content.encode('utf-8')).decode('utf-8')
 
-                        except requests.exceptions.RequestException as e:
-                            outfile.write(f"获取链接内容时发生错误: {e}\n")
-                            print(f"  - 获取链接内容时发生错误: {e}")
+                    with open(output_filename, "w") as outfile:
+                        outfile.write(latest_content_encoded + "\n")
+                    with open(last_link_filename, "w") as f_last_link:
+                        f_last_link.write(first_link)
+                    print("链接内容已获取、Base64 编码并保存。")
 
-                        # 因为只需要第一个，处理完后就可以跳出循环
-                        break
+                except requests.exceptions.HTTPError as e:
+                    if e.response.status_code == 403:
+                        print(f"获取链接内容时发生错误: 403 Forbidden。跳过更新。")
+                    else:
+                        print(f"获取链接内容时发生 HTTP 错误: {e}。")
+                except requests.exceptions.RequestException as e:
+                    print(f"获取链接内容时发生其他错误: {e}")
 
-            if link_found_and_processed:
-                print(f"已找到并处理第一个符合条件的链接，内容已写入到文件: {output_filename}")
             else:
-                print(f"在 URL: {markdown_url} 的 Markdown 文件中没有找到符合条件的链接。")
+                print("链接地址与上次相同，无需更新内容。")
 
         else:
             print(f"在 URL: {markdown_url} 的 Markdown 文件中没有找到符合条件的链接。")
@@ -78,6 +59,6 @@ def process_and_write_first_link_content(markdown_url, output_filename="airport.
     except requests.exceptions.RequestException as e:
         print(f"获取 Markdown 文件内容时发生错误: {e}")
 
-# 示例用法 (请替换成你的 Markdown 文件 URL)
+# 示例用法
 markdown_url = "https://ghfast.top/https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md"
-process_and_write_first_link_content(markdown_url)
+process_and_update_link_content_final(markdown_url)
