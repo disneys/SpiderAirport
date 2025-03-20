@@ -1,0 +1,32 @@
+name: Update Airport Data
+
+on:
+  schedule:
+    - cron: '*/4 * * * *'
+
+jobs:
+  update_data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        # 如果你的 main.py 只需要 requests 和 base64，可以省略这一步，因为它们通常已经可用或很容易安装。
+        # 但为了更通用，建议将依赖写入 requirements.txt 并安装。
+
+      - name: Run main.py script
+        run: python main.py
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update airport.txt"
+          branch: main # 替换为你的主分支名称，例如 main 或 master
