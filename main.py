@@ -3,10 +3,11 @@ import re
 import base64
 import os
 
-def process_and_update_link_content_final(markdown_url, output_filename="airport.txt", last_link_filename="last_link.txt"):
+def process_and_update_link_content_final(markdown_url, output_filename="airport.txt", last_link_filename="last_link.txt", raw_content_filename="airport_base64.txt"):
     """
     通过 URL 获取 Markdown 文件内容，寻找第一个符合条件的链接，
-    如果链接地址与上次不同且成功获取内容，则尝试 Base64 解码后写入文件。
+    如果链接地址与上次不同且成功获取内容，则尝试 Base64 解码后写入 airport.txt，
+    并将原始的 Base64 字符串写入 airport_base64.txt。
     """
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
@@ -35,22 +36,24 @@ def process_and_update_link_content_final(markdown_url, output_filename="airport
                     link_response.raise_for_status()
                     latest_content = link_response.text
 
+                    # 保存原始的未解密的 Base64 字符串
+                    with open(raw_content_filename, "w") as outfile_raw:
+                        outfile_raw.write(latest_content + "\n")
+                    print(f"原始内容已保存到 {raw_content_filename}")
+
                     try:
                         # 尝试 Base64 解码
                         decoded_content = base64.b64decode(latest_content).decode('utf-8')
                         with open(output_filename, "w") as outfile:
                             outfile.write(decoded_content + "\n")
-                        print("链接内容已获取并 Base64 解码后保存。")
+                        print(f"链接内容已获取并 Base64 解码后保存到 {output_filename}")
                         # 更新上次链接
                         with open(last_link_filename, "w") as f_last_link:
                             f_last_link.write(first_link)
 
                     except base64.binascii.Error:
-                        # 如果不是 Base64，则将原始内容写入
-                        with open(output_filename, "w") as outfile:
-                            outfile.write(latest_content + "\n")
-                        print("链接内容不是 Base64 编码，已保存原始内容。")
-                        # 更新上次链接
+                        print("链接内容不是 Base64 编码，跳过解码。")
+                        # 更新上次链接 (即使解码失败也更新链接，因为链接地址已变化)
                         with open(last_link_filename, "w") as f_last_link:
                             f_last_link.write(first_link)
                     except UnicodeDecodeError:
@@ -59,15 +62,13 @@ def process_and_update_link_content_final(markdown_url, output_filename="airport
                             decoded_content = base64.b64decode(latest_content).decode('latin-1')
                             with open(output_filename, "w") as outfile:
                                 outfile.write(decoded_content + "\n")
-                            print("链接内容已获取并 Base64 解码 (latin-1) 后保存。")
+                            print(f"链接内容已获取并 Base64 解码 (latin-1) 后保存到 {output_filename}")
                             # 更新上次链接
                             with open(last_link_filename, "w") as f_last_link:
                                 f_last_link.write(first_link)
                         except Exception as e:
-                            with open(output_filename, "w") as outfile:
-                                outfile.write(latest_content + "\n")
-                            print(f"获取内容尝试 Base64 解码失败: {e}。已保存原始内容。")
-                            # 更新上次链接
+                            print(f"获取内容尝试 Base64 解码失败: {e}。")
+                            # 更新上次链接 (即使解码失败也更新链接，因为链接地址已变化)
                             with open(last_link_filename, "w") as f_last_link:
                                 f_last_link.write(first_link)
 
