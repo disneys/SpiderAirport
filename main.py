@@ -4,7 +4,7 @@ import base64
 import os
 from bs4 import BeautifulSoup
 
-def process_and_update_link_content_final(markdown_url, output_filename="airport.txt", last_link_filename="last_link.txt", raw_content_filename="airport_base64"):
+def process_and_update_link_content_final(markdown_url, output_filename="airport.txt", last_link_filename="last_link.txt", raw_content_filename="airport_base64.txt"):
     """
     通过 URL 获取 Markdown 文件内容，寻找第一个符合条件的链接，
     如果链接地址与上次不同且成功获取内容，则模拟 Chrome 行为保存完整内容，并搜索 Base64 解码。
@@ -37,7 +37,7 @@ def process_and_update_link_content_final(markdown_url, output_filename="airport
                     link_response.encoding = 'utf-8'  # 强制指定编码为 UTF-8 (放在获取文本内容之前)
                     html_content = link_response.text
 
-                    # 保存完整的 HTML 内容到 airport_base64
+                    # 保存完整的 HTML 内容到 airport_base64.txt
                     with open(raw_content_filename, "w", encoding='utf-8') as outfile_raw:
                         outfile_raw.write(html_content)
                     print(f"原始链接的完整内容已保存到 {raw_content_filename}")
@@ -97,5 +97,5 @@ def process_and_update_link_content_final(markdown_url, output_filename="airport
         print(f"获取 Markdown 文件内容时发生错误: {e}")
 
 # 示例用法
-markdown_url = "https://ghfast.top/https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md"
+markdown_url = "https://wget.la/https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md"
 process_and_update_link_content_final(markdown_url)
