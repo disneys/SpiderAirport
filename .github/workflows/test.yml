@@ -1,0 +1,12 @@
+name: Test Schedule
+
+on:
+  schedule:
+    - cron: '* * * * *' # 每分钟运行一次（仅用于测试）
+
+jobs:
+  test_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo time
+        run: date
