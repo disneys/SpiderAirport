@@ -2,7 +2,8 @@ name: Update Airport Data
 
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '0,15,30,45 22-23 * * *' # 对应北京时间 6:00 到 7:45
+    - cron: '0,15,30,45 0-15 * * *'  # 对应北京时间 8:00 到 23:45
   workflow_dispatch: # 添加这一行来启用手动触发
 
 jobs:
@@ -20,8 +21,6 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
-        # 如果你的 main.py 只需要 requests 和 base64，可以省略这一步，因为它们通常已经可用或很容易安装。
-        # 但为了更通用，建议将依赖写入 requirements.txt 并安装。
 
       - name: Run main.py script
         run: python main.py
@@ -30,4 +29,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Update airport.txt"
-          branch: main # 替换为你的主分支名称，例如 main 或 master
+          branch: main # 替换为你的主分支名称
