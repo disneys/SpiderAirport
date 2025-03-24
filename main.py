@@ -3,7 +3,7 @@ import re
 import base64
 import os
 
-def process_and_update_link_content(markdown_url, base_dir):
+def process_and_update_link_content(markdown_url, base_dir, link_pattern):
     """
     通过 URL 获取 Markdown 文件内容，寻找第一个符合条件的链接，
     如果链接地址与上次不同且成功获取内容，则尝试将响应文本直接作为 Base64 解码并保存到指定目录。
@@ -22,12 +22,11 @@ def process_and_update_link_content(markdown_url, base_dir):
         response.raise_for_status()
         markdown_content = response.text
 
-        pattern = r"https://.*?mcsslk\.xyz/[a-zA-Z0-9]{32}"
-        links = re.findall(pattern, markdown_content)
+        links = re.findall(link_pattern, markdown_content)
 
         if links:
             first_link = links[0]
-            # print(f"找到链接: {first_link}")
+            # print(f"找到链接: {first_link} (来自 {markdown_url})")
 
             previous_link = None
             if os.path.exists(last_link_filename):
@@ -44,7 +43,7 @@ def process_and_update_link_content(markdown_url, base_dir):
 
                     with open(raw_content_filename, "w", encoding='utf-8') as outfile_raw:
                         outfile_raw.write(response_text)
-                    # print(f"原始链接的响应文本已保存到 {raw_content_filename}")
+                    # print(f"原始链接的响应文本已保存到 {raw_content_filename} (来自 {first_link})")
 
                     base64_pattern = r"^([A-Za-z0-9+/]{4,}={0,2})$"
                     if re.match(base64_pattern, response_text) and len(response_text) > 100:
@@ -89,14 +88,25 @@ def process_and_update_link_content(markdown_url, base_dir):
 if __name__ == "__main__":
     markdown_urls = [
         "https://wget.la/https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md",
-        "https://wget.la/https://raw.githubusercontent.com/mkshare3/mkshare3.github.io/main/README.md"
+        "https://wget.la/https://raw.githubusercontent.com/mkshare3/mkshare3.github.io/main/README.md",
+        "https://wget.la/https://raw.githubusercontent.com/abshare/abshare.github.io/main/README.md",
+        "https://wget.la/https://raw.githubusercontent.com/abshare3/abshare3.github.io/main/README.md"
     ]
     url_to_directory = {
         "https://wget.la/https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md": "mksshare",
-        "https://wget.la/https://raw.githubusercontent.com/mkshare3/mkshare3.github.io/main/README.md": "mkshare3"
+        "https://wget.la/https://raw.githubusercontent.com/mkshare3/mkshare3.github.io/main/README.md": "mkshare3",
+        "https://wget.la/https://raw.githubusercontent.com/abshare/abshare.github.io/main/README.md": "abshare",
+        "https://wget.la/https://raw.githubusercontent.com/abshare3/abshare3.github.io/main/README.md": "abshare3"
+    }
+    url_to_link_pattern = {
+        "https://wget.la/https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md": r"https://.*?mcsslk\.xyz/[a-zA-Z0-9]{32}",
+        "https://wget.la/https://raw.githubusercontent.com/mkshare3/mkshare3.github.io/main/README.md": r"https://.*?mcsslk\.xyz/[a-zA-Z0-9]{32}",
+        "https://wget.la/https://raw.githubusercontent.com/abshare/abshare.github.io/main/README.md": r"https://.*?absslk\.xyz/[a-zA-Z0-9]{32}",
+        "https://wget.la/https://raw.githubusercontent.com/abshare3/abshare3.github.io/main/README.md": r"https://.*?absslk\.xyz/[a-zA-Z0-9]{32}"
     }
 
     for url in markdown_urls:
         directory_name = url_to_directory.get(url)
-        if directory_name:
-            process_and_update_link_content(url, directory_name)
+        link_pattern = url_to_link_pattern.get(url)
+        if directory_name and link_pattern:
+            process_and_update_link_content(url, directory_name, link_pattern)
