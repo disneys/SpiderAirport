@@ -87,22 +87,22 @@ def process_and_update_link_content(markdown_url, base_dir, link_pattern):
 
 if __name__ == "__main__":
     markdown_urls = [
-        "https://wget.la/https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md",
-        "https://wget.la/https://raw.githubusercontent.com/mkshare3/mkshare3.github.io/main/README.md",
-        "https://wget.la/https://raw.githubusercontent.com/abshare/abshare.github.io/main/README.md",
-        "https://wget.la/https://raw.githubusercontent.com/abshare3/abshare3.github.io/main/README.md"
+        "https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md",
+        "https://raw.githubusercontent.com/mkshare3/mkshare3.github.io/main/README.md",
+        "https://raw.githubusercontent.com/abshare/abshare.github.io/main/README.md",
+        "https://raw.githubusercontent.com/abshare3/abshare3.github.io/main/README.md"
     ]
     url_to_directory = {
-        "https://wget.la/https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md": "mksshare",
-        "https://wget.la/https://raw.githubusercontent.com/mkshare3/mkshare3.github.io/main/README.md": "mkshare3",
-        "https://wget.la/https://raw.githubusercontent.com/abshare/abshare.github.io/main/README.md": "abshare",
-        "https://wget.la/https://raw.githubusercontent.com/abshare3/abshare3.github.io/main/README.md": "abshare3"
+        "https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md": "mksshare",
+        "https://raw.githubusercontent.com/mkshare3/mkshare3.github.io/main/README.md": "mkshare3",
+        "https://raw.githubusercontent.com/abshare/abshare.github.io/main/README.md": "abshare",
+        "https://raw.githubusercontent.com/abshare3/abshare3.github.io/main/README.md": "abshare3"
     }
     url_to_link_pattern = {
-        "https://wget.la/https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md": r"https://.*?mcsslk\.xyz/[a-zA-Z0-9]{32}",
-        "https://wget.la/https://raw.githubusercontent.com/mkshare3/mkshare3.github.io/main/README.md": r"https://.*?mcsslk\.xyz/[a-zA-Z0-9]{32}",
-        "https://wget.la/https://raw.githubusercontent.com/abshare/abshare.github.io/main/README.md": r"https://.*?absslk\.xyz/[a-zA-Z0-9]{32}",
-        "https://wget.la/https://raw.githubusercontent.com/abshare3/abshare3.github.io/main/README.md": r"https://.*?absslk\.xyz/[a-zA-Z0-9]{32}"
+        "https://raw.githubusercontent.com/mksshare/mksshare.github.io/main/README.md": r"https://.*?mcsslk\.xyz/[a-zA-Z0-9]{32}",
+        "https://raw.githubusercontent.com/mkshare3/mkshare3.github.io/main/README.md": r"https://.*?mcsslk\.xyz/[a-zA-Z0-9]{32}",
+        "https://raw.githubusercontent.com/abshare/abshare.github.io/main/README.md": r"https://.*?absslk\.xyz/[a-zA-Z0-9]{32}",
+        "https://raw.githubusercontent.com/abshare3/abshare3.github.io/main/README.md": r"https://.*?absslk\.xyz/[a-zA-Z0-9]{32}"
     }
 
     for url in markdown_urls:
