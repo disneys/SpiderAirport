@@ -9,7 +9,7 @@ def process_and_update_link_content(markdown_url, base_dir, link_pattern):
     如果链接地址与上次不同，则保存链接地址，并尝试获取链接内容进行解码和保存。
     """
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
+        'User-Agent': 'clash-verge/v2.2.3' # 将User-Agent修改为Clash Verge的
     }
     output_filename = os.path.join(base_dir, "airport.txt")
     last_link_filename = os.path.join(base_dir, "last_link.txt")
