@@ -32,8 +32,8 @@ def process_and_update_link_content(markdown_url, base_dir, link_pattern):
             if os.path.exists(last_link_filename):
                 with open(last_link_filename, "r") as f_last_link:
                     previous_link = f_last_link.read().strip()
-
-            if first_link != previous_link:
+            # 原来要判断链接是否变更才获取最新的内容first_link != previous_link
+            if 1 == 1:
                 print("链接地址已更改，正在尝试获取内容并更新。")
                 # 先保存 first_link，无论后续获取内容是否成功
                 with open(last_link_filename, "w", encoding='utf-8') as f_last_link:
