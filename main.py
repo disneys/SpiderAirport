@@ -1,86 +1,117 @@
-import requests
-import re
 import base64
+import logging
 import os
+import re
+
+import requests
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+)
+logger = logging.getLogger(__name__)
+
+
+def write_text_file(file_path, content):
+    with open(file_path, "w", encoding="utf-8") as file:
+        file.write(content)
+
+
+def write_error(error_filename, message):
+    write_text_file(error_filename, message)
+    if message:
+        logger.error(message)
+
 
 def process_and_update_link_content(markdown_url, base_dir, link_pattern):
     """
-    通过 URL 获取 Markdown 文件内容，寻找第一个符合条件的链接，
-    如果链接地址与上次不同，则保存链接地址，并尝试获取链接内容进行解码和保存。
+    通过 URL 获取 Markdown 内容，查找第一个匹配链接。
+    每次拿到链接后都重新获取并保存链接内容，避免链接不变但内容已变化。
+    如果链接地址变化，则同步更新 last_link.txt。
     """
     headers = {
-        'User-Agent': 'clash-verge/v2.4.7' # 将User-Agent修改为Clash Verge的
+        "User-Agent": "clash-verge/v2.4.7"
     }
     output_filename = os.path.join(base_dir, "airport.txt")
     last_link_filename = os.path.join(base_dir, "last_link.txt")
     raw_content_filename = os.path.join(base_dir, "airport_base64.txt")
+    error_filename = os.path.join(base_dir, "error.txt")
 
     os.makedirs(base_dir, exist_ok=True)
+    write_error(error_filename, "")
+
+    logger.info("开始处理目录: %s", base_dir)
+    logger.info("步骤 1/4: 获取 Markdown, url=%s", markdown_url)
 
     try:
-        response = requests.get(markdown_url)
+        response = requests.get(markdown_url, timeout=30)
         response.raise_for_status()
         markdown_content = response.text
+        logger.info("Markdown 获取成功, 长度=%s", len(markdown_content))
+    except requests.exceptions.RequestException as exc:
+        write_error(
+            error_filename,
+            f"获取 Markdown 失败, markdown_url={markdown_url}, error={type(exc).__name__}: {exc}",
+        )
+        return
 
-        links = re.findall(link_pattern, markdown_content)
+    logger.info("步骤 2/4: 在 Markdown 中查找第一个匹配链接")
+    links = re.findall(link_pattern, markdown_content)
+    if not links:
+        write_error(error_filename, f"未找到匹配链接, markdown_url={markdown_url}")
+        return
 
-        if links:
-            first_link = links[0]
-            print(f"找到链接: {first_link} (来自 {markdown_url})")
+    first_link = links[0]
+    logger.info("找到首个匹配链接: %s", first_link)
 
-            previous_link = None
-            if os.path.exists(last_link_filename):
-                with open(last_link_filename, "r") as f_last_link:
-                    previous_link = f_last_link.read().strip()
-            # 原来要判断链接是否变更才获取最新的内容first_link != previous_link
-            if 1 == 1:
-                print("链接地址已更改，正在尝试获取内容并更新。")
-                # 先保存 first_link，无论后续获取内容是否成功
-                with open(last_link_filename, "w", encoding='utf-8') as f_last_link:
-                    f_last_link.write(first_link)
+    previous_link = None
+    if os.path.exists(last_link_filename):
+        with open(last_link_filename, "r", encoding="utf-8") as f_last_link:
+            previous_link = f_last_link.read().strip()
 
-                try:
-                    link_response = requests.get(first_link, headers=headers)
-                    link_response.raise_for_status()
-                    link_response.encoding = 'utf-8'
-                    response_text = link_response.text.strip()
+    if first_link != previous_link:
+        logger.info("步骤 3/4: 链接已变化，更新 last_link.txt")
+        write_text_file(last_link_filename, first_link)
+    else:
+        logger.info("步骤 3/4: 链接未变化，不更新 last_link.txt")
 
-                    with open(raw_content_filename, "w", encoding='utf-8') as outfile_raw:
-                        outfile_raw.write(response_text)
-                    print(f"原始链接的响应文本已保存到 {raw_content_filename} (来自 {first_link})")
+    logger.info("步骤 4/4: 获取链接内容并刷新 airport_base64.txt")
+    try:
+        link_response = requests.get(first_link, headers=headers, timeout=30)
+        link_response.raise_for_status()
+        link_response.encoding = "utf-8"
+        response_text = link_response.text.strip()
 
-                    base64_pattern = r"^([A-Za-z0-9+/]{4,}={0,2})$"
-                    if re.match(base64_pattern, response_text) and len(response_text) > 100:
-                        print(f"响应文本看起来像是 Base64 编码: {response_text[:50]}...")
-                        try:
-                            decoded_content = base64.b64decode(response_text).decode('utf-8')
-                            with open(output_filename, "w", encoding='utf-8') as outfile:
-                                outfile.write(decoded_content + "\n")
-                            print(f"响应文本已解码并保存到 {output_filename}")
+        write_text_file(raw_content_filename, response_text)
+        logger.info(
+            "已写入原始内容到 %s, 长度=%s",
+            raw_content_filename,
+            len(response_text),
+        )
 
-                        except (base64.binascii.Error, UnicodeDecodeError):
-                            try:
-                                decoded_content = base64.b64decode(response_text).decode('latin-1')
-                                with open(output_filename, "w", encoding='utf-8') as outfile:
-                                    outfile.write(decoded_content + "\n")
-                                print(f"响应文本已解码 (latin-1) 并保存到 {output_filename}")
-                            except Exception:
-                                print(f"解码 {first_link} 内容时发生未知错误。")
-                    else:
-                        print("响应文本看起来不像是 Base64 编码，跳过解码。")
-
-                except requests.exceptions.RequestException as e:
-                    print(f"获取链接内容时发生错误: {e}")
-                    pass
-            else:
-                print("链接地址与上次相同，无需更新内容。")
-                pass
+        base64_pattern = r"^([A-Za-z0-9+/]{4,}={0,2})$"
+        if re.match(base64_pattern, response_text) and len(response_text) > 100:
+            logger.info("检测到疑似 Base64 内容，开始解码")
+            try:
+                decoded_content = base64.b64decode(response_text).decode("utf-8")
+                write_text_file(output_filename, decoded_content + "\n")
+                logger.info("Base64 已按 utf-8 解码并写入 %s", output_filename)
+            except (base64.binascii.Error, UnicodeDecodeError):
+                decoded_content = base64.b64decode(response_text).decode("latin-1")
+                write_text_file(output_filename, decoded_content + "\n")
+                logger.info("Base64 已按 latin-1 解码并写入 %s", output_filename)
         else:
-            print(f"在 URL: {markdown_url} 的 Markdown 文件中没有找到符合条件的链接。")
-            pass
-    except requests.exceptions.RequestException as e:
-        print(f"获取 Markdown 文件内容时发生错误: {e}")
-        pass
+            logger.info("响应内容不是可解码的 Base64，跳过写入 airport.txt")
+
+        write_error(error_filename, "")
+        logger.info("处理完成: %s", base_dir)
+    except Exception as exc:
+        write_error(
+            error_filename,
+            f"解析链接失败, link={first_link}, error={type(exc).__name__}: {exc}",
+        )
+
 
 if __name__ == "__main__":
     markdown_urls = [
