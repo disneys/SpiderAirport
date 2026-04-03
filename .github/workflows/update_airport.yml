@@ -1,23 +1,27 @@
 name: Update Airport Data
 
 on:
-  #schedule:
-  #  - cron: '0,15,30,45 22-23 * * *' # 对应北京时间 6:00 到 7:45
-  #  - cron: '0,15,30,45 0-15 * * *'  # 对应北京时间 8:00 到 23:45
-  workflow_dispatch: # 添加这一行来启用手动触发
+  # schedule:
+  #   - cron: "0,15,30,45 22-23 * * *" # 对应北京时间 06:00-07:45
+  #   - cron: "0,15,30,45 0-15 * * *"  # 对应北京时间 08:00-23:45
+  workflow_dispatch:
 
 jobs:
   update_data:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: '3.x'
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: "requirements.txt"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -26,7 +30,7 @@ jobs:
         run: python main.py
 
       - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "web crawler airport"
-          branch: main # 替换为你的主分支名称
+          branch: main
