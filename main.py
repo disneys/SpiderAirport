@@ -355,6 +355,34 @@ def deduplicate_proxies(proxies):
     return unique_proxies
 
 
+def ensure_unique_proxy_names(proxies):
+    renamed_proxies = []
+    used_names = set()
+    duplicate_count = 0
+
+    for proxy in proxies:
+        cloned = deepcopy(proxy)
+        base_name = normalize_proxy_name(
+            cloned.get("name"),
+            f"{cloned.get('type', 'proxy')}-{cloned.get('server', 'unknown')}",
+        )
+        candidate = base_name
+        suffix = 2
+
+        while candidate in used_names:
+            candidate = f"{base_name} [{suffix}]"
+            suffix += 1
+
+        if candidate != base_name:
+            duplicate_count += 1
+
+        cloned["name"] = candidate
+        used_names.add(candidate)
+        renamed_proxies.append(cloned)
+
+    return renamed_proxies, duplicate_count
+
+
 def extract_js_string_constant(source, constant_name):
     match = re.search(rf'const\s+{constant_name}\s*=\s*"([^"]+)"', source)
     return match.group(1) if match else ""
@@ -671,7 +699,11 @@ def generate_airport_clash_file(results):
     if not unique_proxies:
         logger.warning("本次未提取到任何节点，将生成 DIRECT 回退配置")
 
-    config = build_clash_config(unique_proxies, template)
+    named_proxies, duplicate_name_count = ensure_unique_proxy_names(unique_proxies)
+    if duplicate_name_count:
+        logger.info("检测到重复节点名，已自动重命名数量=%s", duplicate_name_count)
+
+    config = build_clash_config(named_proxies, template)
     airport_clash_path = os.path.join(ROOT_DIR, "airport_clash.txt")
     write_text_file(airport_clash_path, build_clash_file_text(config, template, results))
     logger.info("已写入 Clash/Mihomo 配置: %s", airport_clash_path)
