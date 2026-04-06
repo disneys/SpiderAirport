@@ -5,7 +5,7 @@ import logging
 import os
 import re
 from copy import deepcopy
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 import requests
 import yaml
@@ -646,7 +646,6 @@ def build_clash_config(proxies, template):
             "ipv6": False,
             "unified-delay": True,
             "tcp-concurrent": True,
-            "global-client-fingerprint": "chrome",
             "profile": {
                 "store-selected": True,
                 "store-fake-ip": True,
@@ -661,11 +660,12 @@ def build_clash_config(proxies, template):
 
 
 def build_clash_file_text(config, template, results):
-    generated_at = datetime.now().astimezone().isoformat(timespec="seconds")
+    generated_at = datetime.now(timezone(timedelta(hours=8))).isoformat(
+        timespec="seconds"
+    )
     success_sources = [result["source_name"] for result in results if result["proxies"]]
     header = "\n".join(
         [
-            "# 自动生成，请勿手动编辑",
             f"# generated_at: {generated_at}",
             f"# rules_source: {template['main_js_url']}",
             f"# rules_mode: {template['main_js_fetch_mode']}",
