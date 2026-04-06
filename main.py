@@ -836,51 +836,37 @@ def parse_yaml_subscription(decoded_content, source_name):
     return normalized_proxies
 
 
-def extract_proxies_from_subscription(decoded_content, source_name):
-    yaml_proxies = parse_yaml_subscription(decoded_content, source_name)
+def extract_proxies_from_subscription(source_name, airport_base64_content):
+    yaml_proxies = parse_yaml_subscription(airport_base64_content, source_name)
     if yaml_proxies:
         logger.info(
-            "[%s] 检测到 YAML 订阅，节点数=%s",
+            "[%s] 已从 airport_base64 内容中提取 proxies，节点数=%s",
             source_name,
             len(yaml_proxies),
         )
         return yaml_proxies
 
-    lines = [
-        line.strip()
-        for line in decoded_content.replace("\r", "\n").split("\n")
-        if line.strip() and not line.strip().startswith("#")
-    ]
+    logger.warning("[%s] 未在 airport_base64 内容中找到 YAML proxies 节点列表", source_name)
+    return []
 
-    proxies = []
-    unsupported_count = 0
-    failure_samples = []
-    for line in lines:
-        try:
-            proxy = parse_proxy_line(line, source_name)
-            if proxy:
-                proxies.append(proxy)
-            else:
-                unsupported_count += 1
-        except Exception as exc:
-            unsupported_count += 1
-            if len(failure_samples) < 3:
-                failure_samples.append(f"{line[:80]} -> {type(exc).__name__}: {exc}")
 
-    logger.info(
-        "[%s] 节点解析完成，输入行数=%s，成功=%s，跳过/失败=%s",
-        source_name,
-        len(lines),
-        len(proxies),
-        unsupported_count,
-    )
-    if failure_samples:
-        logger.warning(
-            "[%s] 部分节点未能转换，示例=%s",
-            source_name,
-            " | ".join(failure_samples),
-        )
-    return proxies
+def fingerprint_proxy(proxy):
+    normalized_proxy = clean_data(deepcopy(proxy))
+    return json.dumps(normalized_proxy, ensure_ascii=False, sort_keys=True)
+
+
+def deduplicate_proxy_entries(proxy_entries):
+    unique_entries = []
+    seen_fingerprints = set()
+
+    for entry in proxy_entries:
+        fingerprint = fingerprint_proxy(entry["proxy"])
+        if fingerprint in seen_fingerprints:
+            continue
+        seen_fingerprints.add(fingerprint)
+        unique_entries.append(entry)
+
+    return unique_entries
 
 
 def uniquify_proxy_names(proxy_entries):
@@ -1332,10 +1318,17 @@ def generate_airport_clash_file(results):
                 }
             )
 
-    all_proxies = uniquify_proxy_names(proxy_entries)
+    unique_proxy_entries = deduplicate_proxy_entries(proxy_entries)
+    logger.info(
+        "节点去重完成: 原始节点数=%s, 去重后=%s",
+        len(proxy_entries),
+        len(unique_proxy_entries),
+    )
+
+    all_proxies = [deepcopy(entry["proxy"]) for entry in unique_proxy_entries]
     logger.info(
         "订阅汇总完成: 有效来源=%s, 节点总数=%s",
-        len({entry['source_name'] for entry in proxy_entries}),
+        len({entry['source_name'] for entry in unique_proxy_entries}),
         len(all_proxies),
     )
     if not all_proxies:
@@ -1453,16 +1446,18 @@ def process_and_update_link_content(markdown_url, base_dir, link_pattern):
         )
         return result
 
-    log_step(source_name, 6, total_steps, "解析节点并参与汇总生成 airport_clash.txt")
+    log_step(source_name, 6, total_steps, "仅从 airport_base64 的 YAML proxies 列表提取节点并参与汇总")
     try:
-        proxies = extract_proxies_from_subscription(decoded_content, source_name)
+        proxies = extract_proxies_from_subscription(source_name, raw_content)
         if not proxies:
-            raise ValueError("未能从订阅内容中解析出任何支持的节点")
+            raise ValueError(
+                "未能从 airport_base64.txt 对应内容中找到 YAML 的 proxies 节点列表"
+            )
 
         result["proxies"] = proxies
         write_error(error_filename, "")
         logger.info(
-            "[%s] 全流程成功，节点数=%s，error.txt 已清空",
+            "[%s] 全流程成功，已从 airport_base64 提取 YAML 节点数=%s，error.txt 已清空",
             source_name,
             len(proxies),
         )
