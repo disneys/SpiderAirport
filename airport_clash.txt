@@ -1,0 +1,159 @@
+# 自动生成，请勿手动编辑
+# generated_at: 2026-04-06T04:45:58+00:00
+# rules_source: https://raw.githubusercontent.com/disneys/Mihomo-Dynamic-Overseer/refs/heads/main/main.js
+# rules_mode: remote-synced
+# success_sources: none
+mixed-port: 7890
+allow-lan: false
+mode: "rule"
+log-level: "info"
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+global-client-fingerprint: "chrome"
+profile:
+  store-selected: true
+  store-fake-ip: true
+dns:
+  enable: true
+  device-network: true
+  ipv6: false
+  enhanced-mode: "fake-ip"
+  fake-ip-range: "198.18.0.1/16"
+  default-nameserver:
+    - "223.5.5.5"
+    - "119.29.29.29"
+    - "1.1.1.1"
+  nameserver:
+    - "223.5.5.5"
+    - "223.6.6.6"
+    - "119.29.29.29"
+    - "180.76.76.76"
+    - "tls://dns.alidns.com"
+    - "https://dns.alidns.com/dns-query"
+    - "https://doh.pub/dns-query"
+  fallback:
+    - "https://dns.google/dns-query"
+    - "https://cloudflare-dns.com/dns-query"
+    - "https://dns.quad9.net/dns-query"
+    - "tls://8.8.8.8"
+    - "tls://1.1.1.1"
+    - "tls://dns.quad9.net"
+  fallback-filter:
+    geoip: true
+    geoip-code: "CN"
+    ipcidr:
+      - "240.0.0.0/4"
+  nameserver-policy:
+    "geosite:cn": "https://dns.alidns.com/dns-query"
+    "domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app": "119.29.29.29"
+proxy-groups:
+  - name: "节点选择"
+    type: "select"
+    proxies:
+      - "DIRECT"
+  - name: "自动选择"
+    type: "select"
+    proxies:
+      - "DIRECT"
+  - name: "手动选择"
+    type: "select"
+    proxies:
+      - "DIRECT"
+  - name: "AI 工具"
+    type: "select"
+    proxies:
+      - "DIRECT"
+rule-providers:
+  reject:
+    type: "http"
+    behavior: "domain"
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: "./ruleset/reject.yaml"
+    interval: 86400
+  icloud:
+    type: "http"
+    behavior: "domain"
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+    path: "./ruleset/icloud.yaml"
+    interval: 86400
+  apple:
+    type: "http"
+    behavior: "domain"
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+    path: "./ruleset/apple.yaml"
+    interval: 86400
+  google:
+    type: "http"
+    behavior: "domain"
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+    path: "./ruleset/google.yaml"
+    interval: 86400
+  proxy:
+    type: "http"
+    behavior: "domain"
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: "./ruleset/proxy.yaml"
+    interval: 86400
+  direct:
+    type: "http"
+    behavior: "domain"
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: "./ruleset/direct.yaml"
+    interval: 86400
+  private:
+    type: "http"
+    behavior: "domain"
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: "./ruleset/private.yaml"
+    interval: 86400
+  cncidr:
+    type: "http"
+    behavior: "ipcidr"
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: "./ruleset/cncidr.yaml"
+    interval: 86400
+  lancidr:
+    type: "http"
+    behavior: "ipcidr"
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: "./ruleset/lancidr.yaml"
+    interval: 86400
+  telegramcidr:
+    type: "http"
+    behavior: "ipcidr"
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    path: "./ruleset/telegramcidr.yaml"
+    interval: 86400
+  applications:
+    type: "http"
+    behavior: "classical"
+    url: "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
+    path: "./ruleset/applications.yaml"
+    interval: 86400
+rules:
+  - "DOMAIN,sub.datapipe.top,DIRECT"
+  - "DOMAIN,suc-store.usuc.cc,DIRECT"
+  - "DOMAIN,sub-aylz.koyeb.app,DIRECT"
+  - "RULE-SET,applications,DIRECT"
+  - "DOMAIN,clash.razord.top,DIRECT"
+  - "DOMAIN,yacd.haishan.me,DIRECT"
+  - "RULE-SET,private,DIRECT"
+  - "RULE-SET,reject,REJECT"
+  - "RULE-SET,icloud,DIRECT"
+  - "RULE-SET,apple,DIRECT"
+  - "GEOSITE,openai,AI 工具"
+  - "DOMAIN-SUFFIX,chatgpt.com,AI 工具"
+  - "DOMAIN-SUFFIX,gemini.google.com,AI 工具"
+  - "DOMAIN-KEYWORD,generativelanguage,AI 工具"
+  - "GEOSITE,anthropic,AI 工具"
+  - "DOMAIN-SUFFIX,claude.ai,AI 工具"
+  - "RULE-SET,google,节点选择"
+  - "RULE-SET,proxy,节点选择"
+  - "RULE-SET,direct,DIRECT"
+  - "RULE-SET,lancidr,DIRECT"
+  - "RULE-SET,cncidr,DIRECT"
+  - "RULE-SET,telegramcidr,节点选择"
+  - "GEOIP,LAN,DIRECT"
+  - "GEOIP,CN,DIRECT"
+  - "MATCH,节点选择"
