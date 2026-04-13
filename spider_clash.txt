@@ -1,9 +1,9 @@
-# generated_at: 2026-04-13T20:50:51+08:00
+# generated_at: 2026-04-13T21:01:00+08:00
 # source_file: embedded_sources
 # reference_date: 2026-04-13
 # effective_date: 2026-04-13
 # rules_source: https://raw.githubusercontent.com/disneys/Mihomo-Dynamic-Overseer/refs/heads/main/main.js
-# rules_mode: remote-synced
+# rules_mode: remote-main-js-executed
 # success_sources: clashnodev2ray.github.io, clashmetagithub.github.io, freev2rayclash.github.io, stashgithub.github.io, windowsclashnode.github.io, clashnode.github.io, clashvergerev.github.io, clash-verge.github.io, chengaopan/AutoMergePublicNodes, peasoft/NoMoreWalls
 mixed-port: 7890
 allow-lan: false
@@ -15,39 +15,6 @@ tcp-concurrent: true
 profile:
   store-selected: true
   store-fake-ip: true
-dns:
-  enable: true
-  device-network: true
-  ipv6: false
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  default-nameserver:
-  - 223.5.5.5
-  - 119.29.29.29
-  - 1.1.1.1
-  nameserver:
-  - 223.5.5.5
-  - 223.6.6.6
-  - 119.29.29.29
-  - 180.76.76.76
-  - tls://dns.alidns.com
-  - https://dns.alidns.com/dns-query
-  - https://doh.pub/dns-query
-  fallback:
-  - https://dns.google/dns-query
-  - https://cloudflare-dns.com/dns-query
-  - https://dns.quad9.net/dns-query
-  - tls://8.8.8.8
-  - tls://1.1.1.1
-  - tls://dns.quad9.net
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-    - 240.0.0.0/4
-  nameserver-policy:
-    geosite:cn: https://dns.alidns.com/dns-query
-    domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxies:
 - type: vless
   name: 美国(clashnodev2ray.github.io免费节点)_1
@@ -8949,6 +8916,106 @@ proxies:
   type: vless
   udp: true
   uuid: 39c72576-8e0a-4249-ab37-0c89ce6a8e93
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
+    path: ./ruleset/reject.yaml
+    interval: 86400
+  icloud:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
+    path: ./ruleset/icloud.yaml
+    interval: 86400
+  apple:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
+    path: ./ruleset/apple.yaml
+    interval: 86400
+  google:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
+    path: ./ruleset/google.yaml
+    interval: 86400
+  proxy:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+  direct:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
+    path: ./ruleset/direct.yaml
+    interval: 86400
+  private:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
+    path: ./ruleset/private.yaml
+    interval: 86400
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
+    path: ./ruleset/cncidr.yaml
+    interval: 86400
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
+    path: ./ruleset/lancidr.yaml
+    interval: 86400
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
+    path: ./ruleset/telegramcidr.yaml
+    interval: 86400
+  applications:
+    type: http
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt
+    path: ./ruleset/applications.yaml
+    interval: 86400
+dns:
+  enable: true
+  device-network: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
+  - 1.1.1.1
+  nameserver:
+  - 223.5.5.5
+  - 223.6.6.6
+  - 119.29.29.29
+  - 180.76.76.76
+  - tls://dns.alidns.com
+  - https://dns.alidns.com/dns-query
+  - https://doh.pub/dns-query
+  fallback:
+  - https://dns.google/dns-query
+  - https://cloudflare-dns.com/dns-query
+  - https://dns.quad9.net/dns-query
+  - tls://8.8.8.8
+  - tls://1.1.1.1
+  - tls://dns.quad9.net
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+    - 240.0.0.0/4
+  nameserver-policy:
+    geosite:cn: https://dns.alidns.com/dns-query
+    domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxy-groups:
 - name: 节点选择
   type: select
@@ -12033,73 +12100,6 @@ proxy-groups:
   - 'tg频道:@ripaojiedian #1'
   - CH_speednode_0002
   - CY_speednode_0004
-rule-providers:
-  reject:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
-    path: ./ruleset/reject.yaml
-    interval: 86400
-  icloud:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
-    path: ./ruleset/icloud.yaml
-    interval: 86400
-  apple:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
-    path: ./ruleset/apple.yaml
-    interval: 86400
-  google:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
-    path: ./ruleset/google.yaml
-    interval: 86400
-  proxy:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
-    path: ./ruleset/proxy.yaml
-    interval: 86400
-  direct:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
-    path: ./ruleset/direct.yaml
-    interval: 86400
-  private:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
-    path: ./ruleset/private.yaml
-    interval: 86400
-  cncidr:
-    type: http
-    behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
-    path: ./ruleset/cncidr.yaml
-    interval: 86400
-  lancidr:
-    type: http
-    behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
-    path: ./ruleset/lancidr.yaml
-    interval: 86400
-  telegramcidr:
-    type: http
-    behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
-    path: ./ruleset/telegramcidr.yaml
-    interval: 86400
-  applications:
-    type: http
-    behavior: classical
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt
-    path: ./ruleset/applications.yaml
-    interval: 86400
 rules:
 - DOMAIN,sub.datapipe.top,DIRECT
 - DOMAIN,suc-store.usuc.cc,DIRECT
