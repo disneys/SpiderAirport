@@ -468,6 +468,53 @@ def ensure_unique_proxy_names(proxies):
     return renamed_proxies, duplicate_count
 
 
+def find_self_referencing_proxy_groups(config):
+    loop_names = []
+    for group in config.get("proxy-groups", []):
+        if not isinstance(group, dict):
+            continue
+        group_name = group.get("name")
+        group_proxies = group.get("proxies")
+        if not group_name or not isinstance(group_proxies, list):
+            continue
+        if group_name in group_proxies:
+            loop_names.append(group_name)
+    return loop_names
+
+
+def rename_proxies_conflicting_with_group_names(proxies, group_names):
+    if not group_names:
+        return [deepcopy(proxy) for proxy in proxies], 0
+
+    reserved_names = set(group_names)
+    renamed_proxies = []
+    renamed_count = 0
+
+    for proxy in proxies:
+        cloned = deepcopy(proxy)
+        original_name = normalize_proxy_name(
+            cloned.get("name"),
+            f"{cloned.get('type', 'proxy')}-{cloned.get('server', 'unknown')}",
+        )
+
+        if original_name not in reserved_names:
+            renamed_proxies.append(cloned)
+            continue
+
+        suffix = 1
+        candidate = f"{original_name} [node]"
+        used_names = {item.get("name") for item in renamed_proxies}
+        while candidate in reserved_names or candidate in used_names:
+            suffix += 1
+            candidate = f"{original_name} [node {suffix}]"
+
+        cloned["name"] = candidate
+        renamed_proxies.append(cloned)
+        renamed_count += 1
+
+    return renamed_proxies, renamed_count
+
+
 def get_proxy_endpoint(proxy):
     server = proxy.get("server")
     port = proxy.get("port")
@@ -566,6 +613,25 @@ def filter_reachable_proxies(proxies):
         "dropped_count": dropped_count,
         "invalid_endpoint_count": invalid_endpoint_count,
     }
+
+
+def build_source_summaries(results, final_proxies):
+    final_fingerprints = {fingerprint_proxy(proxy) for proxy in final_proxies}
+    summaries = []
+
+    for result in results:
+        total_count = len(result["proxies"])
+        if total_count == 0:
+            continue
+
+        available_fingerprints = {
+            fingerprint_proxy(proxy)
+            for proxy in result["proxies"]
+            if fingerprint_proxy(proxy) in final_fingerprints
+        }
+        summaries.append(f"{result['source_name']} {len(available_fingerprints)}/{total_count}")
+
+    return summaries
 
 
 def extract_yaml_proxies(content, source_name):
@@ -771,6 +837,38 @@ def apply_remote_main_js(config):
             os.remove(runner_path)
 
 
+def apply_remote_main_js_with_loop_resolution(proxies):
+    current_proxies = [deepcopy(proxy) for proxy in proxies]
+    total_renamed = 0
+
+    for attempt in range(1, 4):
+        base_config = build_base_config(current_proxies)
+        config, rules_source, rules_mode = apply_remote_main_js(base_config)
+        loop_names = find_self_referencing_proxy_groups(config)
+        if not loop_names:
+            return config, current_proxies, rules_source, rules_mode, total_renamed
+
+        renamed_proxies, renamed_count = rename_proxies_conflicting_with_group_names(
+            current_proxies,
+            loop_names,
+        )
+        if renamed_count == 0:
+            raise ValueError(
+                f"ProxyGroup loop detected but no conflicting proxy names could be renamed: {', '.join(loop_names)}"
+            )
+
+        total_renamed += renamed_count
+        current_proxies = renamed_proxies
+        logger.warning(
+            "ProxyGroup loop detected on remote main.js apply, auto-renamed=%s, groups=%s, attempt=%s",
+            renamed_count,
+            ", ".join(loop_names),
+            attempt,
+        )
+
+    raise ValueError("ProxyGroup loop still exists after automatic proxy renaming")
+
+
 def build_base_config(proxies):
     cleaned_proxies = [clean_data(proxy) for proxy in proxies]
     return clean_data(
@@ -933,6 +1031,37 @@ def build_clash_config(proxies, template):
     )
 
 
+def build_fallback_config_with_loop_resolution(proxies, template):
+    current_proxies = [deepcopy(proxy) for proxy in proxies]
+    total_renamed = 0
+
+    for attempt in range(1, 4):
+        config = build_clash_config(current_proxies, template)
+        loop_names = find_self_referencing_proxy_groups(config)
+        if not loop_names:
+            return config, current_proxies, total_renamed
+
+        renamed_proxies, renamed_count = rename_proxies_conflicting_with_group_names(
+            current_proxies,
+            loop_names,
+        )
+        if renamed_count == 0:
+            raise ValueError(
+                f"Fallback ProxyGroup loop detected but no conflicting proxy names could be renamed: {', '.join(loop_names)}"
+            )
+
+        total_renamed += renamed_count
+        current_proxies = renamed_proxies
+        logger.warning(
+            "ProxyGroup loop detected on fallback config build, auto-renamed=%s, groups=%s, attempt=%s",
+            renamed_count,
+            ", ".join(loop_names),
+            attempt,
+        )
+
+    raise ValueError("Fallback ProxyGroup loop still exists after automatic proxy renaming")
+
+
 def build_clash_file_text(
     config,
     results,
@@ -941,9 +1070,9 @@ def build_clash_file_text(
     target_date,
     rules_source,
     rules_mode,
+    source_summaries,
 ):
     generated_at = datetime.now(UTC_PLUS_8).isoformat(timespec="seconds")
-    success_sources = [result["source_name"] for result in results if result["proxies"]]
     header = "\n".join(
         [
             f"# generated_at: {generated_at}",
@@ -952,7 +1081,7 @@ def build_clash_file_text(
             f"# effective_date: {target_date.isoformat()}",
             f"# rules_source: {rules_source}",
             f"# rules_mode: {rules_mode}",
-            f"# success_sources: {', '.join(success_sources) if success_sources else 'none'}",
+            f"# success_sources: {', '.join(source_summaries) if source_summaries else 'none'}",
             "",
         ]
     )
@@ -1049,18 +1178,35 @@ def generate_spider_clash_file(results, source_filename, reference_date, target_
     if duplicate_name_count:
         logger.info("Duplicate proxy names detected and renamed: %s", duplicate_name_count)
 
-    base_config = build_base_config(named_proxies)
+    final_proxies = named_proxies
     rules_source = MAIN_JS_URL
     rules_mode = "remote-main-js-executed"
 
     try:
-        config, rules_source, rules_mode = apply_remote_main_js(base_config)
+        config, final_proxies, rules_source, rules_mode, loop_renamed_count = (
+            apply_remote_main_js_with_loop_resolution(named_proxies)
+        )
+        if loop_renamed_count:
+            logger.info(
+                "Proxy names auto-renamed to resolve ProxyGroup loops: %s",
+                loop_renamed_count,
+            )
     except Exception as exc:
         message = f"main.js -> {type(exc).__name__}: {exc}"
         generation_errors.append(message)
         logger.error("Remote main.js apply failed, fallback will be used: %s", message)
-        config = build_clash_config(named_proxies, FALLBACK_OVERSEER_TEMPLATE)
+        config, final_proxies, fallback_loop_renamed_count = build_fallback_config_with_loop_resolution(
+            named_proxies,
+            FALLBACK_OVERSEER_TEMPLATE,
+        )
+        if fallback_loop_renamed_count:
+            logger.info(
+                "Proxy names auto-renamed to resolve fallback ProxyGroup loops: %s",
+                fallback_loop_renamed_count,
+            )
         rules_mode = "fallback-default"
+
+    source_summaries = build_source_summaries(results, final_proxies)
 
     output_text = build_clash_file_text(
         config,
@@ -1070,6 +1216,7 @@ def generate_spider_clash_file(results, source_filename, reference_date, target_
         target_date,
         rules_source,
         rules_mode,
+        source_summaries,
     )
     write_text_file(OUTPUT_FILE, output_text)
     logger.info("Clash configuration written to %s", OUTPUT_FILE)
