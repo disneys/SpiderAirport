@@ -5,6 +5,9 @@ import json
 import logging
 import os
 import re
+import shutil
+import subprocess
+import tempfile
 from copy import deepcopy
 from datetime import date, datetime, timedelta, timezone
 from urllib.parse import urlsplit, urlunsplit
@@ -22,6 +25,7 @@ logger = logging.getLogger(__name__)
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_FILE = os.path.join(ROOT_DIR, "spider_clash.txt")
+ERROR_FILE = os.path.join(ROOT_DIR, "spider_clash_error.txt")
 SUBSCRIPTION_HEADERS = {"User-Agent": "clash-verge/v2.4.7"}
 MAIN_JS_URL = (
     "https://raw.githubusercontent.com/disneys/"
@@ -337,6 +341,13 @@ def write_text_file(file_path, content):
         file.write(content)
 
 
+def write_error_file(messages):
+    content = ""
+    if messages:
+        content = "\n".join(messages).rstrip() + "\n"
+    write_text_file(ERROR_FILE, content)
+
+
 def normalize_text(value):
     return value.replace("\ufeff", "").strip()
 
@@ -580,156 +591,96 @@ def fetch_text(url):
     return normalize_text(response.text)
 
 
-def extract_js_string_constant(source, constant_name):
-    match = re.search(rf'const\s+{constant_name}\s*=\s*"([^"]+)"', source)
-    return match.group(1) if match else ""
+def fetch_remote_main_js_source():
+    response = requests.get(MAIN_JS_URL, timeout=30)
+    response.raise_for_status()
+    return response.text
 
 
-def extract_js_number_constant(source, constant_name):
-    match = re.search(rf"const\s+{constant_name}\s*=\s*(\d+)", source)
-    return int(match.group(1)) if match else None
+def apply_remote_main_js(config):
+    node_binary = shutil.which("node")
+    if not node_binary:
+        raise RuntimeError("node executable not found")
 
+    main_js_source = fetch_remote_main_js_source()
+    runner_source = "\n".join(
+        [
+            'const fs = require("fs");',
+            'const input = fs.readFileSync(0, "utf8");',
+            "const params = JSON.parse(input);",
+            main_js_source,
+            'if (typeof main !== "function") throw new Error("main.js does not define main(params)");',
+            "const result = main(params);",
+            "process.stdout.write(JSON.stringify(result ?? params));",
+        ]
+    )
 
-def extract_js_icon_mapping(source):
-    match = re.search(r"const\s+ICON\s*=\s*\{(.*?)\};", source, re.S)
-    if not match:
-        return {}
-
-    icon_mapping = {}
-    for key, filename in re.findall(
-        r'([A-Z]+)\s*:\s*ICON_BASE\s*\+\s*"([^"]+)"',
-        match.group(1),
-    ):
-        icon_mapping[key] = filename
-    return icon_mapping
-
-
-def extract_region_configs(source):
-    match = re.search(r"const\s+regionConfigs\s*=\s*\[(.*?)\];", source, re.S)
-    if not match:
-        return []
-
-    region_configs = []
-    for name, pattern, icon_key in re.findall(
-        r'\{\s*name:\s*"([^"]+)",\s*regex:\s*/(.+?)/,\s*icon:\s*ICON\.([A-Z]+)\s*\}',
-        match.group(1),
-        re.S,
-    ):
-        region_configs.append(
-            {
-                "name": name.strip(),
-                "regex": pattern.strip(),
-                "icon_key": icon_key.strip(),
-            }
-        )
-    return region_configs
-
-
-def extract_rule_providers(source):
-    match = re.search(r'params\["rule-providers"\]\s*=\s*\{(.*?)\};', source, re.S)
-    if not match:
-        return []
-
-    providers = []
-    for name, provider_type, behavior, filename, path, interval in re.findall(
-        r'"([^"]+)"\s*:\s*\{\s*type:\s*"([^"]+)",\s*behavior:\s*"([^"]+)",\s*url:\s*RULE_BASE\s*\+\s*"([^"]+)",\s*path:\s*"([^"]+)",\s*interval:\s*(\d+)\s*\}',
-        match.group(1),
-        re.S,
-    ):
-        providers.append(
-            {
-                "name": name,
-                "type": provider_type,
-                "behavior": behavior,
-                "filename": filename,
-                "path": path,
-                "interval": int(interval),
-            }
-        )
-    return providers
-
-
-def extract_dns_config(source):
-    match = re.search(r"params\.dns\s*=\s*(\{.*?\})\s*;", source, re.S)
-    if not match:
-        return {}
-
-    dns_text = re.sub(r",(\s*[}\]])", r"\1", match.group(1))
+    runner_path = None
     try:
-        return json.loads(dns_text)
-    except json.JSONDecodeError as exc:
-        logger.warning("Failed to decode dns config from main.js: %s", exc)
-        return {}
+        with tempfile.NamedTemporaryFile(
+            "w",
+            encoding="utf-8",
+            suffix=".js",
+            delete=False,
+        ) as temp_file:
+            temp_file.write(runner_source)
+            runner_path = temp_file.name
 
-
-def extract_rules_from_js(source):
-    match = re.search(r"params\.rules\s*=\s*\[(.*?)\];", source, re.S)
-    if not match:
-        return []
-    return re.findall(r'"((?:[^"\\]|\\.)*)"', match.group(1))
-
-
-def load_overseer_template():
-    template = deepcopy(FALLBACK_OVERSEER_TEMPLATE)
-    template["main_js_url"] = MAIN_JS_URL
-    template["main_js_fetch_mode"] = "fallback-default"
-
-    logger.info("Syncing rule template from %s", MAIN_JS_URL)
-    try:
-        response = requests.get(MAIN_JS_URL, timeout=30)
-        response.raise_for_status()
-        source = response.text
-
-        test_url = extract_js_string_constant(source, "TEST_URL")
-        if test_url:
-            template["test_url"] = test_url
-
-        test_interval = extract_js_number_constant(source, "TEST_INTERVAL")
-        if test_interval is not None:
-            template["test_interval"] = test_interval
-
-        rule_base = extract_js_string_constant(source, "RULE_BASE")
-        if rule_base:
-            template["rule_base"] = rule_base
-
-        icon_base = extract_js_string_constant(source, "ICON_BASE")
-        if icon_base:
-            template["icon_base"] = icon_base
-
-        icon_mapping = extract_js_icon_mapping(source)
-        if icon_mapping:
-            template["icons"] = icon_mapping
-
-        region_configs = extract_region_configs(source)
-        if region_configs:
-            template["region_configs"] = region_configs
-
-        rule_providers = extract_rule_providers(source)
-        if rule_providers:
-            template["rule_providers"] = rule_providers
-
-        dns_config = extract_dns_config(source)
-        if dns_config:
-            template["dns"] = dns_config
-
-        rules = extract_rules_from_js(source)
-        if rules:
-            template["rules"] = rules
-
-        template["main_js_fetch_mode"] = "remote-synced"
-        logger.info(
-            "Rule template synced: regions=%s, providers=%s, rules=%s, dns=%s",
-            len(template["region_configs"]),
-            len(template["rule_providers"]),
-            len(template["rules"]),
-            "yes" if dns_config else "fallback",
+        completed = subprocess.run(
+            [node_binary, runner_path],
+            input=json.dumps(config, ensure_ascii=False),
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=120,
+            check=False,
         )
-    except requests.exceptions.RequestException as exc:
-        logger.warning("Failed to fetch main.js, using built-in fallback: %s", exc)
-    except Exception as exc:
-        logger.warning("Failed to parse main.js, using built-in fallback: %s", exc)
+        if completed.returncode != 0:
+            stderr = normalize_text(completed.stderr)
+            raise RuntimeError(
+                f"node main.js execution failed with exit code {completed.returncode}: {stderr}"
+            )
 
-    return template
+        stdout = normalize_text(completed.stdout)
+        if not stdout:
+            raise RuntimeError("node main.js execution returned empty output")
+
+        result = json.loads(stdout)
+        if not isinstance(result, dict):
+            raise ValueError("main.js execution did not return a JSON object")
+        required_keys = ["dns", "proxy-groups", "rule-providers", "rules"]
+        missing_keys = [key for key in required_keys if key not in result]
+        if missing_keys:
+            raise ValueError(
+                f"main.js execution result is missing required keys: {', '.join(missing_keys)}"
+            )
+
+        logger.info("Remote main.js executed successfully")
+        return clean_data(result), MAIN_JS_URL, "remote-main-js-executed"
+    finally:
+        if runner_path and os.path.exists(runner_path):
+            os.remove(runner_path)
+
+
+def build_base_config(proxies):
+    cleaned_proxies = [clean_data(proxy) for proxy in proxies]
+    return clean_data(
+        {
+            "mixed-port": 7890,
+            "allow-lan": False,
+            "mode": "rule",
+            "log-level": "info",
+            "ipv6": False,
+            "unified-delay": True,
+            "tcp-concurrent": True,
+            "profile": {
+                "store-selected": True,
+                "store-fake-ip": True,
+            },
+            "proxies": cleaned_proxies,
+        }
+    )
 
 
 def build_icon_url(template, icon_key):
@@ -874,7 +825,15 @@ def build_clash_config(proxies, template):
     )
 
 
-def build_clash_file_text(config, template, results, source_filename, reference_date, target_date):
+def build_clash_file_text(
+    config,
+    results,
+    source_filename,
+    reference_date,
+    target_date,
+    rules_source,
+    rules_mode,
+):
     generated_at = datetime.now(UTC_PLUS_8).isoformat(timespec="seconds")
     success_sources = [result["source_name"] for result in results if result["proxies"]]
     header = "\n".join(
@@ -883,8 +842,8 @@ def build_clash_file_text(config, template, results, source_filename, reference_
             f"# source_file: {source_filename}",
             f"# reference_date: {reference_date.isoformat()}",
             f"# effective_date: {target_date.isoformat()}",
-            f"# rules_source: {template['main_js_url']}",
-            f"# rules_mode: {template['main_js_fetch_mode']}",
+            f"# rules_source: {rules_source}",
+            f"# rules_mode: {rules_mode}",
             f"# success_sources: {', '.join(success_sources) if success_sources else 'none'}",
             "",
         ]
@@ -948,7 +907,7 @@ def process_source(source, reference_date, target_date):
 
 def generate_spider_clash_file(results, source_filename, reference_date, target_date):
     logger.info("Start generating spider_clash.txt")
-    template = load_overseer_template()
+    generation_errors = []
 
     collected_proxies = []
     for result in results:
@@ -967,17 +926,31 @@ def generate_spider_clash_file(results, source_filename, reference_date, target_
     if duplicate_name_count:
         logger.info("Duplicate proxy names detected and renamed: %s", duplicate_name_count)
 
-    config = build_clash_config(named_proxies, template)
+    base_config = build_base_config(named_proxies)
+    rules_source = MAIN_JS_URL
+    rules_mode = "remote-main-js-executed"
+
+    try:
+        config, rules_source, rules_mode = apply_remote_main_js(base_config)
+    except Exception as exc:
+        message = f"main.js -> {type(exc).__name__}: {exc}"
+        generation_errors.append(message)
+        logger.error("Remote main.js apply failed, fallback will be used: %s", message)
+        config = build_clash_config(named_proxies, FALLBACK_OVERSEER_TEMPLATE)
+        rules_mode = "fallback-default"
+
     output_text = build_clash_file_text(
         config,
-        template,
         results,
         source_filename,
         reference_date,
         target_date,
+        rules_source,
+        rules_mode,
     )
     write_text_file(OUTPUT_FILE, output_text)
     logger.info("Clash configuration written to %s", OUTPUT_FILE)
+    return generation_errors
 
 
 def main():
@@ -987,6 +960,7 @@ def main():
         if args.target_date
         else datetime.now(UTC_PLUS_8).date()
     )
+    write_error_file([])
 
     logger.info("Task start: source=%s, target_date=%s", EMBEDDED_SOURCE_LABEL, target_date)
     sources = load_embedded_sources()
@@ -1002,7 +976,7 @@ def main():
     for source in sources:
         results.append(process_source(source, reference_date, target_date))
 
-    generate_spider_clash_file(
+    generation_errors = generate_spider_clash_file(
         results,
         EMBEDDED_SOURCE_LABEL,
         reference_date,
@@ -1011,6 +985,16 @@ def main():
 
     success_sources = sum(1 for result in results if result["proxies"])
     failed_urls = sum(len(result["errors"]) for result in results)
+    all_errors = []
+    for result in results:
+        all_errors.extend(result["errors"])
+    all_errors.extend(generation_errors)
+    write_error_file(all_errors)
+    logger.info(
+        "Error file updated: %s, entries=%s",
+        ERROR_FILE,
+        len(all_errors),
+    )
     logger.info(
         "Task finished: sources=%s, success_sources=%s, failed_urls=%s, output=%s",
         len(results),
