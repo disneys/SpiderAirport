@@ -5,10 +5,12 @@ import json
 import logging
 import os
 import re
+import socket
 import shutil
 import subprocess
 import tempfile
 from copy import deepcopy
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime, timedelta, timezone
 from urllib.parse import urlsplit, urlunsplit
 
@@ -33,6 +35,9 @@ MAIN_JS_URL = (
 )
 UTC_PLUS_8 = timezone(timedelta(hours=8))
 EMBEDDED_SOURCE_LABEL = "embedded_sources"
+REACHABILITY_TIMEOUT_SECONDS = 1.0
+REACHABILITY_MAX_WORKERS = 64
+UDP_ONLY_PROXY_TYPES = {"hysteria", "hysteria2", "hy2", "tuic", "wireguard"}
 EMBEDDED_SOURCES = [
     {
         "source_name": "clashnodev2ray.github.io",
@@ -415,7 +420,10 @@ def clean_data(value):
 
 
 def fingerprint_proxy(proxy):
-    return json.dumps(clean_data(deepcopy(proxy)), ensure_ascii=False, sort_keys=True)
+    cloned = clean_data(deepcopy(proxy))
+    if isinstance(cloned, dict):
+        cloned.pop("name", None)
+    return json.dumps(cloned, ensure_ascii=False, sort_keys=True)
 
 
 def deduplicate_proxies(proxies):
@@ -458,6 +466,106 @@ def ensure_unique_proxy_names(proxies):
         renamed_proxies.append(cloned)
 
     return renamed_proxies, duplicate_count
+
+
+def get_proxy_endpoint(proxy):
+    server = proxy.get("server")
+    port = proxy.get("port")
+    proxy_type = str(proxy.get("type", "")).strip().lower()
+
+    if not server or port in (None, ""):
+        return None
+
+    try:
+        port_number = int(port)
+    except (TypeError, ValueError):
+        return None
+
+    return proxy_type, str(server).strip(), port_number
+
+
+def check_tcp_endpoint(endpoint):
+    _, server, port = endpoint
+    try:
+        with socket.create_connection((server, port), timeout=REACHABILITY_TIMEOUT_SECONDS):
+            return True
+    except OSError:
+        return False
+
+
+def filter_reachable_proxies(proxies):
+    endpoint_status = {}
+    tcp_endpoints = []
+    invalid_endpoint_count = 0
+
+    for proxy in proxies:
+        endpoint = get_proxy_endpoint(proxy)
+        if endpoint is None:
+            invalid_endpoint_count += 1
+            continue
+
+        if endpoint in endpoint_status:
+            continue
+
+        if endpoint[0] in UDP_ONLY_PROXY_TYPES:
+            endpoint_status[endpoint] = None
+            continue
+
+        tcp_endpoints.append(endpoint)
+
+    if tcp_endpoints:
+        with ThreadPoolExecutor(max_workers=REACHABILITY_MAX_WORKERS) as executor:
+            future_to_endpoint = {
+                executor.submit(check_tcp_endpoint, endpoint): endpoint for endpoint in tcp_endpoints
+            }
+            for future in as_completed(future_to_endpoint):
+                endpoint = future_to_endpoint[future]
+                try:
+                    endpoint_status[endpoint] = future.result()
+                except Exception:
+                    endpoint_status[endpoint] = False
+
+    checked_count = sum(1 for status in endpoint_status.values() if status is not None)
+    reachable_count = sum(1 for status in endpoint_status.values() if status is True)
+    unchecked_count = sum(1 for status in endpoint_status.values() if status is None)
+
+    if checked_count > 0 and reachable_count == 0:
+        logger.warning(
+            "Reachability filter skipped because all %s TCP probes failed; original proxies will be kept",
+            checked_count,
+        )
+        return proxies, {
+            "applied": False,
+            "checked_count": checked_count,
+            "reachable_count": reachable_count,
+            "unchecked_count": unchecked_count,
+            "dropped_count": 0,
+            "invalid_endpoint_count": invalid_endpoint_count,
+        }
+
+    kept_proxies = []
+    dropped_count = 0
+    for proxy in proxies:
+        endpoint = get_proxy_endpoint(proxy)
+        if endpoint is None:
+            dropped_count += 1
+            continue
+
+        status = endpoint_status.get(endpoint)
+        if status is False:
+            dropped_count += 1
+            continue
+
+        kept_proxies.append(proxy)
+
+    return kept_proxies, {
+        "applied": True,
+        "checked_count": checked_count,
+        "reachable_count": reachable_count,
+        "unchecked_count": unchecked_count,
+        "dropped_count": dropped_count,
+        "invalid_endpoint_count": invalid_endpoint_count,
+    }
 
 
 def extract_yaml_proxies(content, source_name):
@@ -922,7 +1030,22 @@ def generate_spider_clash_file(results, source_filename, reference_date, target_
     if not unique_proxies:
         logger.warning("No proxies were extracted; spider_clash.txt will contain DIRECT-only fallback groups")
 
-    named_proxies, duplicate_name_count = ensure_unique_proxy_names(unique_proxies)
+    reachable_proxies, reachability_stats = filter_reachable_proxies(unique_proxies)
+    logger.info(
+        "Reachability filter: applied=%s, checked=%s, reachable=%s, unchecked=%s, dropped=%s, invalid_endpoint=%s, remaining=%s",
+        reachability_stats["applied"],
+        reachability_stats["checked_count"],
+        reachability_stats["reachable_count"],
+        reachability_stats["unchecked_count"],
+        reachability_stats["dropped_count"],
+        reachability_stats["invalid_endpoint_count"],
+        len(reachable_proxies),
+    )
+    if not reachable_proxies:
+        logger.warning("No proxies remained after reachability filtering; original deduplicated proxies will be restored")
+        reachable_proxies = unique_proxies
+
+    named_proxies, duplicate_name_count = ensure_unique_proxy_names(reachable_proxies)
     if duplicate_name_count:
         logger.info("Duplicate proxy names detected and renamed: %s", duplicate_name_count)
 
