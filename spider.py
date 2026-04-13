@@ -401,6 +401,8 @@ def clean_data(value):
     if isinstance(value, dict):
         cleaned = {}
         for key, item in value.items():
+            if str(key).startswith("__"):
+                continue
             cleaned_item = clean_data(item)
             if cleaned_item in (None, "", [], {}):
                 continue
@@ -423,18 +425,23 @@ def fingerprint_proxy(proxy):
     cloned = clean_data(deepcopy(proxy))
     if isinstance(cloned, dict):
         cloned.pop("name", None)
+        cloned.pop("__sources", None)
     return json.dumps(cloned, ensure_ascii=False, sort_keys=True)
 
 
 def deduplicate_proxies(proxies):
     unique_proxies = []
-    seen_fingerprints = set()
+    fingerprint_to_index = {}
 
     for proxy in proxies:
         fingerprint = fingerprint_proxy(proxy)
-        if fingerprint in seen_fingerprints:
+        if fingerprint in fingerprint_to_index:
+            existing_proxy = unique_proxies[fingerprint_to_index[fingerprint]]
+            existing_sources = set(existing_proxy.get("__sources", []))
+            existing_sources.update(proxy.get("__sources", []))
+            existing_proxy["__sources"] = sorted(existing_sources)
             continue
-        seen_fingerprints.add(fingerprint)
+        fingerprint_to_index[fingerprint] = len(unique_proxies)
         unique_proxies.append(deepcopy(proxy))
 
     return unique_proxies
@@ -466,6 +473,39 @@ def ensure_unique_proxy_names(proxies):
         renamed_proxies.append(cloned)
 
     return renamed_proxies, duplicate_count
+
+
+def build_proxy_source_label(proxy):
+    sources = sorted(set(proxy.get("__sources", [])))
+    if not sources:
+        return ""
+    if len(sources) == 1:
+        return sources[0]
+    return f"{sources[0]}+{len(sources) - 1}"
+
+
+def decorate_proxy_names_with_source_tags(proxies):
+    decorated_proxies = []
+    decorated_count = 0
+
+    for proxy in proxies:
+        cloned = deepcopy(proxy)
+        source_label = build_proxy_source_label(cloned)
+        if not source_label:
+            decorated_proxies.append(cloned)
+            continue
+
+        base_name = normalize_proxy_name(
+            cloned.get("name"),
+            f"{cloned.get('type', 'proxy')}-{cloned.get('server', 'unknown')}",
+        )
+        decorated_name = f"{base_name} [{source_label}]"
+        if cloned.get("name") != decorated_name:
+            cloned["name"] = decorated_name
+            decorated_count += 1
+        decorated_proxies.append(cloned)
+
+    return decorated_proxies, decorated_count
 
 
 def find_self_referencing_proxy_groups(config):
@@ -665,6 +705,7 @@ def extract_yaml_proxies(content, source_name):
             f"{source_name}-{cloned.get('type', 'proxy')}-{cloned.get('server', 'unknown')}",
         )
         cloned.setdefault("udp", True)
+        cloned["__sources"] = [source_name]
         normalized_proxies.append(cloned)
 
     if not normalized_proxies:
@@ -1174,7 +1215,11 @@ def generate_spider_clash_file(results, source_filename, reference_date, target_
         logger.warning("No proxies remained after reachability filtering; original deduplicated proxies will be restored")
         reachable_proxies = unique_proxies
 
-    named_proxies, duplicate_name_count = ensure_unique_proxy_names(reachable_proxies)
+    tagged_proxies, tagged_count = decorate_proxy_names_with_source_tags(reachable_proxies)
+    if tagged_count:
+        logger.info("Proxy names decorated with source labels: %s", tagged_count)
+
+    named_proxies, duplicate_name_count = ensure_unique_proxy_names(tagged_proxies)
     if duplicate_name_count:
         logger.info("Duplicate proxy names detected and renamed: %s", duplicate_name_count)
 
