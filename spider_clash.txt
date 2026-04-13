@@ -1,10 +1,10 @@
-# generated_at: 2026-04-14T03:00:53+08:00
+# generated_at: 2026-04-14T03:10:45+08:00
 # source_file: embedded_sources
 # reference_date: 2026-04-13
 # effective_date: 2026-04-14
 # rules_source: https://raw.githubusercontent.com/disneys/Mihomo-Dynamic-Overseer/refs/heads/main/main.js
 # rules_mode: remote-main-js-executed
-# success_sources: chengaopan/AutoMergePublicNodes 28/41, peasoft/NoMoreWalls 29/52
+# success_sources: chengaopan/AutoMergePublicNodes 29/41, peasoft/NoMoreWalls 30/52
 mixed-port: 7890
 allow-lan: false
 mode: rule
@@ -107,6 +107,18 @@ proxies:
   type: vmess
   uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
   udp: true
+- flow: xtls-rprx-vision
+  name: 13|GB_speednode_0002 [chengaopan/AutoMergePublicNodes+1]
+  port: 443
+  reality-opts:
+    public-key: BhTJ3phnq-Z-10aFKSsj1lzhA8mULR4L6leE4-0WTAs
+  server: 138.124.186.202
+  servername: www.fh-aachen.de
+  skip-cert-verify: false
+  tls: true
+  type: vless
+  udp: true
+  uuid: e346f220-4ca4-4f69-a66b-52e992b3b625
 - name: 13|HK_speednode_0003 [chengaopan/AutoMergePublicNodes+1]
   network: ws
   port: 7443
@@ -488,6 +500,7 @@ proxy-groups:
   - 自动选择
   - 香港
   - 美国
+  - 英国
   - 德国
   - 荷兰
   - 土耳其
@@ -507,6 +520,7 @@ proxy-groups:
   - 11|🇭🇰 香港|@ripaojiedian [chengaopan/AutoMergePublicNodes+1]
   - 11,12|香港3|@ripaojiedian [chengaopan/AutoMergePublicNodes+1]
   - 12|香港|@ripaojiedian [chengaopan/AutoMergePublicNodes+1]
+  - 13|GB_speednode_0002 [chengaopan/AutoMergePublicNodes+1]
   - 13|HK_speednode_0003 [chengaopan/AutoMergePublicNodes+1]
   - 13|HK_speednode_0004 [chengaopan/AutoMergePublicNodes+1]
   - 13|HK_speednode_0005 [chengaopan/AutoMergePublicNodes+1]
@@ -542,6 +556,7 @@ proxy-groups:
   - 11|🇭🇰 香港|@ripaojiedian [chengaopan/AutoMergePublicNodes+1]
   - 11,12|香港3|@ripaojiedian [chengaopan/AutoMergePublicNodes+1]
   - 12|香港|@ripaojiedian [chengaopan/AutoMergePublicNodes+1]
+  - 13|GB_speednode_0002 [chengaopan/AutoMergePublicNodes+1]
   - 13|HK_speednode_0003 [chengaopan/AutoMergePublicNodes+1]
   - 13|HK_speednode_0004 [chengaopan/AutoMergePublicNodes+1]
   - 13|HK_speednode_0005 [chengaopan/AutoMergePublicNodes+1]
@@ -603,6 +618,14 @@ proxy-groups:
   tolerance: 50
   proxies:
   - 13|US_speednode_0023 [chengaopan/AutoMergePublicNodes+1]
+- name: 英国
+  type: url-test
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png
+  interval: 300
+  url: http://www.gstatic.com/generate_204
+  tolerance: 50
+  proxies:
+  - 13|GB_speednode_0002 [chengaopan/AutoMergePublicNodes+1]
 - name: 德国
   type: url-test
   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png
