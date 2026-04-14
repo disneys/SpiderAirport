@@ -61,97 +61,97 @@ EMBEDDED_SOURCES = [
     {
         "source_name": "clashnodev2ray.github.io",
         "reference_urls": [
-            "https://sfdr.zaixianyouxi.dpdns.org/uploads/2026/4/20260413.yaml",
+            "https://sfdr.zaixianyouxi.dpdns.org/uploads/{yyyy}/{M}/{yyyyMMdd}.yaml",
         ],
     },
     {
         "source_name": "clashmetagithub.github.io",
         "reference_urls": [
-            "https://clashmetagithub.github.io/uploads/2026/04/0-20260413.yaml",
-            "https://clashmetagithub.github.io/uploads/2026/04/1-20260413.yaml",
-            "https://clashmetagithub.github.io/uploads/2026/04/2-20260413.yaml",
-            "https://clashmetagithub.github.io/uploads/2026/04/3-20260413.yaml",
-            "https://clashmetagithub.github.io/uploads/2026/04/4-20260413.yaml",
+            "https://clashmetagithub.github.io/uploads/{yyyy}/{MM}/0-{yyyyMMdd}.yaml",
+            "https://clashmetagithub.github.io/uploads/{yyyy}/{MM}/1-{yyyyMMdd}.yaml",
+            "https://clashmetagithub.github.io/uploads/{yyyy}/{MM}/2-{yyyyMMdd}.yaml",
+            "https://clashmetagithub.github.io/uploads/{yyyy}/{MM}/3-{yyyyMMdd}.yaml",
+            "https://clashmetagithub.github.io/uploads/{yyyy}/{MM}/4-{yyyyMMdd}.yaml",
         ],
     },
     {
         "source_name": "freev2rayclash.github.io",
         "reference_urls": [
-            "https://freev2rayclash.github.io/uploads/2026/04/0-20260413.yaml",
-            "https://freev2rayclash.github.io/uploads/2026/04/1-20260413.yaml",
-            "https://freev2rayclash.github.io/uploads/2026/04/2-20260413.yaml",
-            "https://freev2rayclash.github.io/uploads/2026/04/3-20260413.yaml",
-            "https://freev2rayclash.github.io/uploads/2026/04/4-20260413.yaml",
+            "https://freev2rayclash.github.io/uploads/{yyyy}/{MM}/0-{yyyyMMdd}.yaml",
+            "https://freev2rayclash.github.io/uploads/{yyyy}/{MM}/1-{yyyyMMdd}.yaml",
+            "https://freev2rayclash.github.io/uploads/{yyyy}/{MM}/2-{yyyyMMdd}.yaml",
+            "https://freev2rayclash.github.io/uploads/{yyyy}/{MM}/3-{yyyyMMdd}.yaml",
+            "https://freev2rayclash.github.io/uploads/{yyyy}/{MM}/4-{yyyyMMdd}.yaml",
         ],
     },
     {
         "source_name": "stashgithub.github.io",
         "reference_urls": [
-            "https://stashgithub.github.io/uploads/2026/04/0-20260413.yaml",
-            "https://stashgithub.github.io/uploads/2026/04/1-20260413.yaml",
-            "https://stashgithub.github.io/uploads/2026/04/2-20260413.yaml",
-            "https://stashgithub.github.io/uploads/2026/04/3-20260413.yaml",
-            "https://stashgithub.github.io/uploads/2026/04/4-20260413.yaml",
+            "https://stashgithub.github.io/uploads/{yyyy}/{MM}/0-{yyyyMMdd}.yaml",
+            "https://stashgithub.github.io/uploads/{yyyy}/{MM}/1-{yyyyMMdd}.yaml",
+            "https://stashgithub.github.io/uploads/{yyyy}/{MM}/2-{yyyyMMdd}.yaml",
+            "https://stashgithub.github.io/uploads/{yyyy}/{MM}/3-{yyyyMMdd}.yaml",
+            "https://stashgithub.github.io/uploads/{yyyy}/{MM}/4-{yyyyMMdd}.yaml",
         ],
     },
     {
         "source_name": "windowsclashnode.github.io",
         "reference_urls": [
-            "https://windowsclashnode.github.io/uploads/2026/04/0-20260413.yaml",
-            "https://windowsclashnode.github.io/uploads/2026/04/1-20260413.yaml",
-            "https://windowsclashnode.github.io/uploads/2026/04/2-20260413.yaml",
-            "https://windowsclashnode.github.io/uploads/2026/04/3-20260413.yaml",
-            "https://windowsclashnode.github.io/uploads/2026/04/4-20260413.yaml",
+            "https://windowsclashnode.github.io/uploads/{yyyy}/{MM}/0-{yyyyMMdd}.yaml",
+            "https://windowsclashnode.github.io/uploads/{yyyy}/{MM}/1-{yyyyMMdd}.yaml",
+            "https://windowsclashnode.github.io/uploads/{yyyy}/{MM}/2-{yyyyMMdd}.yaml",
+            "https://windowsclashnode.github.io/uploads/{yyyy}/{MM}/3-{yyyyMMdd}.yaml",
+            "https://windowsclashnode.github.io/uploads/{yyyy}/{MM}/4-{yyyyMMdd}.yaml",
         ],
     },
     {
         "source_name": "clashnode.github.io",
         "reference_urls": [
-            "https://clashnode.github.io/uploads/2026/04/0-20260413.yaml",
-            "https://clashnode.github.io/uploads/2026/04/1-20260413.yaml",
-            "https://clashnode.github.io/uploads/2026/04/2-20260413.yaml",
-            "https://clashnode.github.io/uploads/2026/04/3-20260413.yaml",
-            "https://clashnode.github.io/uploads/2026/04/4-20260413.yaml",
+            "https://clashnode.github.io/uploads/{yyyy}/{MM}/0-{yyyyMMdd}.yaml",
+            "https://clashnode.github.io/uploads/{yyyy}/{MM}/1-{yyyyMMdd}.yaml",
+            "https://clashnode.github.io/uploads/{yyyy}/{MM}/2-{yyyyMMdd}.yaml",
+            "https://clashnode.github.io/uploads/{yyyy}/{MM}/3-{yyyyMMdd}.yaml",
+            "https://clashnode.github.io/uploads/{yyyy}/{MM}/4-{yyyyMMdd}.yaml",
         ],
     },
     {
         "source_name": "clashvergerev.github.io",
         "reference_urls": [
-            "https://clashvergerev.github.io/uploads/2026/04/0-20260413.yaml",
-            "https://clashvergerev.github.io/uploads/2026/04/1-20260413.yaml",
-            "https://clashvergerev.github.io/uploads/2026/04/2-20260413.yaml",
-            "https://clashvergerev.github.io/uploads/2026/04/3-20260413.yaml",
-            "https://clashvergerev.github.io/uploads/2026/04/4-20260413.yaml",
+            "https://clashvergerev.github.io/uploads/{yyyy}/{MM}/0-{yyyyMMdd}.yaml",
+            "https://clashvergerev.github.io/uploads/{yyyy}/{MM}/1-{yyyyMMdd}.yaml",
+            "https://clashvergerev.github.io/uploads/{yyyy}/{MM}/2-{yyyyMMdd}.yaml",
+            "https://clashvergerev.github.io/uploads/{yyyy}/{MM}/3-{yyyyMMdd}.yaml",
+            "https://clashvergerev.github.io/uploads/{yyyy}/{MM}/4-{yyyyMMdd}.yaml",
         ],
     },
     {
         "source_name": "clash-verge.github.io",
         "reference_urls": [
-            "https://clash-verge.github.io/uploads/2026/04/0-20260413.yaml",
-            "https://clash-verge.github.io/uploads/2026/04/1-20260413.yaml",
-            "https://clash-verge.github.io/uploads/2026/04/2-20260413.yaml",
-            "https://clash-verge.github.io/uploads/2026/04/3-20260413.yaml",
-            "https://clash-verge.github.io/uploads/2026/04/4-20260413.yaml",
+            "https://clash-verge.github.io/uploads/{yyyy}/{MM}/0-{yyyyMMdd}.yaml",
+            "https://clash-verge.github.io/uploads/{yyyy}/{MM}/1-{yyyyMMdd}.yaml",
+            "https://clash-verge.github.io/uploads/{yyyy}/{MM}/2-{yyyyMMdd}.yaml",
+            "https://clash-verge.github.io/uploads/{yyyy}/{MM}/3-{yyyyMMdd}.yaml",
+            "https://clash-verge.github.io/uploads/{yyyy}/{MM}/4-{yyyyMMdd}.yaml",
         ],
     },
     {
         "source_name": "vlessgithub.github.io",
         "reference_urls": [
-            "https://vlessgithub.github.io/uploads/2026/04/0-20260414.yaml",
-            "https://vlessgithub.github.io/uploads/2026/04/1-20260414.yaml",
-            "https://vlessgithub.github.io/uploads/2026/04/2-20260414.yaml",
-            "https://vlessgithub.github.io/uploads/2026/04/3-20260414.yaml",
-            "https://vlessgithub.github.io/uploads/2026/04/4-20260414.yaml",
+            "https://vlessgithub.github.io/uploads/{yyyy}/{MM}/0-{yyyyMMdd}.yaml",
+            "https://vlessgithub.github.io/uploads/{yyyy}/{MM}/1-{yyyyMMdd}.yaml",
+            "https://vlessgithub.github.io/uploads/{yyyy}/{MM}/2-{yyyyMMdd}.yaml",
+            "https://vlessgithub.github.io/uploads/{yyyy}/{MM}/3-{yyyyMMdd}.yaml",
+            "https://vlessgithub.github.io/uploads/{yyyy}/{MM}/4-{yyyyMMdd}.yaml",
         ],
     },
     {
         "source_name": "node.freeclashnode.com",
         "reference_urls": [
-            "https://node.freeclashnode.com/uploads/2026/04/0-20260414.yaml",
-            "https://node.freeclashnode.com/uploads/2026/04/1-20260414.yaml",
-            "https://node.freeclashnode.com/uploads/2026/04/2-20260414.yaml",
-            "https://node.freeclashnode.com/uploads/2026/04/3-20260414.yaml",
-            "https://node.freeclashnode.com/uploads/2026/04/4-20260414.yaml",
+            "https://node.freeclashnode.com/uploads/{yyyy}/{MM}/0-{yyyyMMdd}.yaml",
+            "https://node.freeclashnode.com/uploads/{yyyy}/{MM}/1-{yyyyMMdd}.yaml",
+            "https://node.freeclashnode.com/uploads/{yyyy}/{MM}/2-{yyyyMMdd}.yaml",
+            "https://node.freeclashnode.com/uploads/{yyyy}/{MM}/3-{yyyyMMdd}.yaml",
+            "https://node.freeclashnode.com/uploads/{yyyy}/{MM}/4-{yyyyMMdd}.yaml",
         ],
     },
     {
@@ -783,106 +783,32 @@ def is_source_enabled(source_name):
     return SOURCE_ENABLED.get(source_name, True)
 
 
-def parse_yyyymmdd(token):
-    try:
-        return datetime.strptime(token, "%Y%m%d").date()
-    except ValueError:
-        return None
+def build_date_template_values(target_date):
+    return {
+        "yyyy": f"{target_date.year:04d}",
+        "MM": f"{target_date.month:02d}",
+        "M": str(target_date.month),
+        "dd": f"{target_date.day:02d}",
+        "yyyyMMdd": target_date.strftime("%Y%m%d"),
+    }
 
 
-def collect_source_reference_dates(source):
-    dates = []
-    for url in source.get("reference_urls", []):
-        for token in re.findall(r"\d{8}", url):
-            parsed = parse_yyyymmdd(token)
-            if parsed is not None:
-                dates.append(parsed)
-    return dates
-
-
-def collect_reference_dates(sources):
-    dates = []
-    for source in sources:
-        dates.extend(collect_source_reference_dates(source))
-    return dates
-
-
-def infer_reference_date(sources):
-    dates = collect_reference_dates(sources)
-    if not dates:
-        inferred_today = datetime.now(UTC_PLUS_8).date()
-        logger.warning(
-            "内嵌订阅源中未找到 YYYYMMDD 日期标记，改用今天 %s 作为基准日期",
-            inferred_today,
-        )
-        return inferred_today
-    anchor = max(dates)
-    logger.info("已从内嵌订阅源推导出参考日期：%s", anchor)
-    return anchor
+def infer_reference_date(sources, target_date):
+    logger.info("模板日期直接使用目标日期：%s", target_date)
+    return target_date
 
 
 def infer_source_reference_date(source, target_date):
-    dates = collect_source_reference_dates(source)
-    if not dates:
-        logger.warning(
-            "[%s] 引用链接中未找到 YYYYMMDD 日期标记，改用目标日期 %s 作为该分组的基准日期",
-            source["source_name"],
-            target_date,
-        )
-        return target_date
-
-    anchor = max(dates)
-    logger.info("[%s] 已推导出该分组的参考日期：%s", source["source_name"], anchor)
-    return anchor
+    logger.info("[%s] 模板日期直接使用目标日期：%s", source["source_name"], target_date)
+    return target_date
 
 
-def replace_path_year_month(url, reference_file_date, target_file_date):
-    parts = urlsplit(url)
-    segments = parts.path.split("/")
-    updated_segments = []
-    reference_year = str(reference_file_date.year)
-    target_year = str(target_file_date.year)
-
-    for segment in segments:
-        if re.search(r"\d{8}", segment):
-            updated_segments.append(segment)
-            continue
-
-        if segment == reference_year:
-            updated_segments.append(target_year)
-            continue
-
-        if segment == str(reference_file_date.month):
-            updated_segments.append(str(target_file_date.month))
-            continue
-
-        if segment == f"{reference_file_date.month:02d}":
-            updated_segments.append(f"{target_file_date.month:02d}")
-            continue
-
-        updated_segments.append(segment)
-
-    return urlunsplit(parts._replace(path="/".join(updated_segments)))
-
-
-def shift_reference_url(reference_url, reference_date, target_date):
-    delta_days = target_date - reference_date
-    detected_dates = []
-
-    def replace_date_token(match):
-        parsed = parse_yyyymmdd(match.group(0))
-        if parsed is None:
-            return match.group(0)
-        shifted = parsed + delta_days
-        detected_dates.append((parsed, shifted))
-        return shifted.strftime("%Y%m%d")
-
-    shifted_url = re.sub(r"\d{8}", replace_date_token, reference_url)
-    if not detected_dates:
-        return reference_url
-
-    reference_file_date, target_file_date = detected_dates[0]
-    return replace_path_year_month(shifted_url, reference_file_date, target_file_date)
+def render_reference_url(reference_url, target_date):
+    values = build_date_template_values(target_date)
+    rendered = reference_url
+    for key in ("yyyyMMdd", "yyyy", "MM", "M", "dd"):
+        rendered = rendered.replace(f"{{{key}}}", values[key])
+    return rendered, values
 
 
 def parse_comment_header(file_path):
@@ -1393,6 +1319,7 @@ def build_clash_file_text(
 def process_source(source, reference_date, target_date):
     source_name = source["source_name"]
     source_reference_date = infer_source_reference_date(source, target_date)
+    template_values = build_date_template_values(target_date)
     result = {
         "source_name": source_name,
         "reference_urls": source["reference_urls"],
@@ -1403,15 +1330,28 @@ def process_source(source, reference_date, target_date):
         "fetch_mode": "fetched",
     }
 
-    logger.info("[%s] 开始处理，引用链接数=%s", source_name, len(source["reference_urls"]))
+    logger.info(
+        "[%s] 开始处理，模板链接数=%s，日期变量替换：yyyy=%s，MM=%s，M=%s，yyyyMMdd=%s",
+        source_name,
+        len(source["reference_urls"]),
+        template_values["yyyy"],
+        template_values["MM"],
+        template_values["M"],
+        template_values["yyyyMMdd"],
+    )
     for index, reference_url in enumerate(source["reference_urls"], start=1):
-        runtime_url = shift_reference_url(reference_url, source_reference_date, target_date)
+        runtime_url, render_values = render_reference_url(reference_url, target_date)
         result["runtime_urls"].append(runtime_url)
         logger.info(
-            "[%s] 链接 %s/%s -> %s",
+            "[%s] 链接 %s/%s 模板=%s，替换后 yyyy=%s，MM=%s，M=%s，yyyyMMdd=%s，实际请求=%s",
             source_name,
             index,
             len(source["reference_urls"]),
+            reference_url,
+            render_values["yyyy"],
+            render_values["MM"],
+            render_values["M"],
+            render_values["yyyyMMdd"],
             runtime_url,
         )
 
@@ -1537,10 +1477,10 @@ def main():
 
     logger.info("任务开始：来源=%s，目标日期=%s", EMBEDDED_SOURCE_LABEL, target_date)
     sources = load_embedded_sources()
-    reference_date = infer_reference_date(sources)
+    reference_date = infer_reference_date(sources, target_date)
     existing_metadata = load_existing_run_metadata(target_date)
     logger.info(
-        "已解析分组数=%s，参考日期=%s，日期偏移=%s，是否已存在当天结果=%s",
+        "已解析分组数=%s，模板日期=%s，日期偏移=%s，是否已存在当天结果=%s",
         len(sources),
         reference_date,
         (target_date - reference_date).days,
