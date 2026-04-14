@@ -1,6 +1,7 @@
 import argparse
 import base64
 import binascii
+import hashlib
 import json
 import logging
 import os
@@ -38,6 +39,24 @@ EMBEDDED_SOURCE_LABEL = "embedded_sources"
 REACHABILITY_TIMEOUT_SECONDS = 1.0
 REACHABILITY_MAX_WORKERS = 64
 UDP_ONLY_PROXY_TYPES = {"hysteria", "hysteria2", "hy2", "tuic", "wireguard"}
+ALWAYS_REFRESH_SOURCES = {
+    "chengaopan/AutoMergePublicNodes",
+    "peasoft/NoMoreWalls",
+}
+SOURCE_ENABLED = {
+    "clashnodev2ray.github.io": True,
+    "clashmetagithub.github.io": True,
+    "freev2rayclash.github.io": True,
+    "stashgithub.github.io": True,
+    "windowsclashnode.github.io": True,
+    "clashnode.github.io": True,
+    "clashvergerev.github.io": True,
+    "clash-verge.github.io": True,
+    "vlessgithub.github.io": True,
+    "node.freeclashnode.com": True,
+    "chengaopan/AutoMergePublicNodes": True,
+    "peasoft/NoMoreWalls": True,
+}
 EMBEDDED_SOURCES = [
     {
         "source_name": "clashnodev2ray.github.io",
@@ -113,6 +132,26 @@ EMBEDDED_SOURCES = [
             "https://clash-verge.github.io/uploads/2026/04/2-20260413.yaml",
             "https://clash-verge.github.io/uploads/2026/04/3-20260413.yaml",
             "https://clash-verge.github.io/uploads/2026/04/4-20260413.yaml",
+        ],
+    },
+    {
+        "source_name": "vlessgithub.github.io",
+        "reference_urls": [
+            "https://vlessgithub.github.io/uploads/2026/04/0-20260414.yaml",
+            "https://vlessgithub.github.io/uploads/2026/04/1-20260414.yaml",
+            "https://vlessgithub.github.io/uploads/2026/04/2-20260414.yaml",
+            "https://vlessgithub.github.io/uploads/2026/04/3-20260414.yaml",
+            "https://vlessgithub.github.io/uploads/2026/04/4-20260414.yaml",
+        ],
+    },
+    {
+        "source_name": "node.freeclashnode.com",
+        "reference_urls": [
+            "https://node.freeclashnode.com/uploads/2026/04/0-20260414.yaml",
+            "https://node.freeclashnode.com/uploads/2026/04/1-20260414.yaml",
+            "https://node.freeclashnode.com/uploads/2026/04/2-20260414.yaml",
+            "https://node.freeclashnode.com/uploads/2026/04/3-20260414.yaml",
+            "https://node.freeclashnode.com/uploads/2026/04/4-20260414.yaml",
         ],
     },
     {
@@ -429,6 +468,10 @@ def fingerprint_proxy(proxy):
     return json.dumps(cloned, ensure_ascii=False, sort_keys=True)
 
 
+def proxy_digest(proxy):
+    return hashlib.sha1(fingerprint_proxy(proxy).encode("utf-8")).hexdigest()[:16]
+
+
 def deduplicate_proxies(proxies):
     unique_proxies = []
     fingerprint_to_index = {}
@@ -479,9 +522,18 @@ def build_proxy_source_label(proxy):
     sources = sorted(set(proxy.get("__sources", [])))
     if not sources:
         return ""
-    if len(sources) == 1:
-        return sources[0]
-    return f"{sources[0]}+{len(sources) - 1}"
+    return "|".join(sources)
+
+
+def strip_source_tag(name):
+    return re.sub(r"\s+\{src=[^}]+\}", "", str(name)).strip()
+
+
+def extract_source_names_from_proxy_name(name):
+    match = re.search(r"\s+\{src=([^}]+)\}", str(name))
+    if not match:
+        return []
+    return [item for item in match.group(1).split("|") if item]
 
 
 def decorate_proxy_names_with_source_tags(proxies):
@@ -496,10 +548,10 @@ def decorate_proxy_names_with_source_tags(proxies):
             continue
 
         base_name = normalize_proxy_name(
-            cloned.get("name"),
+            strip_source_tag(cloned.get("name")),
             f"{cloned.get('type', 'proxy')}-{cloned.get('server', 'unknown')}",
         )
-        decorated_name = f"{base_name} [{source_label}]"
+        decorated_name = f"{base_name} {{src={source_label}}}"
         if cloned.get("name") != decorated_name:
             cloned["name"] = decorated_name
             decorated_count += 1
@@ -660,16 +712,25 @@ def build_source_summaries(results, final_proxies):
     summaries = []
 
     for result in results:
-        total_count = len(result["proxies"])
-        if total_count == 0:
+        if result.get("fetch_mode") == "disabled":
+            summaries.append(f"{result['source_name']} -/- -")
             continue
 
+        if result.get("fetch_mode") == "reused-cache":
+            summaries.append(
+                f"{result['source_name']} {result.get('summary_available_count', 0)}/{result.get('summary_total_count', 0)} 200"
+            )
+            continue
+
+        total_count = len(result["proxies"])
         available_fingerprints = {
             fingerprint_proxy(proxy)
             for proxy in result["proxies"]
             if fingerprint_proxy(proxy) in final_fingerprints
         }
-        summaries.append(f"{result['source_name']} {len(available_fingerprints)}/{total_count}")
+        available_count = len(available_fingerprints)
+        status_code = "200" if available_count > 0 else "404"
+        summaries.append(f"{result['source_name']} {available_count}/{total_count} {status_code}")
 
     return summaries
 
@@ -718,6 +779,10 @@ def load_embedded_sources():
     return deepcopy(EMBEDDED_SOURCES)
 
 
+def is_source_enabled(source_name):
+    return SOURCE_ENABLED.get(source_name, True)
+
+
 def parse_yyyymmdd(token):
     try:
         return datetime.strptime(token, "%Y%m%d").date()
@@ -725,14 +790,20 @@ def parse_yyyymmdd(token):
         return None
 
 
+def collect_source_reference_dates(source):
+    dates = []
+    for url in source.get("reference_urls", []):
+        for token in re.findall(r"\d{8}", url):
+            parsed = parse_yyyymmdd(token)
+            if parsed is not None:
+                dates.append(parsed)
+    return dates
+
+
 def collect_reference_dates(sources):
     dates = []
     for source in sources:
-        for url in source["reference_urls"]:
-            for token in re.findall(r"\d{8}", url):
-                parsed = parse_yyyymmdd(token)
-                if parsed is not None:
-                    dates.append(parsed)
+        dates.extend(collect_source_reference_dates(source))
     return dates
 
 
@@ -747,6 +818,21 @@ def infer_reference_date(sources):
         return inferred_today
     anchor = max(dates)
     logger.info("Inferred reference date from embedded sources: %s", anchor)
+    return anchor
+
+
+def infer_source_reference_date(source, target_date):
+    dates = collect_source_reference_dates(source)
+    if not dates:
+        logger.warning(
+            "[%s] No YYYYMMDD token found in reference URLs, using target date=%s as source anchor",
+            source["source_name"],
+            target_date,
+        )
+        return target_date
+
+    anchor = max(dates)
+    logger.info("[%s] Inferred source reference date: %s", source["source_name"], anchor)
     return anchor
 
 
@@ -797,6 +883,176 @@ def shift_reference_url(reference_url, reference_date, target_date):
 
     reference_file_date, target_file_date = detected_dates[0]
     return replace_path_year_month(shifted_url, reference_file_date, target_file_date)
+
+
+def parse_comment_header(file_path):
+    if not os.path.exists(file_path):
+        return {}
+
+    header = {}
+    with open(file_path, "r", encoding="utf-8") as file:
+        for raw_line in file:
+            line = raw_line.rstrip("\n")
+            if not line.startswith("# "):
+                break
+            content = line[2:]
+            if ": " not in content:
+                continue
+            key, value = content.split(": ", 1)
+            header[key.strip()] = value.strip()
+    return header
+
+
+def parse_output_config(file_path):
+    if not os.path.exists(file_path):
+        return {}
+
+    with open(file_path, "r", encoding="utf-8") as file:
+        body_lines = [line for line in file if not line.startswith("# ")]
+
+    body_text = "".join(body_lines).strip()
+    if not body_text:
+        return {}
+
+    try:
+        config = yaml.safe_load(body_text)
+    except yaml.YAMLError as exc:
+        logger.warning("Failed to parse existing spider_clash.txt body: %s", exc)
+        return {}
+
+    return config if isinstance(config, dict) else {}
+
+
+def extract_source_proxies_from_config(existing_config, source_name):
+    proxies = []
+    for proxy in existing_config.get("proxies", []):
+        if not isinstance(proxy, dict):
+            continue
+        source_names = extract_source_names_from_proxy_name(proxy.get("name", ""))
+        if source_name not in source_names:
+            continue
+        cloned = deepcopy(proxy)
+        cloned["name"] = strip_source_tag(cloned.get("name", ""))
+        cloned["__sources"] = source_names or [source_name]
+        proxies.append(cloned)
+    return proxies
+
+
+def parse_source_summary_line(summary_line):
+    summaries = {}
+    if not summary_line or summary_line == "none":
+        return summaries
+
+    for item in summary_line.split(", "):
+        disabled_match = re.fullmatch(r"(.+?)\s+-/-\s+-", item.strip())
+        if disabled_match:
+            source_name = disabled_match.group(1)
+            summaries[source_name] = {
+                "available_count": None,
+                "total_count": None,
+                "disabled": True,
+                "status_code": "-",
+            }
+            continue
+
+        match = re.fullmatch(r"(.+?)\s+(\d+)/(\d+)\s+(200|404)", item.strip())
+        if not match:
+            continue
+        source_name, available_count, total_count, status_code = match.groups()
+        summaries[source_name] = {
+            "available_count": int(available_count),
+            "total_count": int(total_count),
+            "disabled": False,
+            "status_code": status_code,
+        }
+    return summaries
+
+
+def load_existing_run_metadata(target_date):
+    header = parse_comment_header(OUTPUT_FILE)
+    existing_config = parse_output_config(OUTPUT_FILE)
+    metadata = {
+        "effective_date": None,
+        "source_summaries": {},
+        "existing_config": existing_config,
+        "is_current_day": False,
+    }
+
+    effective_date = header.get("effective_date")
+    if effective_date:
+        try:
+            metadata["effective_date"] = date.fromisoformat(effective_date)
+        except ValueError:
+            metadata["effective_date"] = None
+
+    metadata["source_summaries"] = parse_source_summary_line(header.get("success_sources", ""))
+    metadata["is_current_day"] = metadata["effective_date"] == target_date
+    return metadata
+
+
+def should_fetch_source(source_name, target_date, existing_metadata):
+    if source_name in ALWAYS_REFRESH_SOURCES:
+        return True
+
+    if not existing_metadata["is_current_day"]:
+        return True
+
+    summary = existing_metadata["source_summaries"].get(source_name)
+    if summary is None:
+        return True
+
+    if summary.get("disabled"):
+        return False
+
+    if summary["available_count"] == 0:
+        return True
+
+    cached_proxies = extract_source_proxies_from_config(existing_metadata["existing_config"], source_name)
+    if not cached_proxies:
+        return True
+
+    return False
+
+
+def build_cached_result(source, target_date, existing_metadata):
+    source_name = source["source_name"]
+    summary = existing_metadata["source_summaries"].get(
+        source_name,
+        {"available_count": 0, "total_count": 0, "disabled": False},
+    )
+    cached_proxies = extract_source_proxies_from_config(existing_metadata["existing_config"], source_name)
+    result = {
+        "source_name": source_name,
+        "reference_urls": source["reference_urls"],
+        "runtime_urls": [],
+        "proxies": cached_proxies,
+        "errors": [],
+        "source_reference_date": infer_source_reference_date(source, target_date),
+        "fetch_mode": "reused-cache",
+        "summary_available_count": summary.get("available_count", 0) or 0,
+        "summary_total_count": summary.get("total_count", 0) or 0,
+    }
+    logger.info(
+        "[%s] Skip fetch for today, reused cached proxies=%s",
+        source_name,
+        len(result["proxies"]),
+    )
+    return result
+
+
+def build_disabled_result(source, target_date):
+    source_name = source["source_name"]
+    result = {
+        "source_name": source_name,
+        "reference_urls": source["reference_urls"],
+        "runtime_urls": [],
+        "proxies": [],
+        "errors": [],
+        "source_reference_date": infer_source_reference_date(source, target_date),
+        "fetch_mode": "disabled",
+    }
+    logger.info("[%s] Source is disabled by SOURCE_ENABLED switch, fetch skipped", source_name)
+    return result
 
 
 def fetch_text(url):
@@ -1114,18 +1370,17 @@ def build_clash_file_text(
     source_summaries,
 ):
     generated_at = datetime.now(UTC_PLUS_8).isoformat(timespec="seconds")
-    header = "\n".join(
-        [
-            f"# generated_at: {generated_at}",
-            f"# source_file: {source_filename}",
-            f"# reference_date: {reference_date.isoformat()}",
-            f"# effective_date: {target_date.isoformat()}",
-            f"# rules_source: {rules_source}",
-            f"# rules_mode: {rules_mode}",
-            f"# success_sources: {', '.join(source_summaries) if source_summaries else 'none'}",
-            "",
-        ]
-    )
+    header_lines = [
+        f"# generated_at: {generated_at}",
+        f"# source_file: {source_filename}",
+        f"# reference_date: {reference_date.isoformat()}",
+        f"# effective_date: {target_date.isoformat()}",
+        f"# rules_source: {rules_source}",
+        f"# rules_mode: {rules_mode}",
+        f"# success_sources: {', '.join(source_summaries) if source_summaries else 'none'}",
+    ]
+    header_lines.append("")
+    header = "\n".join(header_lines)
     body = yaml.safe_dump(
         config,
         allow_unicode=True,
@@ -1137,17 +1392,20 @@ def build_clash_file_text(
 
 def process_source(source, reference_date, target_date):
     source_name = source["source_name"]
+    source_reference_date = infer_source_reference_date(source, target_date)
     result = {
         "source_name": source_name,
         "reference_urls": source["reference_urls"],
         "runtime_urls": [],
         "proxies": [],
         "errors": [],
+        "source_reference_date": source_reference_date,
+        "fetch_mode": "fetched",
     }
 
     logger.info("[%s] Start source, reference_urls=%s", source_name, len(source["reference_urls"]))
     for index, reference_url in enumerate(source["reference_urls"], start=1):
-        runtime_url = shift_reference_url(reference_url, reference_date, target_date)
+        runtime_url = shift_reference_url(reference_url, source_reference_date, target_date)
         result["runtime_urls"].append(runtime_url)
         logger.info(
             "[%s] URL %s/%s -> %s",
@@ -1280,16 +1538,24 @@ def main():
     logger.info("Task start: source=%s, target_date=%s", EMBEDDED_SOURCE_LABEL, target_date)
     sources = load_embedded_sources()
     reference_date = infer_reference_date(sources)
+    existing_metadata = load_existing_run_metadata(target_date)
     logger.info(
-        "Parsed source groups=%s, reference_date=%s, delta_days=%s",
+        "Parsed source groups=%s, reference_date=%s, delta_days=%s, current_day_run=%s",
         len(sources),
         reference_date,
         (target_date - reference_date).days,
+        existing_metadata["is_current_day"],
     )
 
     results = []
     for source in sources:
-        results.append(process_source(source, reference_date, target_date))
+        source_name = source["source_name"]
+        if not is_source_enabled(source_name):
+            results.append(build_disabled_result(source, target_date))
+        elif should_fetch_source(source_name, target_date, existing_metadata):
+            results.append(process_source(source, reference_date, target_date))
+        else:
+            results.append(build_cached_result(source, target_date, existing_metadata))
 
     generation_errors = generate_spider_clash_file(
         results,
