@@ -370,12 +370,12 @@ FALLBACK_OVERSEER_TEMPLATE = {
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Use embedded subscription sources and build spider_clash.txt."
+        description="使用内嵌订阅源生成 spider_clash.txt。"
     )
     parser.add_argument(
         "--date",
         dest="target_date",
-        help="Override target date in YYYY-MM-DD format. Defaults to Asia/Shanghai today.",
+        help="指定目标日期，格式为 YYYY-MM-DD。默认使用 Asia/Shanghai 的当天日期。",
     )
     return parser.parse_args()
 
@@ -420,7 +420,7 @@ def decode_base64_text(value):
             continue
 
     if raw_bytes is None:
-        raise ValueError("Base64 decode failed")
+        raise ValueError("Base64 解码失败")
 
     for encoding in ("utf-8", "utf-8-sig", "latin-1"):
         try:
@@ -428,7 +428,7 @@ def decode_base64_text(value):
         except UnicodeDecodeError:
             continue
 
-    raise ValueError("Decoded bytes could not be converted to text")
+    raise ValueError("解码后的字节内容无法转换为文本")
 
 
 def normalize_proxy_name(name, fallback_name):
@@ -670,7 +670,7 @@ def filter_reachable_proxies(proxies):
 
     if checked_count > 0 and reachable_count == 0:
         logger.warning(
-            "Reachability filter skipped because all %s TCP probes failed; original proxies will be kept",
+            "可达性过滤已跳过：全部 %s 个 TCP 探测都失败，保留原始去重后的节点",
             checked_count,
         )
         return proxies, {
@@ -747,14 +747,14 @@ def extract_yaml_proxies(content, source_name):
     try:
         data = yaml.safe_load(decoded_content)
     except yaml.YAMLError as exc:
-        raise ValueError(f"PyYAML parse failed: {exc}") from exc
+        raise ValueError(f"PyYAML 解析失败：{exc}") from exc
 
     if not isinstance(data, dict):
-        raise ValueError("Subscription content is not a YAML mapping")
+        raise ValueError("订阅内容不是 YAML 字典结构")
 
     proxies = data.get("proxies")
     if not isinstance(proxies, list):
-        raise ValueError("YAML does not contain a proxies list")
+        raise ValueError("YAML 中未找到 proxies 列表")
 
     normalized_proxies = []
     for proxy in proxies:
@@ -770,7 +770,7 @@ def extract_yaml_proxies(content, source_name):
         normalized_proxies.append(cloned)
 
     if not normalized_proxies:
-        raise ValueError("proxies list is empty or contains no supported entries")
+        raise ValueError("proxies 列表为空，或不包含可用节点")
 
     return normalized_proxies, decode_mode
 
@@ -812,12 +812,12 @@ def infer_reference_date(sources):
     if not dates:
         inferred_today = datetime.now(UTC_PLUS_8).date()
         logger.warning(
-            "Embedded sources do not contain any YYYYMMDD date token; using today=%s as anchor",
+            "内嵌订阅源中未找到 YYYYMMDD 日期标记，改用今天 %s 作为基准日期",
             inferred_today,
         )
         return inferred_today
     anchor = max(dates)
-    logger.info("Inferred reference date from embedded sources: %s", anchor)
+    logger.info("已从内嵌订阅源推导出参考日期：%s", anchor)
     return anchor
 
 
@@ -825,14 +825,14 @@ def infer_source_reference_date(source, target_date):
     dates = collect_source_reference_dates(source)
     if not dates:
         logger.warning(
-            "[%s] No YYYYMMDD token found in reference URLs, using target date=%s as source anchor",
+            "[%s] 引用链接中未找到 YYYYMMDD 日期标记，改用目标日期 %s 作为该分组的基准日期",
             source["source_name"],
             target_date,
         )
         return target_date
 
     anchor = max(dates)
-    logger.info("[%s] Inferred source reference date: %s", source["source_name"], anchor)
+    logger.info("[%s] 已推导出该分组的参考日期：%s", source["source_name"], anchor)
     return anchor
 
 
@@ -917,7 +917,7 @@ def parse_output_config(file_path):
     try:
         config = yaml.safe_load(body_text)
     except yaml.YAMLError as exc:
-        logger.warning("Failed to parse existing spider_clash.txt body: %s", exc)
+        logger.warning("解析现有 spider_clash.txt 正文失败：%s", exc)
         return {}
 
     return config if isinstance(config, dict) else {}
@@ -1033,7 +1033,7 @@ def build_cached_result(source, target_date, existing_metadata):
         "summary_total_count": summary.get("total_count", 0) or 0,
     }
     logger.info(
-        "[%s] Skip fetch for today, reused cached proxies=%s",
+        "[%s] 今天已获取到有效节点，跳过抓取并复用现有配置中的节点，数量=%s",
         source_name,
         len(result["proxies"]),
     )
@@ -1051,7 +1051,7 @@ def build_disabled_result(source, target_date):
         "source_reference_date": infer_source_reference_date(source, target_date),
         "fetch_mode": "disabled",
     }
-    logger.info("[%s] Source is disabled by SOURCE_ENABLED switch, fetch skipped", source_name)
+    logger.info("[%s] 已被 SOURCE_ENABLED 开关禁用，跳过抓取", source_name)
     return result
 
 
@@ -1071,7 +1071,7 @@ def fetch_remote_main_js_source():
 def apply_remote_main_js(config):
     node_binary = shutil.which("node")
     if not node_binary:
-        raise RuntimeError("node executable not found")
+        raise RuntimeError("未找到 node 可执行文件")
 
     main_js_source = fetch_remote_main_js_source()
     runner_source = "\n".join(
@@ -1080,7 +1080,7 @@ def apply_remote_main_js(config):
             'const input = fs.readFileSync(0, "utf8");',
             "const params = JSON.parse(input);",
             main_js_source,
-            'if (typeof main !== "function") throw new Error("main.js does not define main(params)");',
+            'if (typeof main !== "function") throw new Error("main.js 未定义 main(params) 函数");',
             "const result = main(params);",
             "process.stdout.write(JSON.stringify(result ?? params));",
         ]
@@ -1110,24 +1110,24 @@ def apply_remote_main_js(config):
         if completed.returncode != 0:
             stderr = normalize_text(completed.stderr)
             raise RuntimeError(
-                f"node main.js execution failed with exit code {completed.returncode}: {stderr}"
+                f"node 执行 main.js 失败，退出码={completed.returncode}：{stderr}"
             )
 
         stdout = normalize_text(completed.stdout)
         if not stdout:
-            raise RuntimeError("node main.js execution returned empty output")
+            raise RuntimeError("node 执行 main.js 后返回了空输出")
 
         result = json.loads(stdout)
         if not isinstance(result, dict):
-            raise ValueError("main.js execution did not return a JSON object")
+            raise ValueError("main.js 执行结果不是 JSON 对象")
         required_keys = ["dns", "proxy-groups", "rule-providers", "rules"]
         missing_keys = [key for key in required_keys if key not in result]
         if missing_keys:
             raise ValueError(
-                f"main.js execution result is missing required keys: {', '.join(missing_keys)}"
+                f"main.js 执行结果缺少必要字段：{', '.join(missing_keys)}"
             )
 
-        logger.info("Remote main.js executed successfully")
+        logger.info("远程 main.js 执行成功")
         return clean_data(result), MAIN_JS_URL, "remote-main-js-executed"
     finally:
         if runner_path and os.path.exists(runner_path):
@@ -1151,19 +1151,19 @@ def apply_remote_main_js_with_loop_resolution(proxies):
         )
         if renamed_count == 0:
             raise ValueError(
-                f"ProxyGroup loop detected but no conflicting proxy names could be renamed: {', '.join(loop_names)}"
+                f"检测到 ProxyGroup 自环，但无法重命名与分组重名的节点：{', '.join(loop_names)}"
             )
 
         total_renamed += renamed_count
         current_proxies = renamed_proxies
         logger.warning(
-            "ProxyGroup loop detected on remote main.js apply, auto-renamed=%s, groups=%s, attempt=%s",
+            "远程 main.js 生成的 ProxyGroup 存在自环，已自动重命名 %s 个冲突节点，分组=%s，重试次数=%s",
             renamed_count,
             ", ".join(loop_names),
             attempt,
         )
 
-    raise ValueError("ProxyGroup loop still exists after automatic proxy renaming")
+    raise ValueError("自动重命名冲突节点后，ProxyGroup 自环仍然存在")
 
 
 def build_base_config(proxies):
@@ -1221,7 +1221,7 @@ def build_proxy_groups(proxy_names, template):
         try:
             regex = re.compile(region["regex"])
         except re.error as exc:
-            logger.warning("Invalid region regex skipped: %s (%s)", region["name"], exc)
+            logger.warning("区域分组正则无效，已跳过：%s（%s）", region["name"], exc)
             continue
 
         matched_names = [name for name in proxy_names if regex.search(name)]
@@ -1344,19 +1344,19 @@ def build_fallback_config_with_loop_resolution(proxies, template):
         )
         if renamed_count == 0:
             raise ValueError(
-                f"Fallback ProxyGroup loop detected but no conflicting proxy names could be renamed: {', '.join(loop_names)}"
+                f"回退配置存在 ProxyGroup 自环，但无法重命名与分组重名的节点：{', '.join(loop_names)}"
             )
 
         total_renamed += renamed_count
         current_proxies = renamed_proxies
         logger.warning(
-            "ProxyGroup loop detected on fallback config build, auto-renamed=%s, groups=%s, attempt=%s",
+            "回退配置生成的 ProxyGroup 存在自环，已自动重命名 %s 个冲突节点，分组=%s，重试次数=%s",
             renamed_count,
             ", ".join(loop_names),
             attempt,
         )
 
-    raise ValueError("Fallback ProxyGroup loop still exists after automatic proxy renaming")
+    raise ValueError("回退配置在自动重命名冲突节点后，ProxyGroup 自环仍然存在")
 
 
 def build_clash_file_text(
@@ -1403,12 +1403,12 @@ def process_source(source, reference_date, target_date):
         "fetch_mode": "fetched",
     }
 
-    logger.info("[%s] Start source, reference_urls=%s", source_name, len(source["reference_urls"]))
+    logger.info("[%s] 开始处理，引用链接数=%s", source_name, len(source["reference_urls"]))
     for index, reference_url in enumerate(source["reference_urls"], start=1):
         runtime_url = shift_reference_url(reference_url, source_reference_date, target_date)
         result["runtime_urls"].append(runtime_url)
         logger.info(
-            "[%s] URL %s/%s -> %s",
+            "[%s] 链接 %s/%s -> %s",
             source_name,
             index,
             len(source["reference_urls"]),
@@ -1420,7 +1420,7 @@ def process_source(source, reference_date, target_date):
             proxies, decode_mode = extract_yaml_proxies(content, source_name)
             result["proxies"].extend(proxies)
             logger.info(
-                "[%s] URL %s/%s success, decode=%s, proxies=%s",
+                "[%s] 链接 %s/%s 获取成功，解码方式=%s，节点数=%s",
                 source_name,
                 index,
                 len(source["reference_urls"]),
@@ -1430,10 +1430,10 @@ def process_source(source, reference_date, target_date):
         except Exception as exc:
             message = f"{runtime_url} -> {type(exc).__name__}: {exc}"
             result["errors"].append(message)
-            logger.error("[%s] URL %s/%s failed: %s", source_name, index, len(source["reference_urls"]), message)
+            logger.error("[%s] 链接 %s/%s 获取失败：%s", source_name, index, len(source["reference_urls"]), message)
 
     logger.info(
-        "[%s] Source completed, collected_proxies=%s, failures=%s",
+        "[%s] 分组处理完成，收集到节点=%s，失败数=%s",
         source_name,
         len(result["proxies"]),
         len(result["errors"]),
@@ -1442,7 +1442,7 @@ def process_source(source, reference_date, target_date):
 
 
 def generate_spider_clash_file(results, source_filename, reference_date, target_date):
-    logger.info("Start generating spider_clash.txt")
+    logger.info("开始生成 spider_clash.txt")
     generation_errors = []
 
     collected_proxies = []
@@ -1451,16 +1451,16 @@ def generate_spider_clash_file(results, source_filename, reference_date, target_
 
     unique_proxies = deduplicate_proxies(collected_proxies)
     logger.info(
-        "Proxy aggregation completed: raw=%s, deduplicated=%s",
+        "节点汇总完成：原始节点=%s，去重后=%s",
         len(collected_proxies),
         len(unique_proxies),
     )
     if not unique_proxies:
-        logger.warning("No proxies were extracted; spider_clash.txt will contain DIRECT-only fallback groups")
+        logger.warning("未提取到任何节点，spider_clash.txt 将仅生成 DIRECT 回退分组")
 
     reachable_proxies, reachability_stats = filter_reachable_proxies(unique_proxies)
     logger.info(
-        "Reachability filter: applied=%s, checked=%s, reachable=%s, unchecked=%s, dropped=%s, invalid_endpoint=%s, remaining=%s",
+        "可达性过滤结果：已应用=%s，检测=%s，可达=%s，未检测=%s，剔除=%s，无效端点=%s，剩余=%s",
         reachability_stats["applied"],
         reachability_stats["checked_count"],
         reachability_stats["reachable_count"],
@@ -1470,16 +1470,16 @@ def generate_spider_clash_file(results, source_filename, reference_date, target_
         len(reachable_proxies),
     )
     if not reachable_proxies:
-        logger.warning("No proxies remained after reachability filtering; original deduplicated proxies will be restored")
+        logger.warning("可达性过滤后没有剩余节点，恢复使用去重后的原始节点")
         reachable_proxies = unique_proxies
 
     tagged_proxies, tagged_count = decorate_proxy_names_with_source_tags(reachable_proxies)
     if tagged_count:
-        logger.info("Proxy names decorated with source labels: %s", tagged_count)
+        logger.info("已为节点名称追加来源标签，数量=%s", tagged_count)
 
     named_proxies, duplicate_name_count = ensure_unique_proxy_names(tagged_proxies)
     if duplicate_name_count:
-        logger.info("Duplicate proxy names detected and renamed: %s", duplicate_name_count)
+        logger.info("检测到重名节点，已自动重命名数量=%s", duplicate_name_count)
 
     final_proxies = named_proxies
     rules_source = MAIN_JS_URL
@@ -1491,20 +1491,20 @@ def generate_spider_clash_file(results, source_filename, reference_date, target_
         )
         if loop_renamed_count:
             logger.info(
-                "Proxy names auto-renamed to resolve ProxyGroup loops: %s",
+                "为消除 ProxyGroup 自环，已自动重命名节点数量=%s",
                 loop_renamed_count,
             )
     except Exception as exc:
         message = f"main.js -> {type(exc).__name__}: {exc}"
         generation_errors.append(message)
-        logger.error("Remote main.js apply failed, fallback will be used: %s", message)
+        logger.error("远程 main.js 应用失败，改用本地回退规则：%s", message)
         config, final_proxies, fallback_loop_renamed_count = build_fallback_config_with_loop_resolution(
             named_proxies,
             FALLBACK_OVERSEER_TEMPLATE,
         )
         if fallback_loop_renamed_count:
             logger.info(
-                "Proxy names auto-renamed to resolve fallback ProxyGroup loops: %s",
+                "为消除回退配置的 ProxyGroup 自环，已自动重命名节点数量=%s",
                 fallback_loop_renamed_count,
             )
         rules_mode = "fallback-default"
@@ -1522,7 +1522,7 @@ def generate_spider_clash_file(results, source_filename, reference_date, target_
         source_summaries,
     )
     write_text_file(OUTPUT_FILE, output_text)
-    logger.info("Clash configuration written to %s", OUTPUT_FILE)
+    logger.info("已写入 Clash 配置文件：%s", OUTPUT_FILE)
     return generation_errors
 
 
@@ -1535,12 +1535,12 @@ def main():
     )
     write_error_file([])
 
-    logger.info("Task start: source=%s, target_date=%s", EMBEDDED_SOURCE_LABEL, target_date)
+    logger.info("任务开始：来源=%s，目标日期=%s", EMBEDDED_SOURCE_LABEL, target_date)
     sources = load_embedded_sources()
     reference_date = infer_reference_date(sources)
     existing_metadata = load_existing_run_metadata(target_date)
     logger.info(
-        "Parsed source groups=%s, reference_date=%s, delta_days=%s, current_day_run=%s",
+        "已解析分组数=%s，参考日期=%s，日期偏移=%s，是否已存在当天结果=%s",
         len(sources),
         reference_date,
         (target_date - reference_date).days,
@@ -1572,12 +1572,12 @@ def main():
     all_errors.extend(generation_errors)
     write_error_file(all_errors)
     logger.info(
-        "Error file updated: %s, entries=%s",
+        "错误文件已更新：%s，记录数=%s",
         ERROR_FILE,
         len(all_errors),
     )
     logger.info(
-        "Task finished: sources=%s, success_sources=%s, failed_urls=%s, output=%s",
+        "任务结束：分组总数=%s，成功分组=%s，失败链接=%s，输出文件=%s",
         len(results),
         success_sources,
         failed_urls,
