@@ -39,6 +39,7 @@ EMBEDDED_SOURCE_LABEL = "embedded_sources"
 REACHABILITY_TIMEOUT_SECONDS = 1.0
 REACHABILITY_MAX_WORKERS = 64
 UDP_ONLY_PROXY_TYPES = {"hysteria", "hysteria2", "hy2", "tuic", "wireguard"}
+MAX_404_LOOKBACK_DAYS = 7
 ALWAYS_REFRESH_SOURCES = {
     "chengaopan/AutoMergePublicNodes",
     "peasoft/NoMoreWalls",
@@ -811,6 +812,14 @@ def render_reference_url(reference_url, target_date):
     return rendered, values
 
 
+def is_http_404_error(exc):
+    return (
+        isinstance(exc, requests.HTTPError)
+        and exc.response is not None
+        and exc.response.status_code == 404
+    )
+
+
 def parse_comment_header(file_path):
     if not os.path.exists(file_path):
         return {}
@@ -1331,46 +1340,103 @@ def process_source(source, reference_date, target_date):
     }
 
     logger.info(
-        "[%s] 开始处理，模板链接数=%s，日期变量替换：yyyy=%s，MM=%s，M=%s，yyyyMMdd=%s",
+        "[%s] 开始处理，模板链接数=%s，目标日期=%s，404 最多向前回退=%s 天，日期变量：yyyy=%s，MM=%s，M=%s，yyyyMMdd=%s",
         source_name,
         len(source["reference_urls"]),
+        target_date,
+        MAX_404_LOOKBACK_DAYS,
         template_values["yyyy"],
         template_values["MM"],
         template_values["M"],
         template_values["yyyyMMdd"],
     )
     for index, reference_url in enumerate(source["reference_urls"], start=1):
-        runtime_url, render_values = render_reference_url(reference_url, target_date)
-        result["runtime_urls"].append(runtime_url)
-        logger.info(
-            "[%s] 链接 %s/%s 模板=%s，替换后 yyyy=%s，MM=%s，M=%s，yyyyMMdd=%s，实际请求=%s",
-            source_name,
-            index,
-            len(source["reference_urls"]),
-            reference_url,
-            render_values["yyyy"],
-            render_values["MM"],
-            render_values["M"],
-            render_values["yyyyMMdd"],
-            runtime_url,
-        )
+        found_config = False
 
-        try:
-            content = fetch_text(runtime_url)
-            proxies, decode_mode = extract_yaml_proxies(content, source_name)
-            result["proxies"].extend(proxies)
+        for fallback_days in range(MAX_404_LOOKBACK_DAYS + 1):
+            attempt_date = target_date - timedelta(days=fallback_days)
+            runtime_url, render_values = render_reference_url(reference_url, attempt_date)
+            result["runtime_urls"].append(runtime_url)
             logger.info(
-                "[%s] 链接 %s/%s 获取成功，解码方式=%s，节点数=%s",
+                "[%s] 链接 %s/%s 第 %s 次尝试：模板=%s，尝试日期=%s，回退=%s 天，替换后 yyyy=%s，MM=%s，M=%s，yyyyMMdd=%s，实际请求=%s",
                 source_name,
                 index,
                 len(source["reference_urls"]),
-                decode_mode,
-                len(proxies),
+                fallback_days + 1,
+                reference_url,
+                attempt_date,
+                fallback_days,
+                render_values["yyyy"],
+                render_values["MM"],
+                render_values["M"],
+                render_values["yyyyMMdd"],
+                runtime_url,
             )
-        except Exception as exc:
-            message = f"{runtime_url} -> {type(exc).__name__}: {exc}"
-            result["errors"].append(message)
-            logger.error("[%s] 链接 %s/%s 获取失败：%s", source_name, index, len(source["reference_urls"]), message)
+
+            try:
+                content = fetch_text(runtime_url)
+                proxies, decode_mode = extract_yaml_proxies(content, source_name)
+                result["proxies"].extend(proxies)
+                logger.info(
+                    "[%s] 链接 %s/%s 第 %s 次尝试成功，命中日期=%s，解码方式=%s，节点数=%s",
+                    source_name,
+                    index,
+                    len(source["reference_urls"]),
+                    fallback_days + 1,
+                    attempt_date,
+                    decode_mode,
+                    len(proxies),
+                )
+                found_config = True
+                break
+            except Exception as exc:
+                if is_http_404_error(exc):
+                    if fallback_days < MAX_404_LOOKBACK_DAYS:
+                        logger.warning(
+                            "[%s] 链接 %s/%s 第 %s 次尝试返回 404，继续向前回退 1 天后重试",
+                            source_name,
+                            index,
+                            len(source["reference_urls"]),
+                            fallback_days + 1,
+                        )
+                        continue
+
+                    message = (
+                        f"{runtime_url} -> HTTP 404：已从 {target_date.isoformat()} "
+                        f"连续向前回退 {MAX_404_LOOKBACK_DAYS} 天，直到 "
+                        f"{attempt_date.isoformat()} 仍未找到可用配置文件"
+                    )
+                    result["errors"].append(message)
+                    logger.error(
+                        "[%s] 链接 %s/%s 连续回退 %s 天后仍然是 404，最后尝试日期=%s，最后请求=%s",
+                        source_name,
+                        index,
+                        len(source["reference_urls"]),
+                        MAX_404_LOOKBACK_DAYS,
+                        attempt_date,
+                        runtime_url,
+                    )
+                    break
+
+                message = f"{runtime_url} -> {type(exc).__name__}: {exc}"
+                result["errors"].append(message)
+                logger.error(
+                    "[%s] 链接 %s/%s 第 %s 次尝试失败：%s",
+                    source_name,
+                    index,
+                    len(source["reference_urls"]),
+                    fallback_days + 1,
+                    message,
+                )
+                break
+
+        if not found_config:
+            logger.info(
+                "[%s] 链接 %s/%s 未找到可用配置文件或解析失败，继续处理下一条模板链接",
+                source_name,
+                index,
+                len(source["reference_urls"]),
+            )
 
     logger.info(
         "[%s] 分组处理完成，收集到节点=%s，失败数=%s",
