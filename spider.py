@@ -39,7 +39,7 @@ EMBEDDED_SOURCE_LABEL = "embedded_sources"
 REACHABILITY_TIMEOUT_SECONDS = 1.0
 REACHABILITY_MAX_WORKERS = 64
 UDP_ONLY_PROXY_TYPES = {"hysteria", "hysteria2", "hy2", "tuic", "wireguard"}
-MAX_404_LOOKBACK_DAYS = 0
+MAX_404_LOOKBACK_DAYS = 1
 ALWAYS_REFRESH_SOURCES = {
     "chengaopan/AutoMergePublicNodes",
     "peasoft/NoMoreWalls",
@@ -55,6 +55,7 @@ SOURCE_ENABLED = {
     "clash-verge.github.io": True,
     "vlessgithub.github.io": True,
     "node.freeclashnode.com": True,
+    "yoyapai.com": True,
     "chengaopan/AutoMergePublicNodes": True,
     "peasoft/NoMoreWalls": True,
 }
@@ -153,6 +154,12 @@ EMBEDDED_SOURCES = [
             "https://node.freeclashnode.com/uploads/{yyyy}/{MM}/2-{yyyyMMdd}.yaml",
             "https://node.freeclashnode.com/uploads/{yyyy}/{MM}/3-{yyyyMMdd}.yaml",
             "https://node.freeclashnode.com/uploads/{yyyy}/{MM}/4-{yyyyMMdd}.yaml",
+        ],
+    },
+    {
+        "source_name": "yoyapai.com",
+        "reference_urls": [
+            "https://yoyapai.com/mianfeijiedian/{yyyyMMdd}-clash-vpn-mfjiedian-yoyapai.com.yaml",
         ],
     },
     {
