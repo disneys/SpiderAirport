@@ -1,6 +1,7 @@
 import argparse
 import base64
 import binascii
+import html
 import hashlib
 import json
 import logging
@@ -56,6 +57,7 @@ SOURCE_ENABLED = {
     "vlessgithub.github.io": True,
     "node.freeclashnode.com": True,
     "yoyapai.com": True,
+    "mibei77.com": True,
     "chengaopan/AutoMergePublicNodes": True,
     "peasoft/NoMoreWalls": True,
 }
@@ -161,6 +163,17 @@ EMBEDDED_SOURCES = [
         "reference_urls": [
             "https://yoyapai.com/mianfeijiedian/{yyyyMMdd}-clash-vpn-mfjiedian-yoyapai.com.yaml",
         ],
+    },
+    {
+        "source_name": "mibei77.com",
+        "reference_urls": [
+            "https://www.mibei77.com/{article_id}.html",
+        ],
+        "fetch_strategy": "mibei77-announcement-page",
+        "announcement_url_template": "https://www.mibei77.com/{article_id}.html",
+        "announcement_reference_date": "2026-04-13",
+        "announcement_reference_id": 88,
+        "announcement_id_step": 2,
     },
     {
         "source_name": "chengaopan/AutoMergePublicNodes",
@@ -819,6 +832,45 @@ def render_reference_url(reference_url, target_date):
     return rendered, values
 
 
+def render_mibei77_announcement_url(source, target_date):
+    reference_date = date.fromisoformat(source["announcement_reference_date"])
+    reference_id = int(source["announcement_reference_id"])
+    id_step = int(source.get("announcement_id_step", 1))
+    day_offset = (target_date - reference_date).days
+    article_id = reference_id + (day_offset * id_step)
+    if article_id <= 0:
+        raise ValueError(
+            f"按公告页编号规则推导出的文章编号无效：date={target_date.isoformat()}, article_id={article_id}"
+        )
+
+    announcement_url = source["announcement_url_template"].replace("{article_id}", str(article_id))
+    return announcement_url, article_id
+
+
+def extract_mibei77_subscription_url(page_content, target_date):
+    normalized_content = html.unescape(normalize_text(page_content)).replace("\\/", "/")
+    month_token = target_date.strftime("%Y%m")
+    day_token = target_date.strftime("%m%d")
+
+    date_specific_pattern = re.compile(
+        rf"https?://mm\.mibei77\.com/{month_token}/{day_token}Clash[a-zA-Z0-9]+\.ya?ml",
+        re.IGNORECASE,
+    )
+    match = date_specific_pattern.search(normalized_content)
+    if match:
+        return match.group(0)
+
+    fallback_pattern = re.compile(
+        r"https?://mm\.mibei77\.com/\d{6}/\d{4}Clash[a-zA-Z0-9]+\.ya?ml",
+        re.IGNORECASE,
+    )
+    matches = fallback_pattern.findall(normalized_content)
+    if len(matches) == 1:
+        return matches[0]
+
+    raise ValueError("未在 mibei77 公告页面中提取到唯一的 YAML 订阅链接")
+
+
 def is_http_404_error(exc):
     return (
         isinstance(exc, requests.HTTPError)
@@ -1332,7 +1384,164 @@ def build_clash_file_text(
     return header + body
 
 
+def process_mibei77_source(source, target_date):
+    source_name = source["source_name"]
+    source_reference_date = infer_source_reference_date(source, target_date)
+    result = {
+        "source_name": source_name,
+        "reference_urls": source["reference_urls"],
+        "runtime_urls": [],
+        "proxies": [],
+        "errors": [],
+        "source_reference_date": source_reference_date,
+        "fetch_mode": "fetched",
+    }
+
+    logger.info(
+        "[%s] 开始处理，目标日期=%s，最大向前回退=%s 天，抓取策略=mibei77 公告页 -> YAML 订阅",
+        source_name,
+        target_date,
+        MAX_404_LOOKBACK_DAYS,
+    )
+
+    for fallback_days in range(MAX_404_LOOKBACK_DAYS + 1):
+        attempt_date = target_date - timedelta(days=fallback_days)
+
+        try:
+            announcement_url, article_id = render_mibei77_announcement_url(source, attempt_date)
+        except Exception as exc:
+            message = f"{source['announcement_url_template']} -> {type(exc).__name__}: {exc}"
+            result["errors"].append(message)
+            logger.error(
+                "[%s] 推导公告页地址失败：目标日期=%s，回退=%s 天，错误=%s",
+                source_name,
+                attempt_date,
+                fallback_days,
+                message,
+            )
+            break
+
+        result["runtime_urls"].append(announcement_url)
+        logger.info(
+            "[%s] 公告页尝试 %s/%s：目标日期=%s，回退=%s 天，文章编号=%s，公告地址=%s",
+            source_name,
+            fallback_days + 1,
+            MAX_404_LOOKBACK_DAYS + 1,
+            attempt_date,
+            fallback_days,
+            article_id,
+            announcement_url,
+        )
+
+        try:
+            announcement_content = fetch_text(announcement_url)
+        except Exception as exc:
+            if is_http_404_error(exc) and fallback_days < MAX_404_LOOKBACK_DAYS:
+                logger.warning(
+                    "[%s] 公告页尝试 %s/%s 返回 404，继续向前回退 1 天后重试",
+                    source_name,
+                    fallback_days + 1,
+                    MAX_404_LOOKBACK_DAYS + 1,
+                )
+                continue
+
+            if is_http_404_error(exc):
+                message = (
+                    f"{announcement_url} -> HTTP 404：已从 {target_date.isoformat()} "
+                    f"连续向前回退 {MAX_404_LOOKBACK_DAYS} 天，直到 "
+                    f"{attempt_date.isoformat()} 仍未找到可用公告页"
+                )
+            else:
+                message = f"{announcement_url} -> {type(exc).__name__}: {exc}"
+
+            result["errors"].append(message)
+            logger.error(
+                "[%s] 公告页抓取失败：目标日期=%s，回退=%s 天，错误=%s",
+                source_name,
+                attempt_date,
+                fallback_days,
+                message,
+            )
+            break
+
+        try:
+            subscription_url = extract_mibei77_subscription_url(announcement_content, attempt_date)
+        except Exception as exc:
+            message = f"{announcement_url} -> {type(exc).__name__}: {exc}"
+            result["errors"].append(message)
+            logger.error(
+                "[%s] 公告页解析订阅链接失败：目标日期=%s，回退=%s 天，错误=%s",
+                source_name,
+                attempt_date,
+                fallback_days,
+                message,
+            )
+            break
+
+        result["runtime_urls"].append(subscription_url)
+        logger.info(
+            "[%s] 已从公告页提取订阅链接：目标日期=%s，订阅地址=%s",
+            source_name,
+            attempt_date,
+            subscription_url,
+        )
+
+        try:
+            content = fetch_text(subscription_url)
+            proxies, decode_mode = extract_yaml_proxies(content, source_name)
+        except Exception as exc:
+            if is_http_404_error(exc) and fallback_days < MAX_404_LOOKBACK_DAYS:
+                logger.warning(
+                    "[%s] 订阅链接尝试 %s/%s 返回 404，继续向前回退 1 天后重试",
+                    source_name,
+                    fallback_days + 1,
+                    MAX_404_LOOKBACK_DAYS + 1,
+                )
+                continue
+
+            if is_http_404_error(exc):
+                message = (
+                    f"{subscription_url} -> HTTP 404：已从 {target_date.isoformat()} "
+                    f"连续向前回退 {MAX_404_LOOKBACK_DAYS} 天，直到 "
+                    f"{attempt_date.isoformat()} 仍未找到可用订阅文件"
+                )
+            else:
+                message = f"{subscription_url} -> {type(exc).__name__}: {exc}"
+
+            result["errors"].append(message)
+            logger.error(
+                "[%s] 订阅文件抓取或解析失败：目标日期=%s，回退=%s 天，错误=%s",
+                source_name,
+                attempt_date,
+                fallback_days,
+                message,
+            )
+            break
+
+        result["proxies"].extend(proxies)
+        logger.info(
+            "[%s] 订阅文件抓取成功：目标日期=%s，文章编号=%s，解码方式=%s，节点数=%s",
+            source_name,
+            attempt_date,
+            article_id,
+            decode_mode,
+            len(proxies),
+        )
+        break
+
+    logger.info(
+        "[%s] 分组处理完成，收集到节点=%s，失败数=%s",
+        source_name,
+        len(result["proxies"]),
+        len(result["errors"]),
+    )
+    return result
+
+
 def process_source(source, reference_date, target_date):
+    if source.get("fetch_strategy") == "mibei77-announcement-page":
+        return process_mibei77_source(source, target_date)
+
     source_name = source["source_name"]
     source_reference_date = infer_source_reference_date(source, target_date)
     template_values = build_date_template_values(target_date)
