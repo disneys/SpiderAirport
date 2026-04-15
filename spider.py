@@ -39,7 +39,7 @@ EMBEDDED_SOURCE_LABEL = "embedded_sources"
 REACHABILITY_TIMEOUT_SECONDS = 1.0
 REACHABILITY_MAX_WORKERS = 64
 UDP_ONLY_PROXY_TYPES = {"hysteria", "hysteria2", "hy2", "tuic", "wireguard"}
-MAX_404_LOOKBACK_DAYS = 7
+MAX_404_LOOKBACK_DAYS = 0
 ALWAYS_REFRESH_SOURCES = {
     "chengaopan/AutoMergePublicNodes",
     "peasoft/NoMoreWalls",
