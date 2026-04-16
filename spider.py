@@ -1353,6 +1353,31 @@ def build_fallback_config_with_loop_resolution(proxies, template):
     raise ValueError("回退配置在自动重命名冲突节点后，ProxyGroup 自环仍然存在")
 
 
+def build_generation_marker_name(generated_at):
+    marker_prefix = "\u23f0\u914d\u7f6e\u751f\u6210\u4e8e\uff1a"
+    display_time = generated_at.strftime("%Y-%m-%d %H:%M:%S").replace(":", "\uff1a")
+    return f"{marker_prefix}{display_time}"
+
+
+def add_generation_marker_proxy_group(config, marker_name):
+    marker_prefix = "\u23f0\u914d\u7f6e\u751f\u6210\u4e8e\uff1a"
+    marker_group = {
+        "name": marker_name,
+        "type": "select",
+        "proxies": ["DIRECT"],
+    }
+    proxy_groups = [
+        group
+        for group in config.get("proxy-groups", [])
+        if not (
+            isinstance(group, dict)
+            and str(group.get("name", "")).startswith(marker_prefix)
+        )
+    ]
+    config["proxy-groups"] = [marker_group, *proxy_groups]
+    return config
+
+
 def build_clash_file_text(
     config,
     results,
@@ -1362,8 +1387,9 @@ def build_clash_file_text(
     rules_source,
     rules_mode,
     source_summaries,
+    generated_at=None,
 ):
-    generated_at = datetime.now(UTC_PLUS_8).isoformat(timespec="seconds")
+    generated_at = generated_at or datetime.now(UTC_PLUS_8).isoformat(timespec="seconds")
     header_lines = [
         f"# generated_at: {generated_at}",
         f"# source_file: {source_filename}",
@@ -1732,6 +1758,10 @@ def generate_spider_clash_file(results, source_filename, reference_date, target_
         rules_mode = "fallback-default"
 
     source_summaries = build_source_summaries(results, final_proxies)
+    generated_at_dt = datetime.now(UTC_PLUS_8).replace(microsecond=0)
+    generated_at = generated_at_dt.isoformat(timespec="seconds")
+    marker_name = build_generation_marker_name(generated_at_dt)
+    config = add_generation_marker_proxy_group(config, marker_name)
 
     output_text = build_clash_file_text(
         config,
@@ -1742,6 +1772,7 @@ def generate_spider_clash_file(results, source_filename, reference_date, target_
         rules_source,
         rules_mode,
         source_summaries,
+        generated_at,
     )
     write_text_file(OUTPUT_FILE, output_text)
     logger.info("已写入 Clash 配置文件：%s", OUTPUT_FILE)

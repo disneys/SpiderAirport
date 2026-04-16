@@ -4,6 +4,9 @@ import json
 import logging
 import os
 import re
+import shutil
+import subprocess
+import tempfile
 from copy import deepcopy
 from datetime import datetime, timedelta, timezone
 
@@ -24,6 +27,7 @@ MAIN_JS_URL = (
     "https://raw.githubusercontent.com/disneys/"
     "Mihomo-Dynamic-Overseer/refs/heads/main/main.js"
 )
+UTC_PLUS_8 = timezone(timedelta(hours=8))
 
 DEFAULT_OVERSEER_TEMPLATE = {
     "test_url": "http://www.gstatic.com/generate_204",
@@ -383,6 +387,180 @@ def ensure_unique_proxy_names(proxies):
     return renamed_proxies, duplicate_count
 
 
+def fetch_remote_main_js_source():
+    response = requests.get(MAIN_JS_URL, timeout=30)
+    response.raise_for_status()
+    return response.text
+
+
+def find_self_referencing_proxy_groups(config):
+    loop_names = []
+    for group in config.get("proxy-groups", []):
+        if not isinstance(group, dict):
+            continue
+        group_name = group.get("name")
+        group_proxies = group.get("proxies")
+        if not group_name or not isinstance(group_proxies, list):
+            continue
+        if group_name in group_proxies:
+            loop_names.append(group_name)
+    return loop_names
+
+
+def rename_proxies_conflicting_with_group_names(proxies, group_names):
+    if not group_names:
+        return [deepcopy(proxy) for proxy in proxies], 0
+
+    reserved_names = set(group_names)
+    renamed_proxies = []
+    renamed_count = 0
+
+    for proxy in proxies:
+        cloned = deepcopy(proxy)
+        original_name = normalize_proxy_name(
+            cloned.get("name"),
+            f"{cloned.get('type', 'proxy')}-{cloned.get('server', 'unknown')}",
+        )
+
+        if original_name not in reserved_names:
+            renamed_proxies.append(cloned)
+            continue
+
+        suffix = 1
+        candidate = f"{original_name} [node]"
+        used_names = {item.get("name") for item in renamed_proxies}
+        while candidate in reserved_names or candidate in used_names:
+            suffix += 1
+            candidate = f"{original_name} [node {suffix}]"
+
+        cloned["name"] = candidate
+        renamed_proxies.append(cloned)
+        renamed_count += 1
+
+    return renamed_proxies, renamed_count
+
+
+def apply_remote_main_js(config):
+    node_binary = shutil.which("node")
+    if not node_binary:
+        raise RuntimeError("node executable not found")
+
+    main_js_source = fetch_remote_main_js_source()
+    runner_source = "\n".join(
+        [
+            'const fs = require("fs");',
+            'const input = fs.readFileSync(0, "utf8");',
+            "const params = JSON.parse(input);",
+            main_js_source,
+            'if (typeof main !== "function") throw new Error("main.js does not define main(params)");',
+            "const result = main(params);",
+            "process.stdout.write(JSON.stringify(result ?? params));",
+        ]
+    )
+
+    runner_path = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            "w",
+            encoding="utf-8",
+            suffix=".js",
+            delete=False,
+        ) as temp_file:
+            temp_file.write(runner_source)
+            runner_path = temp_file.name
+
+        completed = subprocess.run(
+            [node_binary, runner_path],
+            input=json.dumps(config, ensure_ascii=False),
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=120,
+            check=False,
+        )
+        if completed.returncode != 0:
+            raise RuntimeError(
+                f"node failed with exit code {completed.returncode}: {completed.stderr.strip()}"
+            )
+
+        stdout = completed.stdout.strip()
+        if not stdout:
+            raise RuntimeError("main.js returned empty output")
+
+        result = json.loads(stdout)
+        if not isinstance(result, dict):
+            raise ValueError("main.js result is not a JSON object")
+
+        required_keys = ["dns", "proxy-groups", "rule-providers", "rules"]
+        missing_keys = [key for key in required_keys if key not in result]
+        if missing_keys:
+            raise ValueError(
+                f"main.js result is missing required keys: {', '.join(missing_keys)}"
+            )
+
+        logger.info("Remote main.js executed successfully")
+        return clean_data(result), MAIN_JS_URL, "remote-main-js-executed"
+    finally:
+        if runner_path and os.path.exists(runner_path):
+            os.remove(runner_path)
+
+
+def apply_remote_main_js_with_loop_resolution(proxies):
+    current_proxies = [deepcopy(proxy) for proxy in proxies]
+    total_renamed = 0
+
+    for attempt in range(1, 4):
+        base_config = build_base_config(current_proxies)
+        config, rules_source, rules_mode = apply_remote_main_js(base_config)
+        loop_names = find_self_referencing_proxy_groups(config)
+        if not loop_names:
+            return config, current_proxies, rules_source, rules_mode, total_renamed
+
+        renamed_proxies, renamed_count = rename_proxies_conflicting_with_group_names(
+            current_proxies,
+            loop_names,
+        )
+        if renamed_count == 0:
+            raise ValueError(
+                "Self-referencing proxy groups detected but conflicting proxies "
+                f"could not be renamed: {', '.join(loop_names)}"
+            )
+
+        total_renamed += renamed_count
+        current_proxies = renamed_proxies
+        logger.warning(
+            "Remote main.js produced self-referencing proxy groups; renamed %s nodes, groups=%s, attempt=%s",
+            renamed_count,
+            ", ".join(loop_names),
+            attempt,
+        )
+
+    raise ValueError(
+        "Self-referencing proxy groups still exist after automatic renaming"
+    )
+
+
+def build_base_config(proxies):
+    cleaned_proxies = [clean_data(proxy) for proxy in proxies]
+    return clean_data(
+        {
+            "mixed-port": 7890,
+            "allow-lan": False,
+            "mode": "rule",
+            "log-level": "info",
+            "ipv6": False,
+            "unified-delay": True,
+            "tcp-concurrent": True,
+            "profile": {
+                "store-selected": True,
+                "store-fake-ip": True,
+            },
+            "proxies": cleaned_proxies,
+        }
+    )
+
+
 def extract_js_string_constant(source, constant_name):
     match = re.search(rf'const\s+{constant_name}\s*=\s*"([^"]+)"', source)
     return match.group(1) if match else ""
@@ -659,16 +837,82 @@ def build_clash_config(proxies, template):
     )
 
 
-def build_clash_file_text(config, template, results):
-    generated_at = datetime.now(timezone(timedelta(hours=8))).isoformat(
-        timespec="seconds"
+def build_fallback_config_with_loop_resolution(proxies, template):
+    current_proxies = [deepcopy(proxy) for proxy in proxies]
+    total_renamed = 0
+
+    for attempt in range(1, 4):
+        config = build_clash_config(current_proxies, template)
+        loop_names = find_self_referencing_proxy_groups(config)
+        if not loop_names:
+            return config, current_proxies, total_renamed
+
+        renamed_proxies, renamed_count = rename_proxies_conflicting_with_group_names(
+            current_proxies,
+            loop_names,
+        )
+        if renamed_count == 0:
+            raise ValueError(
+                "Fallback config has self-referencing proxy groups but conflicting "
+                f"proxies could not be renamed: {', '.join(loop_names)}"
+            )
+
+        total_renamed += renamed_count
+        current_proxies = renamed_proxies
+        logger.warning(
+            "Fallback config produced self-referencing proxy groups; renamed %s nodes, groups=%s, attempt=%s",
+            renamed_count,
+            ", ".join(loop_names),
+            attempt,
+        )
+
+    raise ValueError(
+        "Fallback proxy groups still self-reference after automatic renaming"
     )
+
+
+def build_generation_metadata():
+    generated_at = datetime.now(UTC_PLUS_8).replace(microsecond=0)
+    marker_prefix = "\u23f0\u914d\u7f6e\u751f\u6210\u4e8e\uff1a"
+    display_time = generated_at.strftime("%Y-%m-%d %H:%M:%S").replace(":", "\uff1a")
+    marker_name = f"{marker_prefix}{display_time}"
+    return generated_at.isoformat(), marker_name
+
+
+def add_generation_marker_proxy_group(config, marker_name):
+    marker_prefix = "\u23f0\u914d\u7f6e\u751f\u6210\u4e8e\uff1a"
+    marker_group = {
+        "name": marker_name,
+        "type": "select",
+        "proxies": ["DIRECT"],
+    }
+    proxy_groups = [
+        group
+        for group in config.get("proxy-groups", [])
+        if not (
+            isinstance(group, dict)
+            and str(group.get("name", "")).startswith(marker_prefix)
+        )
+    ]
+    config["proxy-groups"] = [marker_group, *proxy_groups]
+    return config
+
+
+def build_clash_file_text(
+    config,
+    results,
+    rules_source,
+    rules_mode,
+    generated_at,
+    generation_marker_name,
+):
     success_sources = [result["source_name"] for result in results if result["proxies"]]
     header = "\n".join(
         [
+            f"# {generation_marker_name}",
             f"# generated_at: {generated_at}",
-            f"# rules_source: {template['main_js_url']}",
-            f"# rules_mode: {template['main_js_fetch_mode']}",
+            f"# rules_source: {rules_source}",
+            f"# rules_mode: {rules_mode}",
             f"# success_sources: {', '.join(success_sources) if success_sources else 'none'}",
             "",
         ]
@@ -684,8 +928,7 @@ def build_clash_file_text(config, template, results):
 
 def generate_airport_clash_file(results):
     logger.info("开始汇总 airport_clash.txt")
-    template = load_overseer_template()
-
+    generated_at, generation_marker_name = build_generation_metadata()
     collected_proxies = []
     for result in results:
         collected_proxies.extend(result["proxies"])
@@ -703,9 +946,45 @@ def generate_airport_clash_file(results):
     if duplicate_name_count:
         logger.info("检测到重复节点名，已自动重命名数量=%s", duplicate_name_count)
 
-    config = build_clash_config(named_proxies, template)
+    rules_source = MAIN_JS_URL
+    rules_mode = "remote-main-js-executed"
+    try:
+        config, _final_proxies, rules_source, rules_mode, loop_renamed_count = (
+            apply_remote_main_js_with_loop_resolution(named_proxies)
+        )
+        if loop_renamed_count:
+            logger.info(
+                "Renamed %s proxies to resolve proxy-group self references from remote main.js",
+                loop_renamed_count,
+            )
+    except Exception as exc:
+        logger.error("Remote main.js apply failed, fallback to embedded template: %s", exc)
+        config, _final_proxies, fallback_loop_renamed_count = (
+            build_fallback_config_with_loop_resolution(
+                named_proxies,
+                deepcopy(DEFAULT_OVERSEER_TEMPLATE),
+            )
+        )
+        if fallback_loop_renamed_count:
+            logger.info(
+                "Renamed %s proxies to resolve proxy-group self references from fallback template",
+                fallback_loop_renamed_count,
+            )
+        rules_mode = "fallback-default"
+
+    config = add_generation_marker_proxy_group(config, generation_marker_name)
     airport_clash_path = os.path.join(ROOT_DIR, "airport_clash.txt")
-    write_text_file(airport_clash_path, build_clash_file_text(config, template, results))
+    write_text_file(
+        airport_clash_path,
+        build_clash_file_text(
+            config,
+            results,
+            rules_source,
+            rules_mode,
+            generated_at,
+            generation_marker_name,
+        ),
+    )
     logger.info("已写入 Clash/Mihomo 配置: %s", airport_clash_path)
 
 
