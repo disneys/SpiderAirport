@@ -873,14 +873,14 @@ def build_fallback_config_with_loop_resolution(proxies, template):
 
 def build_generation_metadata():
     generated_at = datetime.now(UTC_PLUS_8).replace(microsecond=0)
-    marker_prefix = "\u23f0\u914d\u7f6e\u751f\u6210\u4e8e\uff1a"
+    marker_prefix = "\u914d\u7f6e\u751f\u6210\u4e8e\uff1a"
     display_time = generated_at.strftime("%Y-%m-%d %H:%M:%S").replace(":", "\uff1a")
     marker_name = f"{marker_prefix}{display_time}"
     return generated_at.isoformat(), marker_name
 
 
 def add_generation_marker_proxy_group(config, marker_name):
-    marker_prefix = "\u23f0\u914d\u7f6e\u751f\u6210\u4e8e\uff1a"
+    marker_prefix = "\u914d\u7f6e\u751f\u6210\u4e8e\uff1a"
     marker_group = {
         "name": marker_name,
         "type": "select",

@@ -1354,13 +1354,13 @@ def build_fallback_config_with_loop_resolution(proxies, template):
 
 
 def build_generation_marker_name(generated_at):
-    marker_prefix = "\u23f0\u914d\u7f6e\u751f\u6210\u4e8e\uff1a"
+    marker_prefix = "\u914d\u7f6e\u751f\u6210\u4e8e\uff1a"
     display_time = generated_at.strftime("%Y-%m-%d %H:%M:%S").replace(":", "\uff1a")
     return f"{marker_prefix}{display_time}"
 
 
 def add_generation_marker_proxy_group(config, marker_name):
-    marker_prefix = "\u23f0\u914d\u7f6e\u751f\u6210\u4e8e\uff1a"
+    marker_prefix = "\u914d\u7f6e\u751f\u6210\u4e8e\uff1a"
     marker_group = {
         "name": marker_name,
         "type": "select",
