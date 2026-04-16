@@ -1365,6 +1365,7 @@ def add_generation_marker_proxy_group(config, marker_name):
         "name": marker_name,
         "type": "select",
         "proxies": ["DIRECT"],
+        "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Download.png",
     }
     proxy_groups = [
         group

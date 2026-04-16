@@ -885,6 +885,7 @@ def add_generation_marker_proxy_group(config, marker_name):
         "name": marker_name,
         "type": "select",
         "proxies": ["DIRECT"],
+        "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Download.png",
     }
     proxy_groups = [
         group
@@ -909,7 +910,6 @@ def build_clash_file_text(
     success_sources = [result["source_name"] for result in results if result["proxies"]]
     header = "\n".join(
         [
-            f"# {generation_marker_name}",
             f"# generated_at: {generated_at}",
             f"# rules_source: {rules_source}",
             f"# rules_mode: {rules_mode}",
