@@ -47,9 +47,9 @@ ALWAYS_REFRESH_SOURCES = {
 }
 SOURCE_ENABLED = {
     "clashnodev2ray.github.io": True,
-    "clashmetagithub.github.io": False,  
+    "clashmetagithub.github.io": False,
     "freev2rayclash.github.io": False,
-    "stashgithub.github.io": False,  
+    "stashgithub.github.io": False,
     "windowsclashnode.github.io": False,
     "clashnode.github.io": False,
     "clashvergerev.github.io": False,
