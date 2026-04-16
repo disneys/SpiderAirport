@@ -1,6 +1,7 @@
-# generated_at: 2026-04-16T14:20:38+08:00
+# ⏰配置生成于：2026-04-16 14：30：38
+# generated_at: 2026-04-16T14:30:38+08:00
 # rules_source: https://raw.githubusercontent.com/disneys/Mihomo-Dynamic-Overseer/refs/heads/main/main.js
-# rules_mode: remote-synced
+# rules_mode: remote-main-js-executed
 # success_sources: mkshare3, abshare, abshare3, tolinkshare2, toshare5
 mixed-port: 7890
 allow-lan: false
@@ -12,41 +13,8 @@ tcp-concurrent: true
 profile:
   store-selected: true
   store-fake-ip: true
-dns:
-  enable: true
-  device-network: true
-  ipv6: false
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  default-nameserver:
-  - 223.5.5.5
-  - 119.29.29.29
-  - 1.1.1.1
-  nameserver:
-  - 223.5.5.5
-  - 223.6.6.6
-  - 119.29.29.29
-  - 180.76.76.76
-  - tls://dns.alidns.com
-  - https://dns.alidns.com/dns-query
-  - https://doh.pub/dns-query
-  fallback:
-  - https://dns.google/dns-query
-  - https://cloudflare-dns.com/dns-query
-  - https://dns.quad9.net/dns-query
-  - tls://8.8.8.8
-  - tls://1.1.1.1
-  - tls://dns.quad9.net
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-    - 240.0.0.0/4
-  nameserver-policy:
-    geosite:cn: https://dns.alidns.com/dns-query
-    domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxies:
-- name: 剩余流量：754.41 MB
+- name: 剩余流量：734.11 MB
   type: vless
   server: freea.glyphara.com
   port: 30101
@@ -228,7 +196,7 @@ proxies:
   reality-opts:
     public-key: Fpcp8ed_KjL5rnn0gstMa0AQPL8GcYMtArb--r1AhnI
     short-id: 845532fa
-- name: 剩余流量：4.58 GB
+- name: 剩余流量：689.97 MB
   type: vless
   server: freea.glyphara.com
   port: 30101
@@ -410,7 +378,7 @@ proxies:
   reality-opts:
     public-key: Fpcp8ed_KjL5rnn0gstMa0AQPL8GcYMtArb--r1AhnI
     short-id: 845532fa
-- name: 剩余流量：2.86 GB
+- name: 剩余流量：2.19 GB
   type: vless
   server: freea.glyphara.com
   port: 30101
@@ -592,7 +560,7 @@ proxies:
   reality-opts:
     public-key: Fpcp8ed_KjL5rnn0gstMa0AQPL8GcYMtArb--r1AhnI
     short-id: 845532fa
-- name: 剩余流量：448.05 MB
+- name: 剩余流量：373.32 MB
   type: vless
   server: freea.glyphara.com
   port: 30101
@@ -774,7 +742,7 @@ proxies:
   reality-opts:
     public-key: Fpcp8ed_KjL5rnn0gstMa0AQPL8GcYMtArb--r1AhnI
     short-id: 845532fa
-- name: 剩余流量：3.7 GB
+- name: 剩余流量：3.6 GB
   type: vless
   server: freea.glyphara.com
   port: 30101
@@ -956,7 +924,111 @@ proxies:
   reality-opts:
     public-key: Fpcp8ed_KjL5rnn0gstMa0AQPL8GcYMtArb--r1AhnI
     short-id: 845532fa
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
+    path: ./ruleset/reject.yaml
+    interval: 86400
+  icloud:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
+    path: ./ruleset/icloud.yaml
+    interval: 86400
+  apple:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
+    path: ./ruleset/apple.yaml
+    interval: 86400
+  google:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
+    path: ./ruleset/google.yaml
+    interval: 86400
+  proxy:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+  direct:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
+    path: ./ruleset/direct.yaml
+    interval: 86400
+  private:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
+    path: ./ruleset/private.yaml
+    interval: 86400
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
+    path: ./ruleset/cncidr.yaml
+    interval: 86400
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
+    path: ./ruleset/lancidr.yaml
+    interval: 86400
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
+    path: ./ruleset/telegramcidr.yaml
+    interval: 86400
+  applications:
+    type: http
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt
+    path: ./ruleset/applications.yaml
+    interval: 86400
+dns:
+  enable: true
+  device-network: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
+  - 1.1.1.1
+  nameserver:
+  - 223.5.5.5
+  - 223.6.6.6
+  - 119.29.29.29
+  - 180.76.76.76
+  - tls://dns.alidns.com
+  - https://dns.alidns.com/dns-query
+  - https://doh.pub/dns-query
+  fallback:
+  - https://dns.google/dns-query
+  - https://cloudflare-dns.com/dns-query
+  - https://dns.quad9.net/dns-query
+  - tls://8.8.8.8
+  - tls://1.1.1.1
+  - tls://dns.quad9.net
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+    - 240.0.0.0/4
+  nameserver-policy:
+    geosite:cn: https://dns.alidns.com/dns-query
+    domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxy-groups:
+- name: ⏰配置生成于：2026-04-16 14：30：38
+  type: select
+  proxies:
+  - DIRECT
 - name: 节点选择
   type: select
   proxies:
@@ -973,7 +1045,7 @@ proxy-groups:
 - name: 自动选择
   type: url-test
   proxies:
-  - 剩余流量：754.41 MB
+  - 剩余流量：734.11 MB
   - 🇭🇰香港 101 | 1x HK
   - 🇭🇰香港 102 | 1x HK
   - 🇭🇰香港 103 | 家宽 | 1x HK
@@ -986,7 +1058,7 @@ proxy-groups:
   - 🇸🇬新加坡 103 | 1x SG
   - 🇺🇸美国 101 ChatGPT专用 | 1x US
   - 🇺🇸美国 103 ChatGPT专用 | 1x US
-  - 剩余流量：4.58 GB
+  - 剩余流量：689.97 MB
   - 🇭🇰香港 101 | 1x HK [2]
   - 🇭🇰香港 102 | 1x HK [2]
   - 🇭🇰香港 103 | 家宽 | 1x HK [2]
@@ -999,7 +1071,7 @@ proxy-groups:
   - 🇸🇬新加坡 103 | 1x SG [2]
   - 🇺🇸美国 101 ChatGPT专用 | 1x US [2]
   - 🇺🇸美国 103 ChatGPT专用 | 1x US [2]
-  - 剩余流量：2.86 GB
+  - 剩余流量：2.19 GB
   - 🇭🇰香港 101 | 1x HK [3]
   - 🇭🇰香港 102 | 1x HK [3]
   - 🇭🇰香港 103 | 家宽 | 1x HK [3]
@@ -1012,7 +1084,7 @@ proxy-groups:
   - 🇸🇬新加坡 103 | 1x SG [3]
   - 🇺🇸美国 101 ChatGPT专用 | 1x US [3]
   - 🇺🇸美国 103 ChatGPT专用 | 1x US [3]
-  - 剩余流量：448.05 MB
+  - 剩余流量：373.32 MB
   - 🇭🇰香港 101 | 1x HK [4]
   - 🇭🇰香港 102 | 1x HK [4]
   - 🇭🇰香港 103 | 家宽 | 1x HK [4]
@@ -1025,7 +1097,7 @@ proxy-groups:
   - 🇸🇬新加坡 103 | 1x SG [4]
   - 🇺🇸美国 101 ChatGPT专用 | 1x US [4]
   - 🇺🇸美国 103 ChatGPT专用 | 1x US [4]
-  - 剩余流量：3.7 GB
+  - 剩余流量：3.6 GB
   - 🇭🇰香港 101 | 1x HK [5]
   - 🇭🇰香港 102 | 1x HK [5]
   - 🇭🇰香港 103 | 家宽 | 1x HK [5]
@@ -1044,7 +1116,7 @@ proxy-groups:
 - name: 手动选择
   type: select
   proxies:
-  - 剩余流量：754.41 MB
+  - 剩余流量：734.11 MB
   - 🇭🇰香港 101 | 1x HK
   - 🇭🇰香港 102 | 1x HK
   - 🇭🇰香港 103 | 家宽 | 1x HK
@@ -1057,7 +1129,7 @@ proxy-groups:
   - 🇸🇬新加坡 103 | 1x SG
   - 🇺🇸美国 101 ChatGPT专用 | 1x US
   - 🇺🇸美国 103 ChatGPT专用 | 1x US
-  - 剩余流量：4.58 GB
+  - 剩余流量：689.97 MB
   - 🇭🇰香港 101 | 1x HK [2]
   - 🇭🇰香港 102 | 1x HK [2]
   - 🇭🇰香港 103 | 家宽 | 1x HK [2]
@@ -1070,7 +1142,7 @@ proxy-groups:
   - 🇸🇬新加坡 103 | 1x SG [2]
   - 🇺🇸美国 101 ChatGPT专用 | 1x US [2]
   - 🇺🇸美国 103 ChatGPT专用 | 1x US [2]
-  - 剩余流量：2.86 GB
+  - 剩余流量：2.19 GB
   - 🇭🇰香港 101 | 1x HK [3]
   - 🇭🇰香港 102 | 1x HK [3]
   - 🇭🇰香港 103 | 家宽 | 1x HK [3]
@@ -1083,7 +1155,7 @@ proxy-groups:
   - 🇸🇬新加坡 103 | 1x SG [3]
   - 🇺🇸美国 101 ChatGPT专用 | 1x US [3]
   - 🇺🇸美国 103 ChatGPT专用 | 1x US [3]
-  - 剩余流量：448.05 MB
+  - 剩余流量：373.32 MB
   - 🇭🇰香港 101 | 1x HK [4]
   - 🇭🇰香港 102 | 1x HK [4]
   - 🇭🇰香港 103 | 家宽 | 1x HK [4]
@@ -1096,7 +1168,7 @@ proxy-groups:
   - 🇸🇬新加坡 103 | 1x SG [4]
   - 🇺🇸美国 101 ChatGPT专用 | 1x US [4]
   - 🇺🇸美国 103 ChatGPT专用 | 1x US [4]
-  - 剩余流量：3.7 GB
+  - 剩余流量：3.6 GB
   - 🇭🇰香港 101 | 1x HK [5]
   - 🇭🇰香港 102 | 1x HK [5]
   - 🇭🇰香港 103 | 家宽 | 1x HK [5]
@@ -1263,78 +1335,11 @@ proxy-groups:
   url: http://www.gstatic.com/generate_204
   tolerance: 50
   proxies:
-  - 剩余流量：754.41 MB
-  - 剩余流量：4.58 GB
-  - 剩余流量：2.86 GB
-  - 剩余流量：448.05 MB
-  - 剩余流量：3.7 GB
-rule-providers:
-  reject:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
-    path: ./ruleset/reject.yaml
-    interval: 86400
-  icloud:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
-    path: ./ruleset/icloud.yaml
-    interval: 86400
-  apple:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
-    path: ./ruleset/apple.yaml
-    interval: 86400
-  google:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
-    path: ./ruleset/google.yaml
-    interval: 86400
-  proxy:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
-    path: ./ruleset/proxy.yaml
-    interval: 86400
-  direct:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
-    path: ./ruleset/direct.yaml
-    interval: 86400
-  private:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
-    path: ./ruleset/private.yaml
-    interval: 86400
-  cncidr:
-    type: http
-    behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
-    path: ./ruleset/cncidr.yaml
-    interval: 86400
-  lancidr:
-    type: http
-    behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
-    path: ./ruleset/lancidr.yaml
-    interval: 86400
-  telegramcidr:
-    type: http
-    behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
-    path: ./ruleset/telegramcidr.yaml
-    interval: 86400
-  applications:
-    type: http
-    behavior: classical
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt
-    path: ./ruleset/applications.yaml
-    interval: 86400
+  - 剩余流量：734.11 MB
+  - 剩余流量：689.97 MB
+  - 剩余流量：2.19 GB
+  - 剩余流量：373.32 MB
+  - 剩余流量：3.6 GB
 rules:
 - DOMAIN,sub.datapipe.top,DIRECT
 - DOMAIN,suc-store.usuc.cc,DIRECT
