@@ -41,6 +41,9 @@ REACHABILITY_TIMEOUT_SECONDS = 1.0
 REACHABILITY_MAX_WORKERS = 64
 UDP_ONLY_PROXY_TYPES = {"hysteria", "hysteria2", "hy2", "tuic", "wireguard"}
 MAX_404_LOOKBACK_DAYS = 1
+FETCH_MODE_DAILY_ONCE = "daily-once"
+FETCH_MODE_ALWAYS = "always"
+FETCH_MODE = FETCH_MODE_ALWAYS
 ALWAYS_REFRESH_SOURCES = {
     "chengaopan/AutoMergePublicNodes",
     "peasoft/NoMoreWalls",
@@ -985,6 +988,9 @@ def load_existing_run_metadata(target_date):
 
 
 def should_fetch_source(source_name, target_date, existing_metadata):
+    if FETCH_MODE == FETCH_MODE_ALWAYS:
+        return True
+
     if source_name in ALWAYS_REFRESH_SOURCES:
         return True
 
@@ -1782,6 +1788,11 @@ def generate_spider_clash_file(results, source_filename, reference_date, target_
 
 def main():
     args = parse_args()
+    if FETCH_MODE not in {FETCH_MODE_DAILY_ONCE, FETCH_MODE_ALWAYS}:
+        raise ValueError(
+            f"FETCH_MODE 无效：{FETCH_MODE}，允许值为 "
+            f"{FETCH_MODE_DAILY_ONCE} 或 {FETCH_MODE_ALWAYS}"
+        )
     target_date = (
         date.fromisoformat(args.target_date)
         if args.target_date
@@ -1790,6 +1801,7 @@ def main():
     write_error_file([])
 
     logger.info("任务开始：来源=%s，目标日期=%s", EMBEDDED_SOURCE_LABEL, target_date)
+    logger.info("当前抓取模式: %s", FETCH_MODE)
     sources = load_embedded_sources()
     reference_date = infer_reference_date(sources, target_date)
     existing_metadata = load_existing_run_metadata(target_date)
