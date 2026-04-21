@@ -14,7 +14,7 @@ import tempfile
 from copy import deepcopy
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime, timedelta, timezone
-from urllib.parse import urlsplit, urlunsplit
+from urllib.parse import urljoin
 
 import requests
 import yaml
@@ -164,19 +164,15 @@ EMBEDDED_SOURCES = [
     {
         "source_name": "yoyapai.com",
         "reference_urls": [
-            "https://yoyapai.com/mianfeijiedian/{yyyyMMdd}-clash-vpn-mfjiedian-yoyapai.com.yaml",
+            "https://freenode.yoyapai.com/{yyyy}/{MM}/{dd}-yoyapai.com-clash-vpn-mianfeijiedian.yaml",
         ],
     },
     {
         "source_name": "mibei77.com",
         "reference_urls": [
-            "https://www.mibei77.com/{article_id}.html",
+            "https://www.mibei77.com/",
         ],
-        "fetch_strategy": "mibei77-announcement-page",
-        "announcement_url_template": "https://www.mibei77.com/{article_id}.html",
-        "announcement_reference_date": "2026-04-13",
-        "announcement_reference_id": 88,
-        "announcement_id_step": 2,
+        "fetch_strategy": "mibei77-home-latest-announcement",
     },
     {
         "source_name": "chengaopan/AutoMergePublicNodes",
@@ -835,19 +831,53 @@ def render_reference_url(reference_url, target_date):
     return rendered, values
 
 
-def render_mibei77_announcement_url(source, target_date):
-    reference_date = date.fromisoformat(source["announcement_reference_date"])
-    reference_id = int(source["announcement_reference_id"])
-    id_step = int(source.get("announcement_id_step", 1))
-    day_offset = (target_date - reference_date).days
-    article_id = reference_id + (day_offset * id_step)
-    if article_id <= 0:
-        raise ValueError(
-            f"按公告页编号规则推导出的文章编号无效：date={target_date.isoformat()}, article_id={article_id}"
-        )
+def is_mibei77_announcement_title(title, target_date):
+    normalized_title = re.sub(r"\s+", " ", html.unescape(str(title or ""))).strip()
+    if not normalized_title:
+        return False
 
-    announcement_url = source["announcement_url_template"].replace("{article_id}", str(article_id))
-    return announcement_url, article_id
+    date_token = target_date.strftime("%Y年%m月%d日")
+    if date_token not in normalized_title:
+        return False
+
+    lowered_title = normalized_title.lower()
+    return (
+        "免费精选节点" in normalized_title
+        or (
+            "节点" in normalized_title
+            and ("订阅链接" in normalized_title or "v2ray|clash" in lowered_title)
+        )
+    )
+
+
+def extract_mibei77_announcement_url(homepage_content, homepage_url, target_date):
+    normalized_content = html.unescape(normalize_text(homepage_content)).replace("\\/", "/")
+    anchor_patterns = [
+        re.compile(
+            r'<a\b[^>]*\bhref=(["\'])(?P<href>[^"\']+)\1[^>]*\btitle=(["\'])(?P<title>[^"\']+)\3[^>]*>',
+            re.IGNORECASE,
+        ),
+        re.compile(
+            r'<a\b[^>]*\btitle=(["\'])(?P<title>[^"\']+)\1[^>]*\bhref=(["\'])(?P<href>[^"\']+)\3[^>]*>',
+            re.IGNORECASE,
+        ),
+    ]
+
+    for pattern in anchor_patterns:
+        for match in pattern.finditer(normalized_content):
+            title = match.group("title")
+            if not is_mibei77_announcement_title(title, target_date):
+                continue
+
+            href = html.unescape(match.group("href")).strip()
+            if not href:
+                continue
+
+            return urljoin(homepage_url, href), normalize_text(title)
+
+    raise ValueError(
+        f"未在 mibei77 首页找到 {target_date.strftime('%Y年%m月%d日')} 的免费精选节点公告链接"
+    )
 
 
 def extract_mibei77_subscription_url(page_content, target_date):
@@ -1420,6 +1450,7 @@ def build_clash_file_text(
 def process_mibei77_source(source, target_date):
     source_name = source["source_name"]
     source_reference_date = infer_source_reference_date(source, target_date)
+    homepage_url = source["reference_urls"][0]
     result = {
         "source_name": source_name,
         "reference_urls": source["reference_urls"],
@@ -1431,38 +1462,53 @@ def process_mibei77_source(source, target_date):
     }
 
     logger.info(
-        "[%s] 开始处理，目标日期=%s，最大向前回退=%s 天，抓取策略=mibei77 公告页 -> YAML 订阅",
+        "[%s] 开始处理，目标日期=%s，最大向前回退=%s 天，抓取策略=mibei77 首页 -> 当天最新公告 -> YAML 订阅",
         source_name,
         target_date,
         MAX_404_LOOKBACK_DAYS,
     )
+    result["runtime_urls"].append(homepage_url)
+
+    try:
+        homepage_content = fetch_text(homepage_url)
+    except Exception as exc:
+        message = f"{homepage_url} -> {type(exc).__name__}: {exc}"
+        result["errors"].append(message)
+        logger.error("[%s] 首页抓取失败：%s", source_name, message)
+        return result
 
     for fallback_days in range(MAX_404_LOOKBACK_DAYS + 1):
         attempt_date = target_date - timedelta(days=fallback_days)
 
         try:
-            announcement_url, article_id = render_mibei77_announcement_url(source, attempt_date)
-        except Exception as exc:
-            message = f"{source['announcement_url_template']} -> {type(exc).__name__}: {exc}"
-            result["errors"].append(message)
-            logger.error(
-                "[%s] 推导公告页地址失败：目标日期=%s，回退=%s 天，错误=%s",
-                source_name,
+            announcement_url, announcement_title = extract_mibei77_announcement_url(
+                homepage_content,
+                homepage_url,
                 attempt_date,
-                fallback_days,
-                message,
             )
+        except Exception as exc:
+            if fallback_days < MAX_404_LOOKBACK_DAYS:
+                logger.warning(
+                    "[%s] 首页中未找到 %s 的公告，继续向前回退 1 天后重试",
+                    source_name,
+                    attempt_date,
+                )
+                continue
+
+            message = f"{homepage_url} -> {type(exc).__name__}: {exc}"
+            result["errors"].append(message)
+            logger.error("[%s] 首页公告匹配失败：%s", source_name, message)
             break
 
         result["runtime_urls"].append(announcement_url)
         logger.info(
-            "[%s] 公告页尝试 %s/%s：目标日期=%s，回退=%s 天，文章编号=%s，公告地址=%s",
+            "[%s] 公告页尝试 %s/%s：目标日期=%s，回退=%s 天，公告标题=%s，公告地址=%s",
             source_name,
             fallback_days + 1,
             MAX_404_LOOKBACK_DAYS + 1,
             attempt_date,
             fallback_days,
-            article_id,
+            announcement_title,
             announcement_url,
         )
 
@@ -1553,10 +1599,10 @@ def process_mibei77_source(source, target_date):
 
         result["proxies"].extend(proxies)
         logger.info(
-            "[%s] 订阅文件抓取成功：目标日期=%s，文章编号=%s，解码方式=%s，节点数=%s",
+            "[%s] 订阅文件抓取成功：目标日期=%s，公告标题=%s，解码方式=%s，节点数=%s",
             source_name,
             attempt_date,
-            article_id,
+            announcement_title,
             decode_mode,
             len(proxies),
         )
@@ -1572,7 +1618,7 @@ def process_mibei77_source(source, target_date):
 
 
 def process_source(source, reference_date, target_date):
-    if source.get("fetch_strategy") == "mibei77-announcement-page":
+    if source.get("fetch_strategy") == "mibei77-home-latest-announcement":
         return process_mibei77_source(source, target_date)
 
     source_name = source["source_name"]
