@@ -39,6 +39,7 @@ SOURCE_NAME = "bsbb.cc"
 BSBB_HOME_URL = "https://www.bsbb.cc/clash/"
 BSBB_TOKEN_URL = urljoin(BSBB_HOME_URL, "gentoken.php")
 BSBB_DAILY_SUB_PATTERN = re.compile(r"/daily_sub\.php\?token=[a-f0-9]+", re.I)
+BSBB_SUBSCRIPTION_URL_ENV = "BSBB_SUBSCRIPTION_URL"
 
 BROWSER_HEADERS = {
     "User-Agent": (
@@ -51,6 +52,16 @@ BROWSER_HEADERS = {
 
 
 def fetch_bsbb_subscription_url(session):
+    env_subscription_url = os.getenv(BSBB_SUBSCRIPTION_URL_ENV, "").strip()
+    if env_subscription_url:
+        subscription_url = urljoin(BSBB_HOME_URL, env_subscription_url)
+        logger.info(
+            "Using bsbb subscription URL from %s: %s",
+            BSBB_SUBSCRIPTION_URL_ENV,
+            subscription_url,
+        )
+        return subscription_url
+
     logger.info("Fetching bsbb homepage: %s", BSBB_HOME_URL)
     try:
         homepage_response = session.get(BSBB_HOME_URL, headers=BROWSER_HEADERS, timeout=30)
