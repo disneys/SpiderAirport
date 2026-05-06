@@ -52,8 +52,15 @@ BROWSER_HEADERS = {
 
 def fetch_bsbb_subscription_url(session):
     logger.info("Fetching bsbb homepage: %s", BSBB_HOME_URL)
-    homepage_response = session.get(BSBB_HOME_URL, headers=BROWSER_HEADERS, timeout=30)
-    homepage_response.raise_for_status()
+    try:
+        homepage_response = session.get(BSBB_HOME_URL, headers=BROWSER_HEADERS, timeout=30)
+        if homepage_response.status_code >= 400:
+            logger.warning(
+                "bsbb homepage returned HTTP %s, continue with token endpoint",
+                homepage_response.status_code,
+            )
+    except requests.RequestException as exc:
+        logger.warning("bsbb homepage fetch failed, continue with token endpoint: %s", exc)
 
     logger.info("Requesting today's bsbb subscription token: %s", BSBB_TOKEN_URL)
     token_headers = dict(BROWSER_HEADERS)
@@ -182,9 +189,19 @@ def build_bsbb_config(proxies):
 
 
 def generate_bsbb_file():
+    existing_subscription_url = read_existing_subscription_url()
     with requests.Session() as session:
-        subscription_url = fetch_bsbb_subscription_url(session)
-        existing_subscription_url = read_existing_subscription_url()
+        try:
+            subscription_url = fetch_bsbb_subscription_url(session)
+        except (requests.RequestException, ValueError) as exc:
+            if existing_subscription_url and os.path.exists(OUTPUT_FILE):
+                logger.warning(
+                    "Unable to refresh bsbb subscription URL, keep existing file: %s",
+                    exc,
+                )
+                return
+            raise
+
         if existing_subscription_url == subscription_url:
             logger.info(
                 "bsbb subscription URL unchanged, skip parsing: %s",
