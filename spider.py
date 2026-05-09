@@ -164,7 +164,7 @@ EMBEDDED_SOURCES = [
     {
         "source_name": "yoyapai.com",
         "reference_urls": [
-            "https://freenode.yoyapai.com/{yyyy}/{MM}/{dd}-yoyapai.com-clash-vpn-mianfeijiedian.yaml",
+            "https://freenode.yoyapai.com/{yyyy}/{MM}/{dd}-yoyapai.com-clashvpn-mianfeijiedian.yaml",
         ],
     },
     {
