@@ -1,10 +1,10 @@
-# generated_at: 2026-05-28T08:50:49+08:00
+# generated_at: 2026-05-28T09:00:53+08:00
 # source_file: embedded_sources
 # reference_date: 2026-05-28
 # effective_date: 2026-05-28
 # rules_source: https://raw.githubusercontent.com/disneys/Mihomo-Dynamic-Overseer/refs/heads/main/main.js
 # rules_mode: remote-main-js-executed
-# success_sources: clashnodev2ray.github.io 65/163 200, clashmetagithub.github.io -/- -, freev2rayclash.github.io -/- -, stashgithub.github.io -/- -, windowsclashnode.github.io -/- -, clashnode.github.io -/- -, clashvergerev.github.io -/- -, clash-verge.github.io -/- -, vlessgithub.github.io -/- -, node.freeclashnode.com 87/336 200, yoyapai.com 0/0 404, mibei77.com 47/110 200, chengaopan/AutoMergePublicNodes 60/76 200, peasoft/NoMoreWalls 148/206 200
+# success_sources: clashnodev2ray.github.io 66/163 200, clashmetagithub.github.io -/- -, freev2rayclash.github.io -/- -, stashgithub.github.io -/- -, windowsclashnode.github.io -/- -, clashnode.github.io -/- -, clashvergerev.github.io -/- -, clash-verge.github.io -/- -, vlessgithub.github.io -/- -, node.freeclashnode.com 88/336 200, yoyapai.com 0/0 404, mibei77.com 47/110 200, chengaopan/AutoMergePublicNodes 56/76 200, peasoft/NoMoreWalls 148/206 200
 mixed-port: 7890
 allow-lan: false
 mode: rule
@@ -491,6 +491,18 @@ proxies:
   skip-cert-verify: true
   sni: yazhou10.dynu.net
   network: tcp
+- type: vmess
+  name: 日本(免费节点)_3 {src=clashnodev2ray.github.io}
+  http-opts:
+    path:
+    - /ABCDE
+  server: 103.127.243.59
+  port: '56738'
+  uuid: 5f49c80e-7770-4bd1-9c86-43c2068a3a26
+  alterId: '0'
+  cipher: auto
+  network: http
+  udp: true
 - type: trojan
   name: 美国(免费节点)_65 {src=clashnodev2ray.github.io}
   server: 172.67.180.92
@@ -1144,6 +1156,16 @@ proxies:
     path: /@Marisa_kristi
     headers:
       Host: guslef2w8oz12wv.ymj.xx.kg
+  udp: true
+- name: JP日本(mibei77.com 米贝节点分享)_3 {src=mibei77.com|node.freeclashnode.com}
+  type: vmess
+  server: 103.127.243.59
+  port: 56738
+  uuid: 5f49c80e-7770-4bd1-9c86-43c2068a3a26
+  alterId: 0
+  cipher: auto
+  tls: false
+  skip-cert-verify: false
   udp: true
 - name: KR韩国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   type: vless
@@ -1803,19 +1825,6 @@ proxies:
     headers:
       Host: vms.lifetime26.workers.dev
   udp: true
-- name: US美国(mibei77.com 米贝节点分享)_24 {src=mibei77.com}
-  type: vless
-  server: 103.232.213.244
-  port: 9586
-  uuid: 00000000-0000-4000-8000-000000000000
-  network: ws
-  servername: oia8or7k8rs5.zrf.xx.kg
-  tls: true
-  ws-opts:
-    path: /@Marisa_kristifp=chrome
-    headers:
-      Host: oia8or7k8rs5.zrf.xx.kg
-  udp: true
 - name: US美国(mibei77.com 米贝节点分享)_25 {src=mibei77.com}
   type: vmess
   server: v35.hdacd.com
@@ -2093,15 +2102,6 @@ proxies:
   tls: false
   type: hysteria2
   udp: true
-- name: 11,12|新加坡3|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  network: tcp
-  password: BxceQaOe
-  port: 443
-  server: 140.235.140.105
-  skip-cert-verify: true
-  sni: t.me%252Fripaojiedian
-  type: trojan
-  udp: true
 - alterId: 0
   cipher: auto
   name: 11|🇺🇸 美国5|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -2216,19 +2216,6 @@ proxies:
   type: vless
   udp: true
   uuid: 05e9d254-8ea8-4097-9450-d4aefc44bd7e
-- flow: xtls-rprx-vision
-  name: 13|GB_speednode_0021 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  port: 54254
-  reality-opts:
-    public-key: HFEz9fAOugljXea_ZVOUHMju08su8h0P9RANNcHP2y4
-    short-id: db35ffdc
-  server: 134.33.73.249
-  servername: apple.com
-  skip-cert-verify: false
-  tls: true
-  type: vless
-  udp: true
-  uuid: acba684c-4098-4eca-f519-828b09f96464
 - http-opts:
     headers:
       Host:
@@ -2277,37 +2264,11 @@ proxies:
   type: socks5
   udp: true
   username: Og%3D%3D
-- name: 13|KR_speednode_0029 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  network: ws
-  password: 433e785b-2077-47f7-a43d-985f63dd18d1
-  port: 30303
-  server: 121.191.33.84
-  skip-cert-verify: false
-  sni: vpn.rnmcnm.com
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      Host: vpn.rnmcnm.com
-    path: /trojan
 - name: 13|KR_speednode_0030 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   network: ws
   password: 433e785b-2077-47f7-a43d-985f63dd18d1
   port: 12345
   server: 59.30.42.194
-  skip-cert-verify: false
-  sni: vpn.rnmcnm.com
-  type: trojan
-  udp: true
-  ws-opts:
-    headers:
-      Host: vpn.rnmcnm.com
-    path: /trojan
-- name: 13|KR_speednode_0031 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  network: ws
-  password: 433e785b-2077-47f7-a43d-985f63dd18d1
-  port: 18000
-  server: 121.154.96.50
   skip-cert-verify: false
   sni: vpn.rnmcnm.com
   type: trojan
@@ -2975,19 +2936,6 @@ proxies:
   uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
   udp: true
 - encryption: none
-  flow: xtls-rprx-vision
-  name: 'B - 🇯🇵 JP 09 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  port: 39975
-  reality-opts:
-    public-key: qhTzYYIgBzDLNYR79oxftqdo1kzL-1_hGJKfqrOliCY
-  security: reality
-  server: 116.80.58.239
-  servername: cloudcircus.jp
-  tls: true
-  type: vless
-  uuid: 15b84012-d261-4b4c-807a-061bb4a901fd
-  udp: true
-- encryption: none
   name: 'B - 🇸🇬 SG 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
   network: ws
   port: 443
@@ -3429,20 +3377,6 @@ proxies:
   type: vless
   uuid: 18afb896-6e4b-403b-b804-714b09b517e5
   udp: true
-- name: 'B - 🇷🇺 RU 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  network: tcp
-  port: 443
-  reality-opts:
-    public-key: cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc
-    short-id: af0e
-  security: reality
-  server: 85.193.91.14
-  servername: yahoo.com
-  spider-x: /
-  tls: true
-  type: vless
-  uuid: 3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5
-  udp: true
 - flow: xtls-rprx-vision
   name: 'A - 🇮🇳 IN 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   network: tcp
@@ -3586,9 +3520,23 @@ proxies:
   type: vless
   uuid: 231a569a-55f0-4d31-94ac-dbe4bed3efdb
   udp: true
+- name: 'B - 🇷🇴 RO 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  port: 9002
+  server: 193.176.84.21
+  tls: true
+  type: http
+  udp: true
 - name: 'B - 🇷🇴 RO 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
   port: 9002
   server: 193.176.84.31
+  skip-cert-verify: true
+  sni: www.bing.com
+  tls: true
+  type: http
+  udp: true
+- name: 'B - 🇷🇴 RO 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  port: 9002
+  server: 193.176.84.26
   skip-cert-verify: true
   sni: www.bing.com
   tls: true
@@ -3612,9 +3560,29 @@ proxies:
   tls: true
   type: http
   udp: true
+- name: 'B - 🇷🇴 RO 07 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  port: 9002
+  server: 193.176.84.19
+  skip-cert-verify: true
+  sni: www.bing.com
+  tls: true
+  type: http
+  udp: true
+- name: 'B - 🇷🇴 RO 08 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  port: 9002
+  server: 193.176.84.35
+  tls: true
+  type: http
+  udp: true
 - name: 'B - 🇷🇴 RO 09 TG: @nodpai {src=peasoft/NoMoreWalls}'
   port: 9002
   server: 84.239.49.168
+  tls: true
+  type: http
+  udp: true
+- name: 'B - 🇷🇴 RO 10 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  port: 9002
+  server: 193.176.84.20
   tls: true
   type: http
   udp: true
@@ -3628,6 +3596,14 @@ proxies:
 - name: 'B - 🇷🇴 RO 12 TG: @nodpai {src=peasoft/NoMoreWalls}'
   port: 9002
   server: 84.239.49.244
+  tls: true
+  type: http
+  udp: true
+- name: 'B - 🇷🇴 RO 13 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  port: 9002
+  server: 193.176.84.37
+  skip-cert-verify: true
+  sni: www.bing.com
   tls: true
   type: http
   udp: true
@@ -3974,7 +3950,7 @@ dns:
     geosite:cn: https://dns.alidns.com/dns-query
     domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxy-groups:
-- name: 配置生成于：2026-05-28 08：50：49
+- name: 配置生成于：2026-05-28 09：00：53
   type: select
   proxies:
   - DIRECT
@@ -4044,6 +4020,7 @@ proxy-groups:
   - 美国(免费节点)_62 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_63 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_64 {src=clashnodev2ray.github.io}
+  - 日本(免费节点)_3 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_65 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_66 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_67 {src=clashnodev2ray.github.io}
@@ -4098,6 +4075,7 @@ proxy-groups:
   - HK香港(mibei77.com 米贝节点分享)_1 {src=mibei77.com|node.freeclashnode.com}
   - HK香港(mibei77.com 米贝节点分享)_6 {src=chengaopan/AutoMergePublicNodes|node.freeclashnode.com|peasoft/NoMoreWalls}
   - JP日本(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
+  - JP日本(mibei77.com 米贝节点分享)_3 {src=mibei77.com|node.freeclashnode.com}
   - KR韩国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_1 {src=mibei77.com|node.freeclashnode.com}
@@ -4150,7 +4128,6 @@ proxy-groups:
   - 🇷🇺_RU_俄罗斯 {src=node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_22 {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_23 {src=mibei77.com}
-  - US美国(mibei77.com 米贝节点分享)_24 {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_25 {src=mibei77.com}
   - DE德国(mibei77.com 米贝节点分享)_14 {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_27 {src=mibei77.com}
@@ -4175,7 +4152,6 @@ proxy-groups:
   - 9|@KAFING_2 {src=chengaopan/AutoMergePublicNodes}
   - '9|@KAFING_2 #2 {src=chengaopan/AutoMergePublicNodes}'
   - 9|80@oneclickvpnkeys {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 11,12|新加坡3|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 11|🇺🇸 美国5|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 12|香港|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 12|美国4|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -4186,14 +4162,11 @@ proxy-groups:
   - 13|CN_speednode_0014 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|FR_speednode_0017 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|GB_speednode_0019 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 13|GB_speednode_0021 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|GB_speednode_0022 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|GB_speednode_0023 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0025 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0028 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 13|KR_speednode_0029 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0030 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 13|KR_speednode_0031 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0032 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|NL_speednode_0033 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|NL_speednode_0034 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -4244,7 +4217,6 @@ proxy-groups:
   - 'A - 🇯🇵 JP 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇯🇵 JP 04 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇯🇵 JP 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  - 'B - 🇯🇵 JP 09 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇸🇬 SG 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇸🇬 SG 07 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇸🇬 SG 08 TG: @nodpai {src=peasoft/NoMoreWalls}'
@@ -4281,7 +4253,6 @@ proxy-groups:
   - 'B - 🇳🇱 NL 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇳🇱 NL 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇺 RU 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  - 'B - 🇷🇺 RU 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'A - 🇮🇳 IN 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'A - 🇹🇷 TR 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'A - 🇹🇭 TH 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
@@ -4294,13 +4265,19 @@ proxy-groups:
   - 'B - 🇫🇮 FI 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇨🇭 CH 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇦🇹 AT 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 04 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 05 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 07 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 08 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 09 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 10 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 11 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 12 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 13 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 14 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 15 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇿🇦 ZA 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
@@ -4368,6 +4345,7 @@ proxy-groups:
   - 美国(免费节点)_62 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_63 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_64 {src=clashnodev2ray.github.io}
+  - 日本(免费节点)_3 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_65 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_66 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_67 {src=clashnodev2ray.github.io}
@@ -4422,6 +4400,7 @@ proxy-groups:
   - HK香港(mibei77.com 米贝节点分享)_1 {src=mibei77.com|node.freeclashnode.com}
   - HK香港(mibei77.com 米贝节点分享)_6 {src=chengaopan/AutoMergePublicNodes|node.freeclashnode.com|peasoft/NoMoreWalls}
   - JP日本(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
+  - JP日本(mibei77.com 米贝节点分享)_3 {src=mibei77.com|node.freeclashnode.com}
   - KR韩国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_1 {src=mibei77.com|node.freeclashnode.com}
@@ -4474,7 +4453,6 @@ proxy-groups:
   - 🇷🇺_RU_俄罗斯 {src=node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_22 {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_23 {src=mibei77.com}
-  - US美国(mibei77.com 米贝节点分享)_24 {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_25 {src=mibei77.com}
   - DE德国(mibei77.com 米贝节点分享)_14 {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_27 {src=mibei77.com}
@@ -4499,7 +4477,6 @@ proxy-groups:
   - 9|@KAFING_2 {src=chengaopan/AutoMergePublicNodes}
   - '9|@KAFING_2 #2 {src=chengaopan/AutoMergePublicNodes}'
   - 9|80@oneclickvpnkeys {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 11,12|新加坡3|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 11|🇺🇸 美国5|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 12|香港|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 12|美国4|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -4510,14 +4487,11 @@ proxy-groups:
   - 13|CN_speednode_0014 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|FR_speednode_0017 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|GB_speednode_0019 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 13|GB_speednode_0021 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|GB_speednode_0022 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|GB_speednode_0023 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0025 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0028 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 13|KR_speednode_0029 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0030 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 13|KR_speednode_0031 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0032 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|NL_speednode_0033 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|NL_speednode_0034 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -4568,7 +4542,6 @@ proxy-groups:
   - 'A - 🇯🇵 JP 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇯🇵 JP 04 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇯🇵 JP 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  - 'B - 🇯🇵 JP 09 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇸🇬 SG 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇸🇬 SG 07 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇸🇬 SG 08 TG: @nodpai {src=peasoft/NoMoreWalls}'
@@ -4605,7 +4578,6 @@ proxy-groups:
   - 'B - 🇳🇱 NL 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇳🇱 NL 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇺 RU 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  - 'B - 🇷🇺 RU 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'A - 🇮🇳 IN 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'A - 🇹🇷 TR 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'A - 🇹🇭 TH 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
@@ -4618,13 +4590,19 @@ proxy-groups:
   - 'B - 🇫🇮 FI 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇨🇭 CH 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇦🇹 AT 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 04 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 05 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 07 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 08 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 09 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 10 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 11 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 12 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 13 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 14 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 15 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇿🇦 ZA 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
@@ -4689,6 +4667,7 @@ proxy-groups:
   - 美国(免费节点)_62 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_63 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_64 {src=clashnodev2ray.github.io}
+  - 日本(免费节点)_3 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_65 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_66 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_67 {src=clashnodev2ray.github.io}
@@ -4738,6 +4717,7 @@ proxy-groups:
   - DE德国(mibei77.com 米贝节点分享)_12 {src=mibei77.com|node.freeclashnode.com}
   - GB英国(mibei77.com 米贝节点分享) {src=mibei77.com|node.freeclashnode.com}
   - JP日本(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
+  - JP日本(mibei77.com 米贝节点分享)_3 {src=mibei77.com|node.freeclashnode.com}
   - KR韩国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_1 {src=mibei77.com|node.freeclashnode.com}
@@ -4789,7 +4769,6 @@ proxy-groups:
   - 🇷🇺_RU_俄罗斯 {src=node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_22 {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_23 {src=mibei77.com}
-  - US美国(mibei77.com 米贝节点分享)_24 {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_25 {src=mibei77.com}
   - DE德国(mibei77.com 米贝节点分享)_14 {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_27 {src=mibei77.com}
@@ -4818,7 +4797,6 @@ proxy-groups:
   - 'A - 🇯🇵 JP 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇯🇵 JP 04 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇯🇵 JP 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  - 'B - 🇯🇵 JP 09 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇸🇬 SG 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇸🇬 SG 07 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇸🇬 SG 08 TG: @nodpai {src=peasoft/NoMoreWalls}'
@@ -4853,7 +4831,6 @@ proxy-groups:
   - 'B - 🇫🇷 FR 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇦🇺 AU 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇺 RU 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  - 'B - 🇷🇺 RU 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'A - 🇮🇳 IN 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'A - 🇹🇷 TR 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 🇸🇬SG_1|3.6MB/s {src=peasoft/NoMoreWalls}
@@ -4909,7 +4886,6 @@ proxy-groups:
   tolerance: 50
   proxies:
   - 新加坡丨yoyapai.com {src=node.freeclashnode.com}
-  - 11,12|新加坡3|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 'B - 🇸🇬 SG 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇸🇬 SG 07 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇸🇬 SG 08 TG: @nodpai {src=peasoft/NoMoreWalls}'
@@ -4927,12 +4903,13 @@ proxy-groups:
   proxies:
   - 日本(免费节点)_1 {src=clashnodev2ray.github.io}
   - 日本(免费节点)_2 {src=clashnodev2ray.github.io}
+  - 日本(免费节点)_3 {src=clashnodev2ray.github.io}
   - 日本(免费节点)_4 {src=clashnodev2ray.github.io}
   - JP日本(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
+  - JP日本(mibei77.com 米贝节点分享)_3 {src=mibei77.com|node.freeclashnode.com}
   - 'A - 🇯🇵 JP 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇯🇵 JP 04 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇯🇵 JP 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  - 'B - 🇯🇵 JP 09 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 🇯🇵JP_1|3.8MB/s {src=peasoft/NoMoreWalls}
 - name: 美国
   type: url-test
@@ -5040,7 +5017,6 @@ proxy-groups:
   - 🇺🇸_US_美国_6 {src=node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_22 {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_23 {src=mibei77.com}
-  - US美国(mibei77.com 米贝节点分享)_24 {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_25 {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_27 {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_28 {src=mibei77.com|peasoft/NoMoreWalls}
@@ -5117,9 +5093,7 @@ proxy-groups:
   - KR韩国(mibei77.com 米贝节点分享)_2 {src=mibei77.com}
   - 13|KR_speednode_0025 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0028 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 13|KR_speednode_0029 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0030 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 13|KR_speednode_0031 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0032 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 'A - 🇰🇷 KR 05 TG: @nodpai {src=peasoft/NoMoreWalls}'
 - name: 英国
@@ -5185,6 +5159,7 @@ proxy-groups:
   - 美国(免费节点)_62 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_63 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_64 {src=clashnodev2ray.github.io}
+  - 日本(免费节点)_3 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_65 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_66 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_67 {src=clashnodev2ray.github.io}
@@ -5239,6 +5214,7 @@ proxy-groups:
   - HK香港(mibei77.com 米贝节点分享)_1 {src=mibei77.com|node.freeclashnode.com}
   - HK香港(mibei77.com 米贝节点分享)_6 {src=chengaopan/AutoMergePublicNodes|node.freeclashnode.com|peasoft/NoMoreWalls}
   - JP日本(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
+  - JP日本(mibei77.com 米贝节点分享)_3 {src=mibei77.com|node.freeclashnode.com}
   - KR韩国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_1 {src=mibei77.com|node.freeclashnode.com}
@@ -5294,7 +5270,6 @@ proxy-groups:
   - 9|@KAFING_2 {src=chengaopan/AutoMergePublicNodes}
   - '9|@KAFING_2 #2 {src=chengaopan/AutoMergePublicNodes}'
   - 9|80@oneclickvpnkeys {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 11,12|新加坡3|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 11|🇺🇸 美国5|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 12|香港|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 12|美国4|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -5305,14 +5280,11 @@ proxy-groups:
   - 13|CN_speednode_0014 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|FR_speednode_0017 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|GB_speednode_0019 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 13|GB_speednode_0021 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|GB_speednode_0022 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|GB_speednode_0023 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0025 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0028 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 13|KR_speednode_0029 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0030 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 13|KR_speednode_0031 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0032 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|NL_speednode_0033 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|NL_speednode_0034 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -5399,6 +5371,7 @@ proxy-groups:
   - HK香港(mibei77.com 米贝节点分享)_1 {src=mibei77.com|node.freeclashnode.com}
   - HK香港(mibei77.com 米贝节点分享)_6 {src=chengaopan/AutoMergePublicNodes|node.freeclashnode.com|peasoft/NoMoreWalls}
   - JP日本(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
+  - JP日本(mibei77.com 米贝节点分享)_3 {src=mibei77.com|node.freeclashnode.com}
   - KR韩国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_1 {src=mibei77.com|node.freeclashnode.com}
@@ -5464,7 +5437,6 @@ proxy-groups:
   - 9|@KAFING_2 {src=chengaopan/AutoMergePublicNodes}
   - '9|@KAFING_2 #2 {src=chengaopan/AutoMergePublicNodes}'
   - 9|80@oneclickvpnkeys {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 11,12|新加坡3|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 11|🇺🇸 美国5|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 12|香港|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 12|美国4|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -5475,14 +5447,11 @@ proxy-groups:
   - 13|CN_speednode_0014 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|FR_speednode_0017 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|GB_speednode_0019 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 13|GB_speednode_0021 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|GB_speednode_0022 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|GB_speednode_0023 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0025 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0028 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 13|KR_speednode_0029 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0030 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 13|KR_speednode_0031 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|KR_speednode_0032 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|NL_speednode_0033 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|NL_speednode_0034 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -5538,7 +5507,6 @@ proxy-groups:
   - RU_speednode_0043 {src=peasoft/NoMoreWalls}
   - RU_speednode_0042 {src=peasoft/NoMoreWalls}
   - 'B - 🇷🇺 RU 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  - 'B - 🇷🇺 RU 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 🇷🇺RU_1|1.6MB/s {src=peasoft/NoMoreWalls}
 - name: 印度
   type: url-test
@@ -5578,13 +5546,19 @@ proxy-groups:
   - 'B - 🇫🇮 FI 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇨🇭 CH 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇦🇹 AT 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 04 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 05 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 07 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 08 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 09 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 10 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 11 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 12 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇷🇴 RO 13 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 14 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇴 RO 15 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇿🇦 ZA 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
