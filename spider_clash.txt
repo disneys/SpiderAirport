@@ -1,10 +1,10 @@
-# generated_at: 2026-05-29T19:30:57+08:00
+# generated_at: 2026-05-29T19:40:56+08:00
 # source_file: embedded_sources
 # reference_date: 2026-05-29
 # effective_date: 2026-05-29
 # rules_source: https://raw.githubusercontent.com/disneys/Mihomo-Dynamic-Overseer/refs/heads/main/main.js
 # rules_mode: remote-main-js-executed
-# success_sources: clashnodev2ray.github.io 63/163 200, clashmetagithub.github.io -/- -, freev2rayclash.github.io -/- -, stashgithub.github.io -/- -, windowsclashnode.github.io -/- -, clashnode.github.io -/- -, clashvergerev.github.io -/- -, clash-verge.github.io -/- -, vlessgithub.github.io -/- -, node.freeclashnode.com 74/305 200, yoyapai.com 0/0 404, mibei77.com 37/115 200, chengaopan/AutoMergePublicNodes 33/48 200, peasoft/NoMoreWalls 174/223 200
+# success_sources: clashnodev2ray.github.io 63/163 200, clashmetagithub.github.io -/- -, freev2rayclash.github.io -/- -, stashgithub.github.io -/- -, windowsclashnode.github.io -/- -, clashnode.github.io -/- -, clashvergerev.github.io -/- -, clash-verge.github.io -/- -, vlessgithub.github.io -/- -, node.freeclashnode.com 74/305 200, yoyapai.com 0/0 404, mibei77.com 38/115 200, chengaopan/AutoMergePublicNodes 33/48 200, peasoft/NoMoreWalls 174/223 200
 mixed-port: 7890
 allow-lan: false
 mode: rule
@@ -1618,6 +1618,21 @@ proxies:
   cipher: aes-128-gcm
   password: 6784aee2-0dfe-474f-8446-480259ff9918
   udp: true
+- name: SG新加坡(mibei77.com 米贝节点分享)_4 {src=mibei77.com}
+  type: vmess
+  server: yd3.ainivp.com
+  port: 33402
+  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
+  alterId: 0
+  cipher: auto
+  tls: true
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /ray
+    headers:
+      Host: yd3.ainivp.com
+  udp: true
 - name: JP日本(mibei77.com 米贝节点分享) {src=mibei77.com}
   type: vless
   server: 104.25.242.55
@@ -2109,6 +2124,20 @@ proxies:
   tls: true
   type: http
   username: c1785de0-212f-11ef-92aa-f23c9164ca5d
+  udp: true
+- alterId: 0
+  cipher: auto
+  name: 'B - 🇭🇰 HK 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  network: ws
+  port: 33407
+  server: yd3.ainivp.com
+  tls: true
+  type: vmess
+  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
+  ws-opts:
+    headers:
+      Host: yd3.ainivp.com
+    path: /ray
   udp: true
 - name: 'B - 🇭🇰 HK 09 TG: @nodpai {src=peasoft/NoMoreWalls}'
   password: 4f4d1167-ef14-4304-9bce-0740472503ef
@@ -3000,17 +3029,6 @@ proxies:
   tls: true
   type: vless
   uuid: ab7ededa-a2cd-4381-8ea6-d39d2f91dcf6
-  udp: true
-- client-fingerprint: qq
-  flow: xtls-rprx-vision
-  name: 'B - 🇩🇪 DE 04 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  port: 443
-  security: tls
-  server: 87.120.93.25
-  servername: sub.sbrf-cdn342.ru
-  tls: true
-  type: vless
-  uuid: 91e120bc-159a-4390-b4e1-197b19602ea0
   udp: true
 - name: 'B - 🇩🇪 DE 05 TG: @nodpai {src=peasoft/NoMoreWalls}'
   port: 443
@@ -3969,7 +3987,7 @@ dns:
     geosite:cn: https://dns.alidns.com/dns-query
     domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxy-groups:
-- name: 配置生成于：2026-05-29 19：30：57
+- name: 配置生成于：2026-05-29 19：40：56
   type: select
   proxies:
   - DIRECT
@@ -4134,6 +4152,7 @@ proxy-groups:
   - 🇺🇸_US_美国_6 {src=node.freeclashnode.com}
   - 🇨🇾_CY_塞浦路斯 {src=node.freeclashnode.com}
   - 🇷🇺_RU_俄罗斯 {src=node.freeclashnode.com}
+  - SG新加坡(mibei77.com 米贝节点分享)_4 {src=mibei77.com}
   - JP日本(mibei77.com 米贝节点分享) {src=mibei77.com}
   - 挪威(mibei77.com 米贝节点分享) {src=mibei77.com}
   - 挪威(mibei77.com 米贝节点分享)_1 {src=mibei77.com}
@@ -4176,6 +4195,7 @@ proxy-groups:
   - 13|US_speednode_0050 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇭🇰HK_1|1.1MB/s {src=peasoft/NoMoreWalls}
   - 'A - 🇭🇰 HK 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇭🇰 HK 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇭🇰 HK 09 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇭🇰 HK 10 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇭🇰 HK 11 TG: @nodpai {src=peasoft/NoMoreWalls}'
@@ -4254,7 +4274,6 @@ proxy-groups:
   - 'B - 🇰🇷 KR 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇩🇪 DE 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇩🇪 DE 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  - 'B - 🇩🇪 DE 04 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇩🇪 DE 05 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'A - 🇳🇱 NL 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇳🇱 NL 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
@@ -4457,6 +4476,7 @@ proxy-groups:
   - 🇺🇸_US_美国_6 {src=node.freeclashnode.com}
   - 🇨🇾_CY_塞浦路斯 {src=node.freeclashnode.com}
   - 🇷🇺_RU_俄罗斯 {src=node.freeclashnode.com}
+  - SG新加坡(mibei77.com 米贝节点分享)_4 {src=mibei77.com}
   - JP日本(mibei77.com 米贝节点分享) {src=mibei77.com}
   - 挪威(mibei77.com 米贝节点分享) {src=mibei77.com}
   - 挪威(mibei77.com 米贝节点分享)_1 {src=mibei77.com}
@@ -4499,6 +4519,7 @@ proxy-groups:
   - 13|US_speednode_0050 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇭🇰HK_1|1.1MB/s {src=peasoft/NoMoreWalls}
   - 'A - 🇭🇰 HK 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇭🇰 HK 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇭🇰 HK 09 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇭🇰 HK 10 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇭🇰 HK 11 TG: @nodpai {src=peasoft/NoMoreWalls}'
@@ -4577,7 +4598,6 @@ proxy-groups:
   - 'B - 🇰🇷 KR 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇩🇪 DE 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇩🇪 DE 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  - 'B - 🇩🇪 DE 04 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇩🇪 DE 05 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'A - 🇳🇱 NL 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇳🇱 NL 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
@@ -4774,6 +4794,7 @@ proxy-groups:
   - 🇺🇸_US_美国_6 {src=node.freeclashnode.com}
   - 🇨🇾_CY_塞浦路斯 {src=node.freeclashnode.com}
   - 🇷🇺_RU_俄罗斯 {src=node.freeclashnode.com}
+  - SG新加坡(mibei77.com 米贝节点分享)_4 {src=mibei77.com}
   - JP日本(mibei77.com 米贝节点分享) {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_18 {src=mibei77.com}
   - US美国(mibei77.com 米贝节点分享)_19 {src=mibei77.com}
@@ -4824,7 +4845,6 @@ proxy-groups:
   - 'B - 🇰🇷 KR 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇩🇪 DE 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇩🇪 DE 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  - 'B - 🇩🇪 DE 04 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇩🇪 DE 05 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇷🇺 RU 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 🇩🇪DE_1|1.1MB/s {src=peasoft/NoMoreWalls}
@@ -4873,6 +4893,7 @@ proxy-groups:
   - 12|香港|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇭🇰HK_1|1.1MB/s {src=peasoft/NoMoreWalls}
   - 'A - 🇭🇰 HK 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
+  - 'B - 🇭🇰 HK 06 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇭🇰 HK 09 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇭🇰 HK 10 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇭🇰 HK 11 TG: @nodpai {src=peasoft/NoMoreWalls}'
@@ -4925,6 +4946,7 @@ proxy-groups:
   tolerance: 50
   proxies:
   - 新加坡丨yoyapai.com {src=node.freeclashnode.com}
+  - SG新加坡(mibei77.com 米贝节点分享)_4 {src=mibei77.com}
   - 'A - 🇸🇬 SG 01 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'A - 🇸🇬 SG 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇸🇬 SG 04 TG: @nodpai {src=peasoft/NoMoreWalls}'
@@ -5308,7 +5330,6 @@ proxy-groups:
   - RU_speednode_0037 {src=peasoft/NoMoreWalls}
   - 'B - 🇩🇪 DE 02 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇩🇪 DE 03 TG: @nodpai {src=peasoft/NoMoreWalls}'
-  - 'B - 🇩🇪 DE 04 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 'B - 🇩🇪 DE 05 TG: @nodpai {src=peasoft/NoMoreWalls}'
   - 🇩🇪DE_1|1.1MB/s {src=peasoft/NoMoreWalls}
   - 🇩🇪DE_2|1.7MB/s {src=peasoft/NoMoreWalls}
