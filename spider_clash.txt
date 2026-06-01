@@ -1,10 +1,10 @@
-# generated_at: 2026-06-01T19:10:52+08:00
+# generated_at: 2026-06-01T19:20:57+08:00
 # source_file: embedded_sources
 # reference_date: 2026-06-01
 # effective_date: 2026-06-01
 # rules_source: https://raw.githubusercontent.com/disneys/Mihomo-Dynamic-Overseer/refs/heads/main/main.js
 # rules_mode: remote-main-js-executed
-# success_sources: clashnodev2ray.github.io 61/163 200, clashmetagithub.github.io -/- -, freev2rayclash.github.io -/- -, stashgithub.github.io -/- -, windowsclashnode.github.io -/- -, clashnode.github.io -/- -, clashvergerev.github.io -/- -, clash-verge.github.io -/- -, vlessgithub.github.io -/- -, node.freeclashnode.com 90/314 200, yoyapai.com 0/0 404, mibei77.com 34/89 200, chengaopan/AutoMergePublicNodes 35/45 200, peasoft/NoMoreWalls 79/102 200
+# success_sources: clashnodev2ray.github.io 61/163 200, clashmetagithub.github.io -/- -, freev2rayclash.github.io -/- -, stashgithub.github.io -/- -, windowsclashnode.github.io -/- -, clashnode.github.io -/- -, clashvergerev.github.io -/- -, clash-verge.github.io -/- -, vlessgithub.github.io -/- -, node.freeclashnode.com 90/314 200, yoyapai.com 0/0 404, mibei77.com 36/89 200, chengaopan/AutoMergePublicNodes 35/45 200, peasoft/NoMoreWalls 80/102 200
 mixed-port: 7890
 allow-lan: false
 mode: rule
@@ -943,16 +943,6 @@ proxies:
     public-key: A9jwrodyycJJV-apFQ91_rrh1vfJ_hSzZGNP9GBPGCM
     short-id: 92d0c4089b6c1da3
   udp: true
-- name: 保加利亞丨yoyapai.com_1 {src=node.freeclashnode.com}
-  type: vless
-  server: 87.120.93.146
-  port: 443
-  uuid: 91e120bc-159a-4390-b4e1-197b19602ea0
-  servername: sub.sbrf-cdn342.ru
-  tls: true
-  flow: xtls-rprx-vision
-  client-fingerprint: qq
-  udp: true
 - name: 美國丨yoyapai.com_3 {src=node.freeclashnode.com}
   type: vless
   server: long-forest.ru
@@ -1423,6 +1413,32 @@ proxies:
   tls: false
   skip-cert-verify: false
   udp: true
+- name: US美国(mibei77.com 米贝节点分享)_65 {src=mibei77.com|node.freeclashnode.com}
+  type: trojan
+  server: 121.154.96.50
+  port: 18000
+  password: 433e785b-2077-47f7-a43d-985f63dd18d1
+  sni: vpn.rnmcnm.com
+  skip-cert-verify: false
+  tls: true
+  ws-opts:
+    path: /trojan
+    headers:
+      Host: vpn.rnmcnm.com
+  udp: true
+- name: 挪威(mibei77.com 米贝节点分享) {src=mibei77.com|node.freeclashnode.com}
+  type: trojan
+  server: 125.7.24.251
+  port: 443
+  password: rYuChHcwQZskq9E0zdoR
+  sni: vpn5.rnmcnm.com
+  skip-cert-verify: false
+  tls: true
+  ws-opts:
+    path: /ws-79dffb8106db
+    headers:
+      Host: vpn5.rnmcnm.com
+  udp: true
 - name: 8元老牌专线机场：cczzuu.top {src=node.freeclashnode.com}
   server: efan.dnsefan04881.com
   port: 7754
@@ -1592,13 +1608,6 @@ proxies:
   ws-opts:
     headers:
       Host: sni.111000.dynv6.net
-  udp: true
-- name: 🇪🇸_ES_西班牙 {src=node.freeclashnode.com}
-  type: ss
-  server: 5.188.181.201
-  port: 9029
-  cipher: aes-256-cfb
-  password: dU3DSNS8wYPXzEKw
   udp: true
 - name: 🇧🇿_BZ_伯利兹_1 {src=node.freeclashnode.com}
   type: vless
@@ -2574,6 +2583,24 @@ proxies:
     path: /eyJqdW5rIjoibHFUM0pwRHZXIiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcmVmaXgiLCJwYW5lbElQcyI6WyJbMjYwMjpmYzU5OmIwOjY0OjpdIl19?ed=2560
   xudp: true
 - alpn:
+  - h2
+  - http/1.1
+  encryption: none
+  name: 🇩🇪DE_4|1.0MB/s {src=peasoft/NoMoreWalls}
+  network: ws
+  port: '443'
+  server: germany2.samanidempire.org
+  tls: true
+  type: vless
+  udp: true
+  uuid: 54327070-1d45-42ac-9ebb-8dffcb343c93
+  ws-opts:
+    headers:
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/61.0.3163.100 Safari/537.36
+    path: /hZvWArgsaxqa
+  xudp: true
+- alpn:
   - http/1.1
   encryption: none
   name: 🇺🇸US_5|1.1MB/s {src=peasoft/NoMoreWalls}
@@ -2879,7 +2906,7 @@ dns:
     geosite:cn: https://dns.alidns.com/dns-query
     domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxy-groups:
-- name: 配置生成于：2026-06-01 19：10：52
+- name: 配置生成于：2026-06-01 19：20：57
   type: select
   proxies:
   - DIRECT
@@ -2985,7 +3012,6 @@ proxy-groups:
   - 美國丨yoyapai.com {src=mibei77.com|node.freeclashnode.com}
   - 保加利亞丨yoyapai.com {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_1 {src=node.freeclashnode.com}
-  - 保加利亞丨yoyapai.com_1 {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_3 {src=node.freeclashnode.com}
   - 保加利亞丨yoyapai.com_2 {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_5 {src=node.freeclashnode.com}
@@ -3027,6 +3053,8 @@ proxy-groups:
   - US美国(mibei77.com 米贝节点分享)_57 {src=mibei77.com|node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_59 {src=mibei77.com|node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_60 {src=mibei77.com|node.freeclashnode.com}
+  - US美国(mibei77.com 米贝节点分享)_65 {src=mibei77.com|node.freeclashnode.com}
+  - 挪威(mibei77.com 米贝节点分享) {src=mibei77.com|node.freeclashnode.com}
   - 8元老牌专线机场：cczzuu.top {src=node.freeclashnode.com}
   - 🇳🇿 新西兰 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 Akamai科技公司CDN网络节点 {src=node.freeclashnode.com}
@@ -3041,7 +3069,6 @@ proxy-groups:
   - 🇳🇱_NL_荷兰->🇺🇸_US_美国 {src=node.freeclashnode.com}
   - 🇧🇿_BZ_伯利兹 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国 {src=node.freeclashnode.com}
-  - 🇪🇸_ES_西班牙 {src=node.freeclashnode.com}
   - 🇧🇿_BZ_伯利兹_1 {src=node.freeclashnode.com}
   - 🇫🇮_FI_芬兰 {src=node.freeclashnode.com}
   - 🇹🇭_TH_泰国 {src=node.freeclashnode.com}
@@ -3125,6 +3152,7 @@ proxy-groups:
   - 🇰🇷KR_1|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇬🇧GB_3|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_4|2.5MB/s {src=peasoft/NoMoreWalls}
+  - 🇩🇪DE_4|1.0MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_5|1.1MB/s {src=peasoft/NoMoreWalls}
   - 🇸🇬SG_4|3.7MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_6|1.7MB/s {src=peasoft/NoMoreWalls}
@@ -3222,7 +3250,6 @@ proxy-groups:
   - 美國丨yoyapai.com {src=mibei77.com|node.freeclashnode.com}
   - 保加利亞丨yoyapai.com {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_1 {src=node.freeclashnode.com}
-  - 保加利亞丨yoyapai.com_1 {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_3 {src=node.freeclashnode.com}
   - 保加利亞丨yoyapai.com_2 {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_5 {src=node.freeclashnode.com}
@@ -3264,6 +3291,8 @@ proxy-groups:
   - US美国(mibei77.com 米贝节点分享)_57 {src=mibei77.com|node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_59 {src=mibei77.com|node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_60 {src=mibei77.com|node.freeclashnode.com}
+  - US美国(mibei77.com 米贝节点分享)_65 {src=mibei77.com|node.freeclashnode.com}
+  - 挪威(mibei77.com 米贝节点分享) {src=mibei77.com|node.freeclashnode.com}
   - 8元老牌专线机场：cczzuu.top {src=node.freeclashnode.com}
   - 🇳🇿 新西兰 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 Akamai科技公司CDN网络节点 {src=node.freeclashnode.com}
@@ -3278,7 +3307,6 @@ proxy-groups:
   - 🇳🇱_NL_荷兰->🇺🇸_US_美国 {src=node.freeclashnode.com}
   - 🇧🇿_BZ_伯利兹 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国 {src=node.freeclashnode.com}
-  - 🇪🇸_ES_西班牙 {src=node.freeclashnode.com}
   - 🇧🇿_BZ_伯利兹_1 {src=node.freeclashnode.com}
   - 🇫🇮_FI_芬兰 {src=node.freeclashnode.com}
   - 🇹🇭_TH_泰国 {src=node.freeclashnode.com}
@@ -3362,6 +3390,7 @@ proxy-groups:
   - 🇰🇷KR_1|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇬🇧GB_3|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_4|2.5MB/s {src=peasoft/NoMoreWalls}
+  - 🇩🇪DE_4|1.0MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_5|1.1MB/s {src=peasoft/NoMoreWalls}
   - 🇸🇬SG_4|3.7MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_6|1.7MB/s {src=peasoft/NoMoreWalls}
@@ -3454,7 +3483,6 @@ proxy-groups:
   - 美國丨yoyapai.com {src=mibei77.com|node.freeclashnode.com}
   - 保加利亞丨yoyapai.com {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_1 {src=node.freeclashnode.com}
-  - 保加利亞丨yoyapai.com_1 {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_3 {src=node.freeclashnode.com}
   - 保加利亞丨yoyapai.com_2 {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_5 {src=node.freeclashnode.com}
@@ -3495,6 +3523,8 @@ proxy-groups:
   - US美国(mibei77.com 米贝节点分享)_57 {src=mibei77.com|node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_59 {src=mibei77.com|node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_60 {src=mibei77.com|node.freeclashnode.com}
+  - US美国(mibei77.com 米贝节点分享)_65 {src=mibei77.com|node.freeclashnode.com}
+  - 挪威(mibei77.com 米贝节点分享) {src=mibei77.com|node.freeclashnode.com}
   - 8元老牌专线机场：cczzuu.top {src=node.freeclashnode.com}
   - 🇳🇿 新西兰 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 Akamai科技公司CDN网络节点 {src=node.freeclashnode.com}
@@ -3509,7 +3539,6 @@ proxy-groups:
   - 🇳🇱_NL_荷兰->🇺🇸_US_美国 {src=node.freeclashnode.com}
   - 🇧🇿_BZ_伯利兹 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国 {src=node.freeclashnode.com}
-  - 🇪🇸_ES_西班牙 {src=node.freeclashnode.com}
   - 🇧🇿_BZ_伯利兹_1 {src=node.freeclashnode.com}
   - 🇫🇮_FI_芬兰 {src=node.freeclashnode.com}
   - 🇹🇭_TH_泰国 {src=node.freeclashnode.com}
@@ -3542,6 +3571,7 @@ proxy-groups:
   - 🇰🇷KR_1|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇬🇧GB_3|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_4|2.5MB/s {src=peasoft/NoMoreWalls}
+  - 🇩🇪DE_4|1.0MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_5|1.1MB/s {src=peasoft/NoMoreWalls}
   - 🇸🇬SG_4|3.7MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_6|1.7MB/s {src=peasoft/NoMoreWalls}
@@ -3696,6 +3726,7 @@ proxy-groups:
   - US美国(mibei77.com 米贝节点分享)_57 {src=mibei77.com|node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_59 {src=mibei77.com|node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_60 {src=mibei77.com|node.freeclashnode.com}
+  - US美国(mibei77.com 米贝节点分享)_65 {src=mibei77.com|node.freeclashnode.com}
   - 🇺🇸 美国 Akamai科技公司CDN网络节点 {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 {src=node.freeclashnode.com}
   - 🇺🇸 美国 starcorenode.com {src=node.freeclashnode.com}
@@ -3841,7 +3872,6 @@ proxy-groups:
   - 美國丨yoyapai.com {src=mibei77.com|node.freeclashnode.com}
   - 保加利亞丨yoyapai.com {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_1 {src=node.freeclashnode.com}
-  - 保加利亞丨yoyapai.com_1 {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_3 {src=node.freeclashnode.com}
   - 保加利亞丨yoyapai.com_2 {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_5 {src=node.freeclashnode.com}
@@ -3883,6 +3913,8 @@ proxy-groups:
   - US美国(mibei77.com 米贝节点分享)_57 {src=mibei77.com|node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_59 {src=mibei77.com|node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_60 {src=mibei77.com|node.freeclashnode.com}
+  - US美国(mibei77.com 米贝节点分享)_65 {src=mibei77.com|node.freeclashnode.com}
+  - 挪威(mibei77.com 米贝节点分享) {src=mibei77.com|node.freeclashnode.com}
   - 8元老牌专线机场：cczzuu.top {src=node.freeclashnode.com}
   - 🇳🇿 新西兰 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 Akamai科技公司CDN网络节点 {src=node.freeclashnode.com}
@@ -3897,7 +3929,6 @@ proxy-groups:
   - 🇳🇱_NL_荷兰->🇺🇸_US_美国 {src=node.freeclashnode.com}
   - 🇧🇿_BZ_伯利兹 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国 {src=node.freeclashnode.com}
-  - 🇪🇸_ES_西班牙 {src=node.freeclashnode.com}
   - 🇧🇿_BZ_伯利兹_1 {src=node.freeclashnode.com}
   - 🇫🇮_FI_芬兰 {src=node.freeclashnode.com}
   - 🇹🇭_TH_泰国 {src=node.freeclashnode.com}
@@ -3947,6 +3978,7 @@ proxy-groups:
   - 🇩🇪DE_1|1006KB/s {src=peasoft/NoMoreWalls}
   - 🇩🇪DE_2|1.4MB/s {src=peasoft/NoMoreWalls}
   - 🇩🇪DE_3|1.2MB/s {src=peasoft/NoMoreWalls}
+  - 🇩🇪DE_4|1.0MB/s {src=peasoft/NoMoreWalls}
   - 🇩🇪DE_5|1.4MB/s {src=peasoft/NoMoreWalls}
 - name: 法国
   type: url-test
@@ -3975,7 +4007,6 @@ proxy-groups:
   - 美國丨yoyapai.com {src=mibei77.com|node.freeclashnode.com}
   - 保加利亞丨yoyapai.com {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_1 {src=node.freeclashnode.com}
-  - 保加利亞丨yoyapai.com_1 {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_3 {src=node.freeclashnode.com}
   - 保加利亞丨yoyapai.com_2 {src=node.freeclashnode.com}
   - 美國丨yoyapai.com_5 {src=node.freeclashnode.com}
@@ -4017,6 +4048,8 @@ proxy-groups:
   - US美国(mibei77.com 米贝节点分享)_57 {src=mibei77.com|node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_59 {src=mibei77.com|node.freeclashnode.com}
   - US美国(mibei77.com 米贝节点分享)_60 {src=mibei77.com|node.freeclashnode.com}
+  - US美国(mibei77.com 米贝节点分享)_65 {src=mibei77.com|node.freeclashnode.com}
+  - 挪威(mibei77.com 米贝节点分享) {src=mibei77.com|node.freeclashnode.com}
   - 8元老牌专线机场：cczzuu.top {src=node.freeclashnode.com}
   - 🇳🇿 新西兰 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 Akamai科技公司CDN网络节点 {src=node.freeclashnode.com}
@@ -4031,7 +4064,6 @@ proxy-groups:
   - 🇳🇱_NL_荷兰->🇺🇸_US_美国 {src=node.freeclashnode.com}
   - 🇧🇿_BZ_伯利兹 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国 {src=node.freeclashnode.com}
-  - 🇪🇸_ES_西班牙 {src=node.freeclashnode.com}
   - 🇧🇿_BZ_伯利兹_1 {src=node.freeclashnode.com}
   - 🇫🇮_FI_芬兰 {src=node.freeclashnode.com}
   - 🇹🇭_TH_泰国 {src=node.freeclashnode.com}
