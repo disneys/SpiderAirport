@@ -1,4 +1,4 @@
-# generated_at: 2026-06-01T23:10:57+08:00
+# generated_at: 2026-06-01T23:21:00+08:00
 # source_file: embedded_sources
 # reference_date: 2026-06-01
 # effective_date: 2026-06-01
@@ -2557,13 +2557,6 @@ proxies:
   skip-cert-verify: false
   type: trojan
   udp: true
-- name: 🇯🇵JP_3|2.1MB/s {src=peasoft/NoMoreWalls}
-  password: q6UYkw9nUn6MYZz8Sp
-  port: '443'
-  server: ty-2.tr202604.com
-  skip-cert-verify: false
-  type: trojan
-  udp: true
 - name: 🇰🇷KR_1|1.2MB/s {src=peasoft/NoMoreWalls}
   network: ws
   port: '10891'
@@ -2703,6 +2696,21 @@ proxies:
       User-Agent: Mozilla/5.0 (Linux; Android 7.0; Redmi Note 4 Build/NRD90M) AppleWebKit/537.36
         (KHTML, like Gecko) Chrome/63.0.3239.111 Mobile Safari/537.36
     path: /api/v2/check_update
+  xudp: true
+- alpn:
+  - h2
+  encryption: none
+  grpc-opts:
+    grpc-service-name: /sequre/grpc
+  name: 🇷🇺RU_1|1.2MB/s {src=peasoft/NoMoreWalls}
+  network: grpc
+  port: '443'
+  server: 185.14.46.20.blanesik.space
+  servername: 185.14.46.20.blanesik.space
+  tls: true
+  type: vless
+  udp: true
+  uuid: a1b19834-a5e3-4d49-9301-aaa3fb248f49
   xudp: true
 - encryption: none
   grpc-opts:
@@ -2920,7 +2928,7 @@ dns:
     geosite:cn: https://dns.alidns.com/dns-query
     domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxy-groups:
-- name: 配置生成于：2026-06-01 23：10：57
+- name: 配置生成于：2026-06-01 23：21：00
   type: select
   proxies:
   - DIRECT
@@ -3166,7 +3174,6 @@ proxy-groups:
   - 🇳🇱NL_5|1.4MB/s {src=peasoft/NoMoreWalls}
   - 🇬🇧GB_2|1.4MB/s {src=peasoft/NoMoreWalls}
   - 🇳🇱NL_7|2.1MB/s {src=peasoft/NoMoreWalls}
-  - 🇯🇵JP_3|2.1MB/s {src=peasoft/NoMoreWalls}
   - 🇰🇷KR_1|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇬🇧GB_3|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_4|2.5MB/s {src=peasoft/NoMoreWalls}
@@ -3176,6 +3183,7 @@ proxy-groups:
   - 🇺🇸US_6|1.7MB/s {src=peasoft/NoMoreWalls}
   - 🇨🇭CH_1|2.9MB/s {src=peasoft/NoMoreWalls}
   - 🇹🇼TW_1|3.1MB/s {src=peasoft/NoMoreWalls}
+  - 🇷🇺RU_1|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇦🇹AT_1|1.4MB/s {src=peasoft/NoMoreWalls}
   - 🇸🇬SG_5|3.7MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_7|1.1MB/s {src=peasoft/NoMoreWalls}
@@ -3407,7 +3415,6 @@ proxy-groups:
   - 🇳🇱NL_5|1.4MB/s {src=peasoft/NoMoreWalls}
   - 🇬🇧GB_2|1.4MB/s {src=peasoft/NoMoreWalls}
   - 🇳🇱NL_7|2.1MB/s {src=peasoft/NoMoreWalls}
-  - 🇯🇵JP_3|2.1MB/s {src=peasoft/NoMoreWalls}
   - 🇰🇷KR_1|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇬🇧GB_3|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_4|2.5MB/s {src=peasoft/NoMoreWalls}
@@ -3417,6 +3424,7 @@ proxy-groups:
   - 🇺🇸US_6|1.7MB/s {src=peasoft/NoMoreWalls}
   - 🇨🇭CH_1|2.9MB/s {src=peasoft/NoMoreWalls}
   - 🇹🇼TW_1|3.1MB/s {src=peasoft/NoMoreWalls}
+  - 🇷🇺RU_1|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇦🇹AT_1|1.4MB/s {src=peasoft/NoMoreWalls}
   - 🇸🇬SG_5|3.7MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_7|1.1MB/s {src=peasoft/NoMoreWalls}
@@ -3590,7 +3598,6 @@ proxy-groups:
   - 🇩🇪DE_3|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇬🇧GB_1|1.6MB/s {src=peasoft/NoMoreWalls}
   - 🇬🇧GB_2|1.4MB/s {src=peasoft/NoMoreWalls}
-  - 🇯🇵JP_3|2.1MB/s {src=peasoft/NoMoreWalls}
   - 🇰🇷KR_1|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇬🇧GB_3|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_4|2.5MB/s {src=peasoft/NoMoreWalls}
@@ -3599,6 +3606,7 @@ proxy-groups:
   - 🇸🇬SG_4|3.7MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_6|1.7MB/s {src=peasoft/NoMoreWalls}
   - 🇹🇼TW_1|3.1MB/s {src=peasoft/NoMoreWalls}
+  - 🇷🇺RU_1|1.2MB/s {src=peasoft/NoMoreWalls}
   - 🇸🇬SG_5|3.7MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_7|1.1MB/s {src=peasoft/NoMoreWalls}
   - 🇫🇷FR_1|2.5MB/s {src=peasoft/NoMoreWalls}
@@ -3655,7 +3663,6 @@ proxy-groups:
   - 日本(免费节点)_4 {src=clashnodev2ray.github.io}
   - 11,12|日本|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵JP_2|1.0MB/s {src=peasoft/NoMoreWalls}
-  - 🇯🇵JP_3|2.1MB/s {src=peasoft/NoMoreWalls}
 - name: 美国
   type: url-test
   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
@@ -4173,6 +4180,7 @@ proxy-groups:
   - 13|RU_speednode_0022 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|RU_speednode_0025 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|RU_speednode_0024 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - 🇷🇺RU_1|1.2MB/s {src=peasoft/NoMoreWalls}
 - name: 印度
   type: url-test
   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/India.png
