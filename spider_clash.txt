@@ -1,10 +1,10 @@
-# generated_at: 2026-06-09T16:40:53+08:00
+# generated_at: 2026-06-09T16:50:52+08:00
 # source_file: embedded_sources
 # reference_date: 2026-06-09
 # effective_date: 2026-06-09
 # rules_source: https://raw.githubusercontent.com/disneys/Mihomo-Dynamic-Overseer/refs/heads/main/main.js
 # rules_mode: remote-main-js-executed
-# success_sources: clashnodev2ray.github.io 58/163 200, clashmetagithub.github.io -/- -, freev2rayclash.github.io -/- -, stashgithub.github.io -/- -, windowsclashnode.github.io -/- -, clashnode.github.io -/- -, clashvergerev.github.io -/- -, clash-verge.github.io -/- -, vlessgithub.github.io -/- -, node.freeclashnode.com 91/257 200, yoyapai.com 0/0 404, mibei77.com 21/48 200, chengaopan/AutoMergePublicNodes 80/93 200, peasoft/NoMoreWalls 120/147 200
+# success_sources: clashnodev2ray.github.io 58/163 200, clashmetagithub.github.io -/- -, freev2rayclash.github.io -/- -, stashgithub.github.io -/- -, windowsclashnode.github.io -/- -, clashnode.github.io -/- -, clashvergerev.github.io -/- -, clash-verge.github.io -/- -, vlessgithub.github.io -/- -, node.freeclashnode.com 91/257 200, yoyapai.com 0/0 404, mibei77.com 22/48 200, chengaopan/AutoMergePublicNodes 80/93 200, peasoft/NoMoreWalls 119/147 200
 mixed-port: 7890
 allow-lan: false
 mode: rule
@@ -121,15 +121,6 @@ proxies:
     path: /?ed=2560
     headers:
       host: sni.jpmj.dev
-- type: vmess
-  name: 美国(免费节点)_10 {src=clashnodev2ray.github.io}
-  server: v29.hdacd.com
-  port: '30829'
-  uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
-  alterId: '2'
-  cipher: auto
-  network: tcp
-  udp: true
 - type: vless
   name: 美国(免费节点)_11 {src=clashnodev2ray.github.io}
   server: 185.162.230.138
@@ -209,6 +200,17 @@ proxies:
     path: /?https://t.me/wangcai2🇨🇳=
     headers:
       host: sni.latonyamadeline.ndjp.net
+- type: vless
+  name: 美国(免费节点)_17 {src=clashnodev2ray.github.io}
+  server: 213.142.132.75
+  port: 443
+  uuid: 53353c51-ab85-4f1d-b81c-d855a0cdeeba
+  skip-cert-verify: true
+  udp: true
+  tls: true
+  network: ws
+  ws-opts:
+    path: /
 - type: trojan
   name: 美国(免费节点)_18 {src=clashnodev2ray.github.io}
   server: cf.130519.xyz
@@ -1637,16 +1639,6 @@ proxies:
   sni: 45.79.8.17
   skip-cert-verify: false
   udp: true
-- name: 🇮🇷 伊朗 starcorenode.com {src=node.freeclashnode.com}
-  server: nlt.reata.ir
-  port: 1020
-  type: vmess
-  uuid: 6244c41a-f4c1-4733-a654-c38f7729b13c
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: false
-  udp: true
 - name: 🇬🇧_GB_英国->🇬🇪_GE_格鲁吉亚 {src=node.freeclashnode.com}
   type: vless
   server: 85.234.114.53
@@ -1682,6 +1674,16 @@ proxies:
   reality-opts:
     public-key: odHeTqoDcoPA6jeZStmaFPqoFg0ZiWwOKREEB0X-ez4
     short-id: e069bfaf9ba2069c
+  udp: true
+- name: 🇭🇰_HK_中国香港->🇹🇼_TW_中国台湾 {src=node.freeclashnode.com}
+  type: vmess
+  server: world.t.51guangtaobao.com
+  port: 2510
+  uuid: 1d3d868e-ae7b-3762-b9d9-a7f267494c7e
+  alterId: 0
+  cipher: auto
+  tls: false
+  skip-cert-verify: false
   udp: true
 - name: 🇺🇸_US_美国->🇨🇭_CH_瑞士 {src=node.freeclashnode.com}
   type: trojan
@@ -1826,8 +1828,8 @@ proxies:
   sni: ch.01.naiun.bilibili.com
   skip-cert-verify: true
   udp: true
-- name: 🇺🇸 US美国(mibei77.com 米贝节点分享) 19 {src=mibei77.com}
-  server: 154.21.87.223
+- name: 🇷🇴 罗马尼亚(mibei77.com 米贝节点分享) {src=mibei77.com}
+  server: 154.17.29.221
   port: 443
   type: ss
   cipher: aes-128-gcm
@@ -1880,6 +1882,21 @@ proxies:
   password: 4f4d1167-ef14-4304-9bce-0740472503ef
   sni: az.01.naiun.bilibili.com
   skip-cert-verify: true
+  udp: true
+- name: 🇺🇸 US美国(mibei77.com 米贝节点分享) 21 {src=mibei77.com}
+  server: 69.63.212.251
+  port: 443
+  type: ss
+  cipher: aes-128-gcm
+  password: eeb6823c-b926-4ea2-866a-5542edd26e59
+  plugin: v2ray-plugin
+  plugin-opts:
+    mode: websocket
+    host: ss.hhll.qqs.me
+    path: /proxyip\=104.168.132.123\,172.104.53.198\,85.121.50.16\,151.242.125.226?enc\=aes-128-gcm
+    tls: true
+    mux: true
+    skip-cert-verify: true
   udp: true
 - name: 🇺🇸 US美国(mibei77.com 米贝节点分享) 22 {src=mibei77.com}
   server: 69.63.216.10
@@ -2913,18 +2930,6 @@ proxies:
   type: vless
   udp: true
   uuid: 6ca8ea5b-e47f-4c19-adee-365456e1e87c
-- encryption: none
-  name: 🇯🇵JP_1|2.2MB/s {src=peasoft/NoMoreWalls}
-  network: tcp
-  packet-encoding: xudp
-  port: 47878
-  server: 152.69.195.67
-  servername: 152.69.195.67
-  skip-cert-verify: false
-  tls: false
-  type: vless
-  udp: true
-  uuid: eb8613e3-8393-4cff-a3ad-6501fd4adc63
 - flow: xtls-rprx-vision
   name: 🇳🇱NL_1|3.7MB/s {src=peasoft/NoMoreWalls}
   network: tcp
@@ -3338,7 +3343,7 @@ dns:
     geosite:cn: https://dns.alidns.com/dns-query
     domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxy-groups:
-- name: 配置生成于：2026-06-09 16：40：53
+- name: 配置生成于：2026-06-09 16：50：52
   type: select
   proxies:
   - DIRECT
@@ -3377,13 +3382,13 @@ proxy-groups:
   - 美国(免费节点)_7 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_8 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_9 {src=clashnodev2ray.github.io}
-  - 美国(免费节点)_10 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_11 {src=clashnodev2ray.github.io}
   - 英国(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_14 {src=clashnodev2ray.github.io}
   - 香港(免费节点)_1 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_15 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_16 {src=clashnodev2ray.github.io}
+  - 美国(免费节点)_17 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_18 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_19 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_20 {src=clashnodev2ray.github.io}
@@ -3500,10 +3505,10 @@ proxy-groups:
   - 🇺🇸 美国 CloudFlare节点 2 {src=node.freeclashnode.com}
   - 🇺🇸 美国 加利福尼亚 {src=node.freeclashnode.com}
   - 🇺🇸 美国 德克萨斯州达拉斯Linode数据中心 {src=node.freeclashnode.com}
-  - 🇮🇷 伊朗 starcorenode.com {src=node.freeclashnode.com}
   - 🇬🇧_GB_英国->🇬🇪_GE_格鲁吉亚 {src=node.freeclashnode.com}
   - 🇵🇱_PL_波兰 {src=node.freeclashnode.com}
   - 🇳🇱_NL_荷兰 {src=node.freeclashnode.com}
+  - 🇭🇰_HK_中国香港->🇹🇼_TW_中国台湾 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇨🇭_CH_瑞士 {src=node.freeclashnode.com}
   - 🇫🇮_FI_芬兰 {src=node.freeclashnode.com}
   - 🇩🇪_DE_德国 {src=node.freeclashnode.com}
@@ -3518,12 +3523,13 @@ proxy-groups:
   - 🇺🇸_US_美国->🇦🇿_AZ_阿塞拜疆 {src=node.freeclashnode.com}
   - 🇯🇵 JP日本(mibei77.com 米贝节点分享) {src=mibei77.com}
   - 🇫🇷 FR法国(mibei77.com 米贝节点分享) {src=mibei77.com}
-  - 🇺🇸 US美国(mibei77.com 米贝节点分享) 19 {src=mibei77.com}
+  - 🇷🇴 罗马尼亚(mibei77.com 米贝节点分享) {src=mibei77.com}
   - 🇫🇷 FR法国(mibei77.com 米贝节点分享) 2 {src=mibei77.com}
   - 🇫🇷 FR法国(mibei77.com 米贝节点分享) 3 {src=mibei77.com}
   - 🇺🇸 US美国(mibei77.com 米贝节点分享) 20 {src=mibei77.com}
   - 🇫🇷 FR法国(mibei77.com 米贝节点分享) 4 {src=mibei77.com}
   - 🇯🇵 JP日本(mibei77.com 米贝节点分享) 3 {src=mibei77.com}
+  - 🇺🇸 US美国(mibei77.com 米贝节点分享) 21 {src=mibei77.com}
   - 🇺🇸 US美国(mibei77.com 米贝节点分享) 22 {src=mibei77.com}
   - 8|美国2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 8|1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -3627,7 +3633,6 @@ proxy-groups:
   - 🇺🇸US_6|1.0MB/s {src=peasoft/NoMoreWalls}
   - 🇸🇬SG_2|1.7MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_7|2.5MB/s {src=peasoft/NoMoreWalls}
-  - 🇯🇵JP_1|2.2MB/s {src=peasoft/NoMoreWalls}
   - 🇳🇱NL_1|3.7MB/s {src=peasoft/NoMoreWalls}
   - 🇸🇬SG_3|1.9MB/s {src=peasoft/NoMoreWalls}
   - 🇵🇱PL_1|1.2MB/s {src=peasoft/NoMoreWalls}
@@ -3661,13 +3666,13 @@ proxy-groups:
   - 美国(免费节点)_7 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_8 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_9 {src=clashnodev2ray.github.io}
-  - 美国(免费节点)_10 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_11 {src=clashnodev2ray.github.io}
   - 英国(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_14 {src=clashnodev2ray.github.io}
   - 香港(免费节点)_1 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_15 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_16 {src=clashnodev2ray.github.io}
+  - 美国(免费节点)_17 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_18 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_19 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_20 {src=clashnodev2ray.github.io}
@@ -3784,10 +3789,10 @@ proxy-groups:
   - 🇺🇸 美国 CloudFlare节点 2 {src=node.freeclashnode.com}
   - 🇺🇸 美国 加利福尼亚 {src=node.freeclashnode.com}
   - 🇺🇸 美国 德克萨斯州达拉斯Linode数据中心 {src=node.freeclashnode.com}
-  - 🇮🇷 伊朗 starcorenode.com {src=node.freeclashnode.com}
   - 🇬🇧_GB_英国->🇬🇪_GE_格鲁吉亚 {src=node.freeclashnode.com}
   - 🇵🇱_PL_波兰 {src=node.freeclashnode.com}
   - 🇳🇱_NL_荷兰 {src=node.freeclashnode.com}
+  - 🇭🇰_HK_中国香港->🇹🇼_TW_中国台湾 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇨🇭_CH_瑞士 {src=node.freeclashnode.com}
   - 🇫🇮_FI_芬兰 {src=node.freeclashnode.com}
   - 🇩🇪_DE_德国 {src=node.freeclashnode.com}
@@ -3802,12 +3807,13 @@ proxy-groups:
   - 🇺🇸_US_美国->🇦🇿_AZ_阿塞拜疆 {src=node.freeclashnode.com}
   - 🇯🇵 JP日本(mibei77.com 米贝节点分享) {src=mibei77.com}
   - 🇫🇷 FR法国(mibei77.com 米贝节点分享) {src=mibei77.com}
-  - 🇺🇸 US美国(mibei77.com 米贝节点分享) 19 {src=mibei77.com}
+  - 🇷🇴 罗马尼亚(mibei77.com 米贝节点分享) {src=mibei77.com}
   - 🇫🇷 FR法国(mibei77.com 米贝节点分享) 2 {src=mibei77.com}
   - 🇫🇷 FR法国(mibei77.com 米贝节点分享) 3 {src=mibei77.com}
   - 🇺🇸 US美国(mibei77.com 米贝节点分享) 20 {src=mibei77.com}
   - 🇫🇷 FR法国(mibei77.com 米贝节点分享) 4 {src=mibei77.com}
   - 🇯🇵 JP日本(mibei77.com 米贝节点分享) 3 {src=mibei77.com}
+  - 🇺🇸 US美国(mibei77.com 米贝节点分享) 21 {src=mibei77.com}
   - 🇺🇸 US美国(mibei77.com 米贝节点分享) 22 {src=mibei77.com}
   - 8|美国2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 8|1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -3911,7 +3917,6 @@ proxy-groups:
   - 🇺🇸US_6|1.0MB/s {src=peasoft/NoMoreWalls}
   - 🇸🇬SG_2|1.7MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_7|2.5MB/s {src=peasoft/NoMoreWalls}
-  - 🇯🇵JP_1|2.2MB/s {src=peasoft/NoMoreWalls}
   - 🇳🇱NL_1|3.7MB/s {src=peasoft/NoMoreWalls}
   - 🇸🇬SG_3|1.9MB/s {src=peasoft/NoMoreWalls}
   - 🇵🇱PL_1|1.2MB/s {src=peasoft/NoMoreWalls}
@@ -3943,12 +3948,12 @@ proxy-groups:
   - 美国(免费节点)_7 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_8 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_9 {src=clashnodev2ray.github.io}
-  - 美国(免费节点)_10 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_11 {src=clashnodev2ray.github.io}
   - 英国(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_14 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_15 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_16 {src=clashnodev2ray.github.io}
+  - 美国(免费节点)_17 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_18 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_19 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_20 {src=clashnodev2ray.github.io}
@@ -4064,7 +4069,6 @@ proxy-groups:
   - 🇺🇸 美国 CloudFlare节点 2 {src=node.freeclashnode.com}
   - 🇺🇸 美国 加利福尼亚 {src=node.freeclashnode.com}
   - 🇺🇸 美国 德克萨斯州达拉斯Linode数据中心 {src=node.freeclashnode.com}
-  - 🇮🇷 伊朗 starcorenode.com {src=node.freeclashnode.com}
   - 🇬🇧_GB_英国->🇬🇪_GE_格鲁吉亚 {src=node.freeclashnode.com}
   - 🇵🇱_PL_波兰 {src=node.freeclashnode.com}
   - 🇳🇱_NL_荷兰 {src=node.freeclashnode.com}
@@ -4081,12 +4085,12 @@ proxy-groups:
   - 🇺🇸_US_美国->🇦🇿_AZ_阿塞拜疆 {src=node.freeclashnode.com}
   - 🇯🇵 JP日本(mibei77.com 米贝节点分享) {src=mibei77.com}
   - 🇫🇷 FR法国(mibei77.com 米贝节点分享) {src=mibei77.com}
-  - 🇺🇸 US美国(mibei77.com 米贝节点分享) 19 {src=mibei77.com}
   - 🇫🇷 FR法国(mibei77.com 米贝节点分享) 2 {src=mibei77.com}
   - 🇫🇷 FR法国(mibei77.com 米贝节点分享) 3 {src=mibei77.com}
   - 🇺🇸 US美国(mibei77.com 米贝节点分享) 20 {src=mibei77.com}
   - 🇫🇷 FR法国(mibei77.com 米贝节点分享) 4 {src=mibei77.com}
   - 🇯🇵 JP日本(mibei77.com 米贝节点分享) 3 {src=mibei77.com}
+  - 🇺🇸 US美国(mibei77.com 米贝节点分享) 21 {src=mibei77.com}
   - 🇺🇸 US美国(mibei77.com 米贝节点分享) 22 {src=mibei77.com}
   - RU_speednode_0048 {src=peasoft/NoMoreWalls}
   - 🇺🇸US_3|2.5MB/s {src=peasoft/NoMoreWalls}
@@ -4103,7 +4107,6 @@ proxy-groups:
   - 🇺🇸US_6|1.0MB/s {src=peasoft/NoMoreWalls}
   - 🇸🇬SG_2|1.7MB/s {src=peasoft/NoMoreWalls}
   - 🇺🇸US_7|2.5MB/s {src=peasoft/NoMoreWalls}
-  - 🇯🇵JP_1|2.2MB/s {src=peasoft/NoMoreWalls}
   - 🇸🇬SG_3|1.9MB/s {src=peasoft/NoMoreWalls}
   - 🇯🇵JP_2|2.5MB/s {src=peasoft/NoMoreWalls}
   - 🇰🇷KR_2|1.4MB/s {src=peasoft/NoMoreWalls}
@@ -4128,6 +4131,7 @@ proxy-groups:
   proxies:
   - 香港(免费节点)_1 {src=clashnodev2ray.github.io}
   - 香港(免费节点)_4 {src=clashnodev2ray.github.io}
+  - 🇭🇰_HK_中国香港->🇹🇼_TW_中国台湾 {src=node.freeclashnode.com}
   - 🇭🇰_HK_中国香港 {src=node.freeclashnode.com}
   - 8| HK {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 11|🇭🇰 香港|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -4143,6 +4147,7 @@ proxy-groups:
   proxies:
   - 中國臺灣丨yoyapai.com {src=node.freeclashnode.com}
   - 臺灣省丨yoyapai.com {src=node.freeclashnode.com}
+  - 🇭🇰_HK_中国香港->🇹🇼_TW_中国台湾 {src=node.freeclashnode.com}
   - 8|TW {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
 - name: 新加坡
   type: url-test
@@ -4182,7 +4187,6 @@ proxy-groups:
   - 🇯🇵 JP日本(mibei77.com 米贝节点分享) 3 {src=mibei77.com}
   - 8|JP {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 13|JP_speednode_0013 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇯🇵JP_1|2.2MB/s {src=peasoft/NoMoreWalls}
   - 🇯🇵JP_2|2.5MB/s {src=peasoft/NoMoreWalls}
   - 🇯🇵JP_3|1.9MB/s {src=peasoft/NoMoreWalls}
 - name: 美国
@@ -4199,11 +4203,11 @@ proxy-groups:
   - 美国(免费节点)_7 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_8 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_9 {src=clashnodev2ray.github.io}
-  - 美国(免费节点)_10 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_11 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_14 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_15 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_16 {src=clashnodev2ray.github.io}
+  - 美国(免费节点)_17 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_18 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_19 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_20 {src=clashnodev2ray.github.io}
@@ -4267,8 +4271,8 @@ proxy-groups:
   - 🇺🇸_US_美国->🇫🇷_FR_法国 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国_1 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇦🇿_AZ_阿塞拜疆 {src=node.freeclashnode.com}
-  - 🇺🇸 US美国(mibei77.com 米贝节点分享) 19 {src=mibei77.com}
   - 🇺🇸 US美国(mibei77.com 米贝节点分享) 20 {src=mibei77.com}
+  - 🇺🇸 US美国(mibei77.com 米贝节点分享) 21 {src=mibei77.com}
   - 🇺🇸 US美国(mibei77.com 米贝节点分享) 22 {src=mibei77.com}
   - 8|美国2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 11|🇺🇸 美国4|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -4336,13 +4340,13 @@ proxy-groups:
   - 美国(免费节点)_7 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_8 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_9 {src=clashnodev2ray.github.io}
-  - 美国(免费节点)_10 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_11 {src=clashnodev2ray.github.io}
   - 英国(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_14 {src=clashnodev2ray.github.io}
   - 香港(免费节点)_1 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_15 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_16 {src=clashnodev2ray.github.io}
+  - 美国(免费节点)_17 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_18 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_19 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_20 {src=clashnodev2ray.github.io}
@@ -4459,10 +4463,10 @@ proxy-groups:
   - 🇺🇸 美国 CloudFlare节点 2 {src=node.freeclashnode.com}
   - 🇺🇸 美国 加利福尼亚 {src=node.freeclashnode.com}
   - 🇺🇸 美国 德克萨斯州达拉斯Linode数据中心 {src=node.freeclashnode.com}
-  - 🇮🇷 伊朗 starcorenode.com {src=node.freeclashnode.com}
   - 🇬🇧_GB_英国->🇬🇪_GE_格鲁吉亚 {src=node.freeclashnode.com}
   - 🇵🇱_PL_波兰 {src=node.freeclashnode.com}
   - 🇳🇱_NL_荷兰 {src=node.freeclashnode.com}
+  - 🇭🇰_HK_中国香港->🇹🇼_TW_中国台湾 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇨🇭_CH_瑞士 {src=node.freeclashnode.com}
   - 🇫🇮_FI_芬兰 {src=node.freeclashnode.com}
   - 🇩🇪_DE_德国 {src=node.freeclashnode.com}
@@ -4647,10 +4651,10 @@ proxy-groups:
   - 🇺🇸 美国 CloudFlare节点 2 {src=node.freeclashnode.com}
   - 🇺🇸 美国 加利福尼亚 {src=node.freeclashnode.com}
   - 🇺🇸 美国 德克萨斯州达拉斯Linode数据中心 {src=node.freeclashnode.com}
-  - 🇮🇷 伊朗 starcorenode.com {src=node.freeclashnode.com}
   - 🇬🇧_GB_英国->🇬🇪_GE_格鲁吉亚 {src=node.freeclashnode.com}
   - 🇵🇱_PL_波兰 {src=node.freeclashnode.com}
   - 🇳🇱_NL_荷兰 {src=node.freeclashnode.com}
+  - 🇭🇰_HK_中国香港->🇹🇼_TW_中国台湾 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇨🇭_CH_瑞士 {src=node.freeclashnode.com}
   - 🇫🇮_FI_芬兰 {src=node.freeclashnode.com}
   - 🇩🇪_DE_德国 {src=node.freeclashnode.com}
@@ -4825,6 +4829,7 @@ proxy-groups:
   url: http://www.apple.com/library/test/success.html
   tolerance: 50
   proxies:
+  - 🇷🇴 罗马尼亚(mibei77.com 米贝节点分享) {src=mibei77.com}
   - kurdconfig {src=peasoft/NoMoreWalls}
   - '✅ @vistav2ray 👈👈کانال ما ✅ #1 {src=peasoft/NoMoreWalls}'
   - 🇨🇭CH_1|1000KB/s {src=peasoft/NoMoreWalls}
