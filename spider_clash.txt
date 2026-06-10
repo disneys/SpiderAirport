@@ -1,4 +1,4 @@
-# generated_at: 2026-06-10T21:20:57+08:00
+# generated_at: 2026-06-10T21:30:56+08:00
 # source_file: embedded_sources
 # reference_date: 2026-06-10
 # effective_date: 2026-06-10
@@ -16,13 +16,6 @@ profile:
   store-selected: true
   store-fake-ip: true
 proxies:
-- type: ss
-  name: 美国(免费节点)_1 {src=clashnodev2ray.github.io}
-  server: 195.133.2.2
-  port: 34898
-  cipher: chacha20-ietf-poly1305
-  password: D1oFY5dskhFuI8PNbSA35s
-  udp: true
 - type: vless
   name: 美国(免费节点)_2 {src=clashnodev2ray.github.io}
   server: 162.159.153.231
@@ -51,6 +44,15 @@ proxies:
     path: /
     headers:
       host: newwk1.f1w.de5.net
+- type: vmess
+  name: 英国(免费节点)_1 {src=clashnodev2ray.github.io}
+  server: v36.hdacd.com
+  port: '30836'
+  uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484
+  alterId: '2'
+  cipher: auto
+  network: tcp
+  udp: true
 - type: vless
   name: 日本(免费节点)_1 {src=clashnodev2ray.github.io}
   server: 172.64.53.241
@@ -1686,6 +1688,13 @@ proxies:
     headers:
       Host: www.multiplydose.com
   udp: true
+- name: 🇨🇳 台湾省台中市 中华电信 {src=node.freeclashnode.com}
+  server: account-center.zzdy25.com
+  port: 36321
+  type: ss
+  cipher: chacha20-ietf-poly1305
+  password: a5115845-cc23-4082-905e-869fe212dfef
+  udp: true
 - name: 🇷🇺 俄罗斯 starcorenode.com {src=node.freeclashnode.com}
   server: r1.mizulina.top
   port: 22231
@@ -1890,13 +1899,6 @@ proxies:
   sni: fr.01.naiun.bilibili.com
   skip-cert-verify: true
   tls: false
-  udp: true
-- name: 🇫🇮_FI_芬兰_1 {src=node.freeclashnode.com}
-  type: ss
-  server: 195.133.2.2
-  port: 34898
-  cipher: chacha20-ietf-poly1305
-  password: v2LIewZzNUsIrqODr22FVc
   udp: true
 - name: 🇫🇮_FI_芬兰_2 {src=node.freeclashnode.com}
   type: vless
@@ -3531,7 +3533,7 @@ dns:
     geosite:cn: https://dns.alidns.com/dns-query
     domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxy-groups:
-- name: 配置生成于：2026-06-10 21：20：57
+- name: 配置生成于：2026-06-10 21：30：56
   type: select
   proxies:
   - DIRECT
@@ -3560,9 +3562,9 @@ proxy-groups:
 - name: 自动选择
   type: url-test
   proxies:
-  - 美国(免费节点)_1 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_5 {src=clashnodev2ray.github.io}
+  - 英国(免费节点)_1 {src=clashnodev2ray.github.io}
   - 日本(免费节点)_1 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_6 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_7 {src=clashnodev2ray.github.io}
@@ -3698,6 +3700,7 @@ proxy-groups:
   - 🇩🇪 德国 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 2 {src=node.freeclashnode.com}
+  - 🇨🇳 台湾省台中市 中华电信 {src=node.freeclashnode.com}
   - 🇷🇺 俄罗斯 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 3 {src=node.freeclashnode.com}
   - 亚太地区 starcorenode.com {src=node.freeclashnode.com}
@@ -3716,7 +3719,6 @@ proxy-groups:
   - 🇩🇪_DE_德国_1 {src=node.freeclashnode.com}
   - 🇱🇻_LV_拉脱维亚 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇫🇷_FR_法国 {src=node.freeclashnode.com}
-  - 🇫🇮_FI_芬兰_1 {src=node.freeclashnode.com}
   - 🇫🇮_FI_芬兰_2 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国_1 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇦🇿_AZ_阿塞拜疆 {src=node.freeclashnode.com}
@@ -3880,9 +3882,9 @@ proxy-groups:
 - name: 手动选择
   type: select
   proxies:
-  - 美国(免费节点)_1 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_5 {src=clashnodev2ray.github.io}
+  - 英国(免费节点)_1 {src=clashnodev2ray.github.io}
   - 日本(免费节点)_1 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_6 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_7 {src=clashnodev2ray.github.io}
@@ -4018,6 +4020,7 @@ proxy-groups:
   - 🇩🇪 德国 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 2 {src=node.freeclashnode.com}
+  - 🇨🇳 台湾省台中市 中华电信 {src=node.freeclashnode.com}
   - 🇷🇺 俄罗斯 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 3 {src=node.freeclashnode.com}
   - 亚太地区 starcorenode.com {src=node.freeclashnode.com}
@@ -4036,7 +4039,6 @@ proxy-groups:
   - 🇩🇪_DE_德国_1 {src=node.freeclashnode.com}
   - 🇱🇻_LV_拉脱维亚 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇫🇷_FR_法国 {src=node.freeclashnode.com}
-  - 🇫🇮_FI_芬兰_1 {src=node.freeclashnode.com}
   - 🇫🇮_FI_芬兰_2 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国_1 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇦🇿_AZ_阿塞拜疆 {src=node.freeclashnode.com}
@@ -4198,9 +4200,9 @@ proxy-groups:
 - name: AI 工具
   type: url-test
   proxies:
-  - 美国(免费节点)_1 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_5 {src=clashnodev2ray.github.io}
+  - 英国(免费节点)_1 {src=clashnodev2ray.github.io}
   - 日本(免费节点)_1 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_6 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_7 {src=clashnodev2ray.github.io}
@@ -4332,6 +4334,7 @@ proxy-groups:
   - 🇩🇪 德国 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 2 {src=node.freeclashnode.com}
+  - 🇨🇳 台湾省台中市 中华电信 {src=node.freeclashnode.com}
   - 🇷🇺 俄罗斯 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 3 {src=node.freeclashnode.com}
   - 亚太地区 starcorenode.com {src=node.freeclashnode.com}
@@ -4348,7 +4351,6 @@ proxy-groups:
   - 🇩🇪_DE_德国_1 {src=node.freeclashnode.com}
   - 🇱🇻_LV_拉脱维亚 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇫🇷_FR_法国 {src=node.freeclashnode.com}
-  - 🇫🇮_FI_芬兰_1 {src=node.freeclashnode.com}
   - 🇫🇮_FI_芬兰_2 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国_1 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇦🇿_AZ_阿塞拜疆 {src=node.freeclashnode.com}
@@ -4433,6 +4435,7 @@ proxy-groups:
   - 中國臺灣丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 臺灣省丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 台湾省台北市丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
+  - 🇨🇳 台湾省台中市 中华电信 {src=node.freeclashnode.com}
   - 🇭🇰_HK_中国香港->🇹🇼_TW_中国台湾 {src=node.freeclashnode.com}
   - 8|TW {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇹🇼TW_1|3.7MB/s {src=peasoft/NoMoreWalls}
@@ -4482,7 +4485,6 @@ proxy-groups:
   url: http://www.apple.com/library/test/success.html
   tolerance: 50
   proxies:
-  - 美国(免费节点)_1 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_5 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_6 {src=clashnodev2ray.github.io}
@@ -4612,6 +4614,7 @@ proxy-groups:
   url: http://www.apple.com/library/test/success.html
   tolerance: 50
   proxies:
+  - 英国(免费节点)_1 {src=clashnodev2ray.github.io}
   - 英国(免费节点)_2 {src=clashnodev2ray.github.io}
   - 英国(免费节点)_3 {src=clashnodev2ray.github.io}
   - 英國節點 {src=mibei77.com|node.freeclashnode.com|yoyapai.com}
@@ -4628,9 +4631,9 @@ proxy-groups:
   url: http://www.apple.com/library/test/success.html
   tolerance: 50
   proxies:
-  - 美国(免费节点)_1 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_5 {src=clashnodev2ray.github.io}
+  - 英国(免费节点)_1 {src=clashnodev2ray.github.io}
   - 日本(免费节点)_1 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_6 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_7 {src=clashnodev2ray.github.io}
@@ -4766,6 +4769,7 @@ proxy-groups:
   - 🇩🇪 德国 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 2 {src=node.freeclashnode.com}
+  - 🇨🇳 台湾省台中市 中华电信 {src=node.freeclashnode.com}
   - 🇷🇺 俄罗斯 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 3 {src=node.freeclashnode.com}
   - 亚太地区 starcorenode.com {src=node.freeclashnode.com}
@@ -4784,7 +4788,6 @@ proxy-groups:
   - 🇩🇪_DE_德国_1 {src=node.freeclashnode.com}
   - 🇱🇻_LV_拉脱维亚 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇫🇷_FR_法国 {src=node.freeclashnode.com}
-  - 🇫🇮_FI_芬兰_1 {src=node.freeclashnode.com}
   - 🇫🇮_FI_芬兰_2 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国_1 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇦🇿_AZ_阿塞拜疆 {src=node.freeclashnode.com}
@@ -4975,6 +4978,7 @@ proxy-groups:
   - 🇩🇪 德国 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 2 {src=node.freeclashnode.com}
+  - 🇨🇳 台湾省台中市 中华电信 {src=node.freeclashnode.com}
   - 🇷🇺 俄罗斯 starcorenode.com {src=node.freeclashnode.com}
   - 🇺🇸 美国 CloudFlare节点 3 {src=node.freeclashnode.com}
   - 亚太地区 starcorenode.com {src=node.freeclashnode.com}
@@ -4993,7 +4997,6 @@ proxy-groups:
   - 🇩🇪_DE_德国_1 {src=node.freeclashnode.com}
   - 🇱🇻_LV_拉脱维亚 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇫🇷_FR_法国 {src=node.freeclashnode.com}
-  - 🇫🇮_FI_芬兰_1 {src=node.freeclashnode.com}
   - 🇫🇮_FI_芬兰_2 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国_1 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇦🇿_AZ_阿塞拜疆 {src=node.freeclashnode.com}
