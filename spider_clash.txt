@@ -1,10 +1,10 @@
-# generated_at: 2026-06-27T23:00:52+08:00
+# generated_at: 2026-06-27T23:10:50+08:00
 # source_file: embedded_sources
 # reference_date: 2026-06-27
 # effective_date: 2026-06-27
 # rules_source: https://raw.githubusercontent.com/disneys/Mihomo-Dynamic-Overseer/refs/heads/main/main.js
 # rules_mode: remote-main-js-executed
-# success_sources: clashnodev2ray.github.io 156/199 200, clashmetagithub.github.io -/- -, freev2rayclash.github.io -/- -, stashgithub.github.io -/- -, windowsclashnode.github.io -/- -, clashnode.github.io -/- -, clashvergerev.github.io -/- -, clash-verge.github.io -/- -, vlessgithub.github.io -/- -, node.freeclashnode.com 212/367 200, yoyapai.com 184/325 200, mibei77.com 0/0 404, chengaopan/AutoMergePublicNodes 70/74 200, peasoft/NoMoreWalls 119/134 200
+# success_sources: clashnodev2ray.github.io 158/199 200, clashmetagithub.github.io -/- -, freev2rayclash.github.io -/- -, stashgithub.github.io -/- -, windowsclashnode.github.io -/- -, clashnode.github.io -/- -, clashvergerev.github.io -/- -, clash-verge.github.io -/- -, vlessgithub.github.io -/- -, node.freeclashnode.com 215/367 200, yoyapai.com 187/325 200, mibei77.com 0/0 404, chengaopan/AutoMergePublicNodes 70/74 200, peasoft/NoMoreWalls 119/134 200
 mixed-port: 7890
 allow-lan: false
 mode: rule
@@ -205,6 +205,19 @@ proxies:
     path: /
     headers:
       host: s5.868001.xyz
+- type: trojan
+  name: 韩国(免费节点)_2 {src=clashnodev2ray.github.io}
+  server: 211.49.57.175
+  port: 443
+  password: eeb6823c-b926-4ea2-866a-5542edd26e59
+  udp: true
+  skip-cert-verify: true
+  sni: hhcm.hhxaf.cc.cd
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      host: hhcm.hhxaf.cc.cd
 - type: trojan
   name: 美国(免费节点)_5 {src=clashnodev2ray.github.io}
   server: 211.49.57.161
@@ -1564,6 +1577,17 @@ proxies:
     path: /?https://t.me/WangCai2🇨🇳
     headers:
       host: opu-ao6.pages.dev
+- type: vless
+  name: 美国(免费节点)_96 {src=clashnodev2ray.github.io}
+  server: rezerv12.yunus.guru
+  port: 443
+  uuid: a5ea9247-79f3-4655-aece-3fb51e1e669e
+  skip-cert-verify: true
+  network: tcp
+  flow: xtls-rprx-vision
+  servername: rezerv7.yunus.guru
+  tls: false
+  udp: true
 - type: vmess
   name: 香港(免费节点)_11 {src=clashnodev2ray.github.io}
   http-opts:
@@ -1977,6 +2001,19 @@ proxies:
   skip-cert-verify: true
   sni: az.01.naiun.bilibili.com
   network: tcp
+- name: KR韓國丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
+  type: trojan
+  server: 211.49.57.179
+  port: 443
+  password: eeb6823c-b926-4ea2-866a-5542edd26e59
+  sni: tjsp.hhxaf.cc.cd
+  skip-cert-verify: true
+  tls: true
+  ws-opts:
+    path: /
+    headers:
+      Host: tjsp.hhxaf.cc.cd
+  udp: true
 - name: 歐盟丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   type: vless
   server: 45.85.118.50
@@ -2698,6 +2735,19 @@ proxies:
       Host: vms.lifetime51.workers.dev
   skip-cert-verify: true
   udp: true
+- name: 俄羅斯丨yoyapai.com_4 {src=node.freeclashnode.com|yoyapai.com}
+  type: vless
+  server: 90.156.254.164
+  port: 19562
+  uuid: 5b96be74-656d-4bb7-85c2-d2d8a3b7c2f3
+  servername: yahoo.com
+  tls: true
+  client-fingerprint: chrome
+  reality-opts:
+    public-key: T66pm2f_PN4Hya_A_5K0X1HQb717SUCODyoUO7Gk3Ws
+    short-id: 9e
+  skip-cert-verify: true
+  udp: true
 - name: 美国+亚利桑那州斯科茨代尔市丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   type: vless
   server: 72.167.230.30
@@ -3417,6 +3467,17 @@ proxies:
   servername: ams1.fromblancwithlove.com
   tls: true
   skip-cert-verify: true
+  udp: true
+- name: 韓國丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
+  type: trojan
+  server: 211.49.57.175
+  port: 443
+  password: eeb6823c-b926-4ea2-866a-5542edd26e59
+  sni: hhcm.hhxaf.cc.cd
+  skip-cert-verify: true
+  tls: true
+  ws-opts:
+    path: /
   udp: true
 - name: 巴西聖保羅丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
   type: vless
@@ -6147,7 +6208,7 @@ dns:
     geosite:cn: https://dns.alidns.com/dns-query
     domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxy-groups:
-- name: 配置生成于：2026-06-27 23：00：52
+- name: 配置生成于：2026-06-27 23：10：50
   type: select
   proxies:
   - DIRECT
@@ -6192,6 +6253,7 @@ proxy-groups:
   - 香港(免费节点)_3 {src=clashnodev2ray.github.io}
   - 法国(免费节点)_5 {src=clashnodev2ray.github.io}
   - 韩国(免费节点)_1 {src=clashnodev2ray.github.io}
+  - 韩国(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_5 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_9 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_10 {src=clashnodev2ray.github.io}
@@ -6292,6 +6354,7 @@ proxy-groups:
   - 乌克兰(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_93 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_95 {src=clashnodev2ray.github.io}
+  - 美国(免费节点)_96 {src=clashnodev2ray.github.io}
   - 香港(免费节点)_11 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_99 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_100 {src=clashnodev2ray.github.io}
@@ -6334,6 +6397,7 @@ proxy-groups:
   - 美国(免费节点)_131 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_132 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_133 {src=clashnodev2ray.github.io}
+  - KR韓國丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 歐盟丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - US美國丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
   - 斯洛文尼亞丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
@@ -6390,6 +6454,7 @@ proxy-groups:
   - 保加利亞丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 英國丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 歐盟丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
+  - 俄羅斯丨yoyapai.com_4 {src=node.freeclashnode.com|yoyapai.com}
   - 美国+亚利桑那州斯科茨代尔市丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 亞太地區丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 俄羅斯 {src=node.freeclashnode.com|yoyapai.com}
@@ -6459,6 +6524,7 @@ proxy-groups:
   - 捷克丨yoyapai.com_8 {src=node.freeclashnode.com|yoyapai.com}
   - 荷蘭節點丨yoyapai.com_5 {src=node.freeclashnode.com|yoyapai.com}
   - 荷蘭節點丨yoyapai.com_7 {src=node.freeclashnode.com|yoyapai.com}
+  - 韓國丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 巴西聖保羅丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
   - 土耳其 {src=node.freeclashnode.com|yoyapai.com}
   - 法國節點 {src=node.freeclashnode.com|yoyapai.com}
@@ -6686,6 +6752,7 @@ proxy-groups:
   - 香港(免费节点)_3 {src=clashnodev2ray.github.io}
   - 法国(免费节点)_5 {src=clashnodev2ray.github.io}
   - 韩国(免费节点)_1 {src=clashnodev2ray.github.io}
+  - 韩国(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_5 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_9 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_10 {src=clashnodev2ray.github.io}
@@ -6786,6 +6853,7 @@ proxy-groups:
   - 乌克兰(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_93 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_95 {src=clashnodev2ray.github.io}
+  - 美国(免费节点)_96 {src=clashnodev2ray.github.io}
   - 香港(免费节点)_11 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_99 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_100 {src=clashnodev2ray.github.io}
@@ -6828,6 +6896,7 @@ proxy-groups:
   - 美国(免费节点)_131 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_132 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_133 {src=clashnodev2ray.github.io}
+  - KR韓國丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 歐盟丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - US美國丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
   - 斯洛文尼亞丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
@@ -6884,6 +6953,7 @@ proxy-groups:
   - 保加利亞丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 英國丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 歐盟丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
+  - 俄羅斯丨yoyapai.com_4 {src=node.freeclashnode.com|yoyapai.com}
   - 美国+亚利桑那州斯科茨代尔市丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 亞太地區丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 俄羅斯 {src=node.freeclashnode.com|yoyapai.com}
@@ -6953,6 +7023,7 @@ proxy-groups:
   - 捷克丨yoyapai.com_8 {src=node.freeclashnode.com|yoyapai.com}
   - 荷蘭節點丨yoyapai.com_5 {src=node.freeclashnode.com|yoyapai.com}
   - 荷蘭節點丨yoyapai.com_7 {src=node.freeclashnode.com|yoyapai.com}
+  - 韓國丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 巴西聖保羅丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
   - 土耳其 {src=node.freeclashnode.com|yoyapai.com}
   - 法國節點 {src=node.freeclashnode.com|yoyapai.com}
@@ -7175,6 +7246,7 @@ proxy-groups:
   - 美国(免费节点)_4 {src=clashnodev2ray.github.io}
   - 法国(免费节点)_5 {src=clashnodev2ray.github.io}
   - 韩国(免费节点)_1 {src=clashnodev2ray.github.io}
+  - 韩国(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_5 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_9 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_10 {src=clashnodev2ray.github.io}
@@ -7271,6 +7343,7 @@ proxy-groups:
   - 乌克兰(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_93 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_95 {src=clashnodev2ray.github.io}
+  - 美国(免费节点)_96 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_99 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_100 {src=clashnodev2ray.github.io}
   - 荷兰(免费节点)_1 {src=clashnodev2ray.github.io}
@@ -7312,6 +7385,7 @@ proxy-groups:
   - 美国(免费节点)_131 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_132 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_133 {src=clashnodev2ray.github.io}
+  - KR韓國丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 歐盟丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - US美國丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
   - 斯洛文尼亞丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
@@ -7367,6 +7441,7 @@ proxy-groups:
   - 保加利亞丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 英國丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 歐盟丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
+  - 俄羅斯丨yoyapai.com_4 {src=node.freeclashnode.com|yoyapai.com}
   - 美国+亚利桑那州斯科茨代尔市丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 亞太地區丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 俄羅斯 {src=node.freeclashnode.com|yoyapai.com}
@@ -7434,6 +7509,7 @@ proxy-groups:
   - 捷克丨yoyapai.com_8 {src=node.freeclashnode.com|yoyapai.com}
   - 荷蘭節點丨yoyapai.com_5 {src=node.freeclashnode.com|yoyapai.com}
   - 荷蘭節點丨yoyapai.com_7 {src=node.freeclashnode.com|yoyapai.com}
+  - 韓國丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 巴西聖保羅丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
   - 土耳其 {src=node.freeclashnode.com|yoyapai.com}
   - 法國節點 {src=node.freeclashnode.com|yoyapai.com}
@@ -7743,6 +7819,7 @@ proxy-groups:
   - 美国(免费节点)_91 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_93 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_95 {src=clashnodev2ray.github.io}
+  - 美国(免费节点)_96 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_99 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_100 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_101 {src=clashnodev2ray.github.io}
@@ -7847,7 +7924,10 @@ proxy-groups:
   tolerance: 50
   proxies:
   - 韩国(免费节点)_1 {src=clashnodev2ray.github.io}
+  - 韩国(免费节点)_2 {src=clashnodev2ray.github.io}
+  - KR韓國丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 韩国+KT电信_1 {src=node.freeclashnode.com|yoyapai.com}
+  - 韓國丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 🇰🇷KR_1|1.2MB/s {src=peasoft/NoMoreWalls}
 - name: 英国
   type: url-test
@@ -7883,6 +7963,7 @@ proxy-groups:
   - 香港(免费节点)_3 {src=clashnodev2ray.github.io}
   - 法国(免费节点)_5 {src=clashnodev2ray.github.io}
   - 韩国(免费节点)_1 {src=clashnodev2ray.github.io}
+  - 韩国(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_5 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_9 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_10 {src=clashnodev2ray.github.io}
@@ -7983,6 +8064,7 @@ proxy-groups:
   - 乌克兰(免费节点)_2 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_93 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_95 {src=clashnodev2ray.github.io}
+  - 美国(免费节点)_96 {src=clashnodev2ray.github.io}
   - 香港(免费节点)_11 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_99 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_100 {src=clashnodev2ray.github.io}
@@ -8025,6 +8107,7 @@ proxy-groups:
   - 美国(免费节点)_131 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_132 {src=clashnodev2ray.github.io}
   - 美国(免费节点)_133 {src=clashnodev2ray.github.io}
+  - KR韓國丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 歐盟丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - US美國丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
   - 斯洛文尼亞丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
@@ -8081,6 +8164,7 @@ proxy-groups:
   - 保加利亞丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 英國丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 歐盟丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
+  - 俄羅斯丨yoyapai.com_4 {src=node.freeclashnode.com|yoyapai.com}
   - 美国+亚利桑那州斯科茨代尔市丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 亞太地區丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 俄羅斯 {src=node.freeclashnode.com|yoyapai.com}
@@ -8150,6 +8234,7 @@ proxy-groups:
   - 捷克丨yoyapai.com_8 {src=node.freeclashnode.com|yoyapai.com}
   - 荷蘭節點丨yoyapai.com_5 {src=node.freeclashnode.com|yoyapai.com}
   - 荷蘭節點丨yoyapai.com_7 {src=node.freeclashnode.com|yoyapai.com}
+  - 韓國丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 巴西聖保羅丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
   - 土耳其 {src=node.freeclashnode.com|yoyapai.com}
   - 法國節點 {src=node.freeclashnode.com|yoyapai.com}
@@ -8342,6 +8427,7 @@ proxy-groups:
   - 法国(免费节点)_9 {src=clashnodev2ray.github.io}
   - 法国(免费节点)_10 {src=clashnodev2ray.github.io}
   - 法国(免费节点)_11 {src=clashnodev2ray.github.io}
+  - KR韓國丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 歐盟丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - US美國丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
   - 斯洛文尼亞丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
@@ -8398,6 +8484,7 @@ proxy-groups:
   - 保加利亞丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 英國丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 歐盟丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
+  - 俄羅斯丨yoyapai.com_4 {src=node.freeclashnode.com|yoyapai.com}
   - 美国+亚利桑那州斯科茨代尔市丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 亞太地區丨yoyapai.com {src=node.freeclashnode.com|yoyapai.com}
   - 俄羅斯 {src=node.freeclashnode.com|yoyapai.com}
@@ -8467,6 +8554,7 @@ proxy-groups:
   - 捷克丨yoyapai.com_8 {src=node.freeclashnode.com|yoyapai.com}
   - 荷蘭節點丨yoyapai.com_5 {src=node.freeclashnode.com|yoyapai.com}
   - 荷蘭節點丨yoyapai.com_7 {src=node.freeclashnode.com|yoyapai.com}
+  - 韓國丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 巴西聖保羅丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
   - 土耳其 {src=node.freeclashnode.com|yoyapai.com}
   - 法國節點 {src=node.freeclashnode.com|yoyapai.com}
@@ -8679,6 +8767,7 @@ proxy-groups:
   - 俄羅斯丨yoyapai.com_1 {src=node.freeclashnode.com|yoyapai.com}
   - 俄羅斯丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
   - 俄羅斯節點丨yoyapai.com_2 {src=node.freeclashnode.com|yoyapai.com}
+  - 俄羅斯丨yoyapai.com_4 {src=node.freeclashnode.com|yoyapai.com}
   - 俄羅斯 {src=node.freeclashnode.com|yoyapai.com}
   - 俄羅斯丨yoyapai.com_7 {src=node.freeclashnode.com|yoyapai.com}
   - 俄羅斯丨yoyapai.com_8 {src=node.freeclashnode.com|yoyapai.com}
