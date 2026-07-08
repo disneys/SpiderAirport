@@ -1,6 +1,6 @@
-# generated_at: 2026-07-08T10:20:35+08:00
+# generated_at: 2026-07-08T10:30:43+08:00
 # rules_source: https://raw.githubusercontent.com/disneys/Mihomo-Dynamic-Overseer/refs/heads/main/main.js
-# rules_mode: remote-main-js-executed
+# rules_mode: fallback-default
 # success_sources: abshare3, tolinkshare2, toshare5
 mixed-port: 7890
 allow-lan: false
@@ -12,8 +12,41 @@ tcp-concurrent: true
 profile:
   store-selected: true
   store-fake-ip: true
+dns:
+  enable: true
+  device-network: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
+  - 1.1.1.1
+  nameserver:
+  - 223.5.5.5
+  - 223.6.6.6
+  - 119.29.29.29
+  - 180.76.76.76
+  - tls://dns.alidns.com
+  - https://dns.alidns.com/dns-query
+  - https://doh.pub/dns-query
+  fallback:
+  - https://dns.google/dns-query
+  - https://cloudflare-dns.com/dns-query
+  - https://dns.quad9.net/dns-query
+  - tls://8.8.8.8
+  - tls://1.1.1.1
+  - tls://dns.quad9.net
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+    - 240.0.0.0/4
+  nameserver-policy:
+    geosite:cn: https://dns.alidns.com/dns-query
+    domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxies:
-- name: 剩余流量：3.36 GB
+- name: 剩余流量：3.07 GB
   type: vless
   server: freea.glyphara.com
   port: 30101
@@ -195,7 +228,7 @@ proxies:
   reality-opts:
     public-key: Fpcp8ed_KjL5rnn0gstMa0AQPL8GcYMtArb--r1AhnI
     short-id: 845532fa
-- name: 剩余流量：3.44 GB
+- name: 剩余流量：3.42 GB
   type: vless
   server: freea.glyphara.com
   port: 30101
@@ -377,7 +410,7 @@ proxies:
   reality-opts:
     public-key: Fpcp8ed_KjL5rnn0gstMa0AQPL8GcYMtArb--r1AhnI
     short-id: 845532fa
-- name: 剩余流量：510.15 MB
+- name: 剩余流量：453.58 MB
   type: vless
   server: freea.glyphara.com
   port: 30101
@@ -559,6 +592,227 @@ proxies:
   reality-opts:
     public-key: Fpcp8ed_KjL5rnn0gstMa0AQPL8GcYMtArb--r1AhnI
     short-id: 845532fa
+proxy-groups:
+- name: 配置生成于：2026-07-08 10：30：43
+  type: select
+  proxies:
+  - DIRECT
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Download.png
+- name: 节点选择
+  type: select
+  proxies:
+  - 自动选择
+  - 香港
+  - 台湾
+  - 新加坡
+  - 日本
+  - 美国
+  - 其他
+  - 手动选择
+  - DIRECT
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png
+- name: 自动选择
+  type: url-test
+  proxies:
+  - 剩余流量：3.07 GB
+  - 🇭🇰香港 101 | 1x HK
+  - 🇭🇰香港 102 | 1x HK
+  - 🇭🇰香港 103 | 家宽 | 1x HK
+  - 🇹🇼台湾 101 | 1x TW
+  - 🇹🇼台湾 102 | 1x TW
+  - 🇯🇵日本 101 | 1x JP
+  - 🇯🇵日本 103 | 1x JP
+  - 🇸🇬新加坡 101 | 1x SG
+  - 🇸🇬新加坡 102 | 1x SG
+  - 🇸🇬新加坡 103 | 1x SG
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US
+  - 剩余流量：3.42 GB
+  - 🇭🇰香港 101 | 1x HK [2]
+  - 🇭🇰香港 102 | 1x HK [2]
+  - 🇭🇰香港 103 | 家宽 | 1x HK [2]
+  - 🇹🇼台湾 101 | 1x TW [2]
+  - 🇹🇼台湾 102 | 1x TW [2]
+  - 🇯🇵日本 101 | 1x JP [2]
+  - 🇯🇵日本 103 | 1x JP [2]
+  - 🇸🇬新加坡 101 | 1x SG [2]
+  - 🇸🇬新加坡 102 | 1x SG [2]
+  - 🇸🇬新加坡 103 | 1x SG [2]
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US [2]
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US [2]
+  - 剩余流量：453.58 MB
+  - 🇭🇰香港 101 | 1x HK [3]
+  - 🇭🇰香港 102 | 1x HK [3]
+  - 🇭🇰香港 103 | 家宽 | 1x HK [3]
+  - 🇹🇼台湾 101 | 1x TW [3]
+  - 🇹🇼台湾 102 | 1x TW [3]
+  - 🇯🇵日本 101 | 1x JP [3]
+  - 🇯🇵日本 103 | 1x JP [3]
+  - 🇸🇬新加坡 101 | 1x SG [3]
+  - 🇸🇬新加坡 102 | 1x SG [3]
+  - 🇸🇬新加坡 103 | 1x SG [3]
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US [3]
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US [3]
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+  interval: 60
+  url: http://www.gstatic.com/generate_204
+- name: 手动选择
+  type: select
+  proxies:
+  - 剩余流量：3.07 GB
+  - 🇭🇰香港 101 | 1x HK
+  - 🇭🇰香港 102 | 1x HK
+  - 🇭🇰香港 103 | 家宽 | 1x HK
+  - 🇹🇼台湾 101 | 1x TW
+  - 🇹🇼台湾 102 | 1x TW
+  - 🇯🇵日本 101 | 1x JP
+  - 🇯🇵日本 103 | 1x JP
+  - 🇸🇬新加坡 101 | 1x SG
+  - 🇸🇬新加坡 102 | 1x SG
+  - 🇸🇬新加坡 103 | 1x SG
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US
+  - 剩余流量：3.42 GB
+  - 🇭🇰香港 101 | 1x HK [2]
+  - 🇭🇰香港 102 | 1x HK [2]
+  - 🇭🇰香港 103 | 家宽 | 1x HK [2]
+  - 🇹🇼台湾 101 | 1x TW [2]
+  - 🇹🇼台湾 102 | 1x TW [2]
+  - 🇯🇵日本 101 | 1x JP [2]
+  - 🇯🇵日本 103 | 1x JP [2]
+  - 🇸🇬新加坡 101 | 1x SG [2]
+  - 🇸🇬新加坡 102 | 1x SG [2]
+  - 🇸🇬新加坡 103 | 1x SG [2]
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US [2]
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US [2]
+  - 剩余流量：453.58 MB
+  - 🇭🇰香港 101 | 1x HK [3]
+  - 🇭🇰香港 102 | 1x HK [3]
+  - 🇭🇰香港 103 | 家宽 | 1x HK [3]
+  - 🇹🇼台湾 101 | 1x TW [3]
+  - 🇹🇼台湾 102 | 1x TW [3]
+  - 🇯🇵日本 101 | 1x JP [3]
+  - 🇯🇵日本 103 | 1x JP [3]
+  - 🇸🇬新加坡 101 | 1x SG [3]
+  - 🇸🇬新加坡 102 | 1x SG [3]
+  - 🇸🇬新加坡 103 | 1x SG [3]
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US [3]
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US [3]
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
+- name: AI 工具
+  type: url-test
+  proxies:
+  - 🇹🇼台湾 101 | 1x TW
+  - 🇹🇼台湾 102 | 1x TW
+  - 🇯🇵日本 101 | 1x JP
+  - 🇯🇵日本 103 | 1x JP
+  - 🇸🇬新加坡 101 | 1x SG
+  - 🇸🇬新加坡 102 | 1x SG
+  - 🇸🇬新加坡 103 | 1x SG
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US
+  - 🇹🇼台湾 101 | 1x TW [2]
+  - 🇹🇼台湾 102 | 1x TW [2]
+  - 🇯🇵日本 101 | 1x JP [2]
+  - 🇯🇵日本 103 | 1x JP [2]
+  - 🇸🇬新加坡 101 | 1x SG [2]
+  - 🇸🇬新加坡 102 | 1x SG [2]
+  - 🇸🇬新加坡 103 | 1x SG [2]
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US [2]
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US [2]
+  - 🇹🇼台湾 101 | 1x TW [3]
+  - 🇹🇼台湾 102 | 1x TW [3]
+  - 🇯🇵日本 101 | 1x JP [3]
+  - 🇯🇵日本 103 | 1x JP [3]
+  - 🇸🇬新加坡 101 | 1x SG [3]
+  - 🇸🇬新加坡 102 | 1x SG [3]
+  - 🇸🇬新加坡 103 | 1x SG [3]
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US [3]
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US [3]
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png
+  interval: 60
+  url: http://www.gstatic.com/generate_204
+- name: 香港
+  type: url-test
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+  interval: 60
+  url: http://www.gstatic.com/generate_204
+  tolerance: 50
+  proxies:
+  - 🇭🇰香港 101 | 1x HK
+  - 🇭🇰香港 102 | 1x HK
+  - 🇭🇰香港 103 | 家宽 | 1x HK
+  - 🇭🇰香港 101 | 1x HK [2]
+  - 🇭🇰香港 102 | 1x HK [2]
+  - 🇭🇰香港 103 | 家宽 | 1x HK [2]
+  - 🇭🇰香港 101 | 1x HK [3]
+  - 🇭🇰香港 102 | 1x HK [3]
+  - 🇭🇰香港 103 | 家宽 | 1x HK [3]
+- name: 台湾
+  type: url-test
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
+  interval: 60
+  url: http://www.gstatic.com/generate_204
+  tolerance: 50
+  proxies:
+  - 🇹🇼台湾 101 | 1x TW
+  - 🇹🇼台湾 102 | 1x TW
+  - 🇹🇼台湾 101 | 1x TW [2]
+  - 🇹🇼台湾 102 | 1x TW [2]
+  - 🇹🇼台湾 101 | 1x TW [3]
+  - 🇹🇼台湾 102 | 1x TW [3]
+- name: 新加坡
+  type: url-test
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+  interval: 60
+  url: http://www.gstatic.com/generate_204
+  tolerance: 50
+  proxies:
+  - 🇸🇬新加坡 101 | 1x SG
+  - 🇸🇬新加坡 102 | 1x SG
+  - 🇸🇬新加坡 103 | 1x SG
+  - 🇸🇬新加坡 101 | 1x SG [2]
+  - 🇸🇬新加坡 102 | 1x SG [2]
+  - 🇸🇬新加坡 103 | 1x SG [2]
+  - 🇸🇬新加坡 101 | 1x SG [3]
+  - 🇸🇬新加坡 102 | 1x SG [3]
+  - 🇸🇬新加坡 103 | 1x SG [3]
+- name: 日本
+  type: url-test
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+  interval: 60
+  url: http://www.gstatic.com/generate_204
+  tolerance: 50
+  proxies:
+  - 🇯🇵日本 101 | 1x JP
+  - 🇯🇵日本 103 | 1x JP
+  - 🇯🇵日本 101 | 1x JP [2]
+  - 🇯🇵日本 103 | 1x JP [2]
+  - 🇯🇵日本 101 | 1x JP [3]
+  - 🇯🇵日本 103 | 1x JP [3]
+- name: 美国
+  type: url-test
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+  interval: 60
+  url: http://www.gstatic.com/generate_204
+  tolerance: 50
+  proxies:
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US [2]
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US [2]
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US [3]
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US [3]
+- name: 其他
+  type: url-test
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png
+  interval: 60
+  url: http://www.gstatic.com/generate_204
+  tolerance: 50
+  proxies:
+  - 剩余流量：3.07 GB
+  - 剩余流量：3.42 GB
+  - 剩余流量：453.58 MB
 rule-providers:
   reject:
     type: http
@@ -626,297 +880,10 @@ rule-providers:
     url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt
     path: ./ruleset/applications.yaml
     interval: 86400
-dns:
-  enable: true
-  device-network: true
-  ipv6: false
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  default-nameserver:
-  - 223.5.5.5
-  - 119.29.29.29
-  - 1.1.1.1
-  nameserver:
-  - 223.5.5.5
-  - 223.6.6.6
-  - 119.29.29.29
-  - 180.76.76.76
-  - tls://dns.alidns.com
-  - https://dns.alidns.com/dns-query
-  - https://doh.pub/dns-query
-  fallback:
-  - https://dns.google/dns-query
-  - https://cloudflare-dns.com/dns-query
-  - https://dns.quad9.net/dns-query
-  - tls://8.8.8.8
-  - tls://1.1.1.1
-  - tls://dns.quad9.net
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-    - 240.0.0.0/4
-  nameserver-policy:
-    geosite:cn: https://dns.alidns.com/dns-query
-    domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
-proxy-groups:
-- name: 配置生成于：2026-07-08 10：20：35
-  type: select
-  proxies:
-  - DIRECT
-  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Download.png
-- name: 节点选择
-  type: select
-  proxies:
-  - 自动选择
-  - 香港
-  - 台湾
-  - 新加坡
-  - 日本
-  - 美国
-  - 其他
-  - 手动选择
-  - DIRECT
-  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png
-- name: 自动选择
-  type: url-test
-  proxies:
-  - 剩余流量：3.36 GB
-  - 🇭🇰香港 101 | 1x HK
-  - 🇭🇰香港 102 | 1x HK
-  - 🇭🇰香港 103 | 家宽 | 1x HK
-  - 🇹🇼台湾 101 | 1x TW
-  - 🇹🇼台湾 102 | 1x TW
-  - 🇯🇵日本 101 | 1x JP
-  - 🇯🇵日本 103 | 1x JP
-  - 🇸🇬新加坡 101 | 1x SG
-  - 🇸🇬新加坡 102 | 1x SG
-  - 🇸🇬新加坡 103 | 1x SG
-  - 🇺🇸美国 101 ChatGPT专用 | 1x US
-  - 🇺🇸美国 103 ChatGPT专用 | 1x US
-  - 剩余流量：3.44 GB
-  - 🇭🇰香港 101 | 1x HK [2]
-  - 🇭🇰香港 102 | 1x HK [2]
-  - 🇭🇰香港 103 | 家宽 | 1x HK [2]
-  - 🇹🇼台湾 101 | 1x TW [2]
-  - 🇹🇼台湾 102 | 1x TW [2]
-  - 🇯🇵日本 101 | 1x JP [2]
-  - 🇯🇵日本 103 | 1x JP [2]
-  - 🇸🇬新加坡 101 | 1x SG [2]
-  - 🇸🇬新加坡 102 | 1x SG [2]
-  - 🇸🇬新加坡 103 | 1x SG [2]
-  - 🇺🇸美国 101 ChatGPT专用 | 1x US [2]
-  - 🇺🇸美国 103 ChatGPT专用 | 1x US [2]
-  - 剩余流量：510.15 MB
-  - 🇭🇰香港 101 | 1x HK [3]
-  - 🇭🇰香港 102 | 1x HK [3]
-  - 🇭🇰香港 103 | 家宽 | 1x HK [3]
-  - 🇹🇼台湾 101 | 1x TW [3]
-  - 🇹🇼台湾 102 | 1x TW [3]
-  - 🇯🇵日本 101 | 1x JP [3]
-  - 🇯🇵日本 103 | 1x JP [3]
-  - 🇸🇬新加坡 101 | 1x SG [3]
-  - 🇸🇬新加坡 102 | 1x SG [3]
-  - 🇸🇬新加坡 103 | 1x SG [3]
-  - 🇺🇸美国 101 ChatGPT专用 | 1x US [3]
-  - 🇺🇸美国 103 ChatGPT专用 | 1x US [3]
-  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
-  interval: 300
-  url: http://www.apple.com/library/test/success.html
-- name: 手动选择
-  type: select
-  proxies:
-  - 剩余流量：3.36 GB
-  - 🇭🇰香港 101 | 1x HK
-  - 🇭🇰香港 102 | 1x HK
-  - 🇭🇰香港 103 | 家宽 | 1x HK
-  - 🇹🇼台湾 101 | 1x TW
-  - 🇹🇼台湾 102 | 1x TW
-  - 🇯🇵日本 101 | 1x JP
-  - 🇯🇵日本 103 | 1x JP
-  - 🇸🇬新加坡 101 | 1x SG
-  - 🇸🇬新加坡 102 | 1x SG
-  - 🇸🇬新加坡 103 | 1x SG
-  - 🇺🇸美国 101 ChatGPT专用 | 1x US
-  - 🇺🇸美国 103 ChatGPT专用 | 1x US
-  - 剩余流量：3.44 GB
-  - 🇭🇰香港 101 | 1x HK [2]
-  - 🇭🇰香港 102 | 1x HK [2]
-  - 🇭🇰香港 103 | 家宽 | 1x HK [2]
-  - 🇹🇼台湾 101 | 1x TW [2]
-  - 🇹🇼台湾 102 | 1x TW [2]
-  - 🇯🇵日本 101 | 1x JP [2]
-  - 🇯🇵日本 103 | 1x JP [2]
-  - 🇸🇬新加坡 101 | 1x SG [2]
-  - 🇸🇬新加坡 102 | 1x SG [2]
-  - 🇸🇬新加坡 103 | 1x SG [2]
-  - 🇺🇸美国 101 ChatGPT专用 | 1x US [2]
-  - 🇺🇸美国 103 ChatGPT专用 | 1x US [2]
-  - 剩余流量：510.15 MB
-  - 🇭🇰香港 101 | 1x HK [3]
-  - 🇭🇰香港 102 | 1x HK [3]
-  - 🇭🇰香港 103 | 家宽 | 1x HK [3]
-  - 🇹🇼台湾 101 | 1x TW [3]
-  - 🇹🇼台湾 102 | 1x TW [3]
-  - 🇯🇵日本 101 | 1x JP [3]
-  - 🇯🇵日本 103 | 1x JP [3]
-  - 🇸🇬新加坡 101 | 1x SG [3]
-  - 🇸🇬新加坡 102 | 1x SG [3]
-  - 🇸🇬新加坡 103 | 1x SG [3]
-  - 🇺🇸美国 101 ChatGPT专用 | 1x US [3]
-  - 🇺🇸美国 103 ChatGPT专用 | 1x US [3]
-  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
-- name: AI 工具
-  type: url-test
-  proxies:
-  - 🇹🇼台湾 101 | 1x TW
-  - 🇹🇼台湾 102 | 1x TW
-  - 🇯🇵日本 101 | 1x JP
-  - 🇯🇵日本 103 | 1x JP
-  - 🇸🇬新加坡 101 | 1x SG
-  - 🇸🇬新加坡 102 | 1x SG
-  - 🇸🇬新加坡 103 | 1x SG
-  - 🇺🇸美国 101 ChatGPT专用 | 1x US
-  - 🇺🇸美国 103 ChatGPT专用 | 1x US
-  - 🇹🇼台湾 101 | 1x TW [2]
-  - 🇹🇼台湾 102 | 1x TW [2]
-  - 🇯🇵日本 101 | 1x JP [2]
-  - 🇯🇵日本 103 | 1x JP [2]
-  - 🇸🇬新加坡 101 | 1x SG [2]
-  - 🇸🇬新加坡 102 | 1x SG [2]
-  - 🇸🇬新加坡 103 | 1x SG [2]
-  - 🇺🇸美国 101 ChatGPT专用 | 1x US [2]
-  - 🇺🇸美国 103 ChatGPT专用 | 1x US [2]
-  - 🇹🇼台湾 101 | 1x TW [3]
-  - 🇹🇼台湾 102 | 1x TW [3]
-  - 🇯🇵日本 101 | 1x JP [3]
-  - 🇯🇵日本 103 | 1x JP [3]
-  - 🇸🇬新加坡 101 | 1x SG [3]
-  - 🇸🇬新加坡 102 | 1x SG [3]
-  - 🇸🇬新加坡 103 | 1x SG [3]
-  - 🇺🇸美国 101 ChatGPT专用 | 1x US [3]
-  - 🇺🇸美国 103 ChatGPT专用 | 1x US [3]
-  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png
-  interval: 300
-  url: http://www.apple.com/library/test/success.html
-- name: 香港
-  type: url-test
-  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
-  interval: 300
-  url: http://www.apple.com/library/test/success.html
-  tolerance: 50
-  proxies:
-  - 🇭🇰香港 101 | 1x HK
-  - 🇭🇰香港 102 | 1x HK
-  - 🇭🇰香港 103 | 家宽 | 1x HK
-  - 🇭🇰香港 101 | 1x HK [2]
-  - 🇭🇰香港 102 | 1x HK [2]
-  - 🇭🇰香港 103 | 家宽 | 1x HK [2]
-  - 🇭🇰香港 101 | 1x HK [3]
-  - 🇭🇰香港 102 | 1x HK [3]
-  - 🇭🇰香港 103 | 家宽 | 1x HK [3]
-- name: 台湾
-  type: url-test
-  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
-  interval: 300
-  url: http://www.apple.com/library/test/success.html
-  tolerance: 50
-  proxies:
-  - 🇹🇼台湾 101 | 1x TW
-  - 🇹🇼台湾 102 | 1x TW
-  - 🇹🇼台湾 101 | 1x TW [2]
-  - 🇹🇼台湾 102 | 1x TW [2]
-  - 🇹🇼台湾 101 | 1x TW [3]
-  - 🇹🇼台湾 102 | 1x TW [3]
-- name: 新加坡
-  type: url-test
-  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
-  interval: 300
-  url: http://www.apple.com/library/test/success.html
-  tolerance: 50
-  proxies:
-  - 🇸🇬新加坡 101 | 1x SG
-  - 🇸🇬新加坡 102 | 1x SG
-  - 🇸🇬新加坡 103 | 1x SG
-  - 🇸🇬新加坡 101 | 1x SG [2]
-  - 🇸🇬新加坡 102 | 1x SG [2]
-  - 🇸🇬新加坡 103 | 1x SG [2]
-  - 🇸🇬新加坡 101 | 1x SG [3]
-  - 🇸🇬新加坡 102 | 1x SG [3]
-  - 🇸🇬新加坡 103 | 1x SG [3]
-- name: 日本
-  type: url-test
-  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
-  interval: 300
-  url: http://www.apple.com/library/test/success.html
-  tolerance: 50
-  proxies:
-  - 🇯🇵日本 101 | 1x JP
-  - 🇯🇵日本 103 | 1x JP
-  - 🇯🇵日本 101 | 1x JP [2]
-  - 🇯🇵日本 103 | 1x JP [2]
-  - 🇯🇵日本 101 | 1x JP [3]
-  - 🇯🇵日本 103 | 1x JP [3]
-- name: 美国
-  type: url-test
-  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
-  interval: 300
-  url: http://www.apple.com/library/test/success.html
-  tolerance: 50
-  proxies:
-  - 🇺🇸美国 101 ChatGPT专用 | 1x US
-  - 🇺🇸美国 103 ChatGPT专用 | 1x US
-  - 🇺🇸美国 101 ChatGPT专用 | 1x US [2]
-  - 🇺🇸美国 103 ChatGPT专用 | 1x US [2]
-  - 🇺🇸美国 101 ChatGPT专用 | 1x US [3]
-  - 🇺🇸美国 103 ChatGPT专用 | 1x US [3]
-- name: 其他
-  type: url-test
-  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png
-  interval: 300
-  url: http://www.apple.com/library/test/success.html
-  tolerance: 50
-  proxies:
-  - 剩余流量：3.36 GB
-  - 剩余流量：3.44 GB
-  - 剩余流量：510.15 MB
 rules:
-- DOMAIN,sinaimg.cn,DIRECT
-- DOMAIN,huan666.de,DIRECT
-- DOMAIN,free.lyclaude.site,DIRECT
-- DOMAIN,wzw.pp.ua,DIRECT
-- DOMAIN,sakuradori.dpdns.org,DIRECT
-- DOMAIN,yyds.215.im,DIRECT
-- DOMAIN,runanytime.hxi.me,DIRECT
-- DOMAIN,new-api.abrdns.com,DIRECT
-- DOMAIN,www.mofas.one,DIRECT
-- DOMAIN,chybenzun.top,DIRECT
-- DOMAIN,codexcli.club,DIRECT
-- DOMAIN,sub.100xlabs.space,DIRECT
-- DOMAIN,ai.52ccl.cn,DIRECT
-- DOMAIN,api.7r.fit,DIRECT
-- DOMAIN,newapi.imagic.eu.org,DIRECT
-- DOMAIN,metapi.lilililwan.xyz,DIRECT
-- DOMAIN,www.fuxingapi.com,DIRECT
-- DOMAIN,jianzhile.vip,DIRECT
-- DOMAIN,elysiver.h-e.top,DIRECT
-- DOMAIN,elysia.h-e.top,DIRECT
-- DOMAIN,123nhh.com,DIRECT
-- DOMAIN,muyuan.do,DIRECT
-- DOMAIN,gancaopu.com,DIRECT
-- DOMAIN,agentrouter.org,DIRECT
 - DOMAIN,sub.datapipe.top,DIRECT
 - DOMAIN,suc-store.usuc.cc,DIRECT
 - DOMAIN,sub-aylz.koyeb.app,DIRECT
-- DOMAIN,ghfast.top,DIRECT
-- DOMAIN,wget.la,DIRECT
-- DOMAIN,hk.gh-proxy.org,DIRECT
-- DOMAIN,hub.glowp.xyz,DIRECT
-- DOMAIN,gh.catmak.name,DIRECT
-- DOMAIN,fastly.jsdelivr.net,DIRECT
-- DOMAIN,cdn.jsdelivr.net,DIRECT
-- DOMAIN,cdn.gh-proxy.org,DIRECT
-- DOMAIN,g.blfrp.cn,DIRECT
 - RULE-SET,applications,DIRECT
 - DOMAIN,clash.razord.top,DIRECT
 - DOMAIN,yacd.haishan.me,DIRECT
