@@ -1,6 +1,6 @@
-# generated_at: 2026-09-27T13:50:38+08:00
+# generated_at: 2026-09-27T14:00:40+08:00
 # rules_source: https://raw.githubusercontent.com/disneys/Mihomo-Dynamic-Overseer/refs/heads/main/main.js
-# rules_mode: remote-main-js-executed
+# rules_mode: fallback-default
 # success_sources: mkshare3, abshare3, tolinkshare2, toshare5
 mixed-port: 7890
 allow-lan: false
@@ -12,6 +12,39 @@ tcp-concurrent: true
 profile:
   store-selected: true
   store-fake-ip: true
+dns:
+  enable: true
+  device-network: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
+  - 1.1.1.1
+  nameserver:
+  - 223.5.5.5
+  - 223.6.6.6
+  - 119.29.29.29
+  - 180.76.76.76
+  - tls://dns.alidns.com
+  - https://dns.alidns.com/dns-query
+  - https://doh.pub/dns-query
+  fallback:
+  - https://dns.google/dns-query
+  - https://cloudflare-dns.com/dns-query
+  - https://dns.quad9.net/dns-query
+  - tls://8.8.8.8
+  - tls://1.1.1.1
+  - tls://dns.quad9.net
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+    - 240.0.0.0/4
+  nameserver-policy:
+    geosite:cn: https://dns.alidns.com/dns-query
+    domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxies:
 - name: 剩余流量：0
   type: vless
@@ -741,108 +774,8 @@ proxies:
   reality-opts:
     public-key: 9ahErgB4NKffqiZe3HHRx7Wb5br086fhnI75YuCdN0U
     short-id: 10fa499e
-rule-providers:
-  reject:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
-    path: ./ruleset/reject.yaml
-    interval: 86400
-  icloud:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
-    path: ./ruleset/icloud.yaml
-    interval: 86400
-  apple:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
-    path: ./ruleset/apple.yaml
-    interval: 86400
-  google:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
-    path: ./ruleset/google.yaml
-    interval: 86400
-  proxy:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
-    path: ./ruleset/proxy.yaml
-    interval: 86400
-  direct:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
-    path: ./ruleset/direct.yaml
-    interval: 86400
-  private:
-    type: http
-    behavior: domain
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
-    path: ./ruleset/private.yaml
-    interval: 86400
-  cncidr:
-    type: http
-    behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
-    path: ./ruleset/cncidr.yaml
-    interval: 86400
-  lancidr:
-    type: http
-    behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
-    path: ./ruleset/lancidr.yaml
-    interval: 86400
-  telegramcidr:
-    type: http
-    behavior: ipcidr
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
-    path: ./ruleset/telegramcidr.yaml
-    interval: 86400
-  applications:
-    type: http
-    behavior: classical
-    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt
-    path: ./ruleset/applications.yaml
-    interval: 86400
-dns:
-  enable: true
-  device-network: true
-  ipv6: false
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  default-nameserver:
-  - 223.5.5.5
-  - 119.29.29.29
-  - 1.1.1.1
-  nameserver:
-  - 223.5.5.5
-  - 223.6.6.6
-  - 119.29.29.29
-  - 180.76.76.76
-  - tls://dns.alidns.com
-  - https://dns.alidns.com/dns-query
-  - https://doh.pub/dns-query
-  fallback:
-  - https://dns.google/dns-query
-  - https://cloudflare-dns.com/dns-query
-  - https://dns.quad9.net/dns-query
-  - tls://8.8.8.8
-  - tls://1.1.1.1
-  - tls://dns.quad9.net
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-    - 240.0.0.0/4
-  nameserver-policy:
-    geosite:cn: https://dns.alidns.com/dns-query
-    domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxy-groups:
-- name: 配置生成于：2026-09-27 13：50：38
+- name: 配置生成于：2026-09-27 14：00：40
   type: select
   proxies:
   - DIRECT
@@ -916,8 +849,8 @@ proxy-groups:
   - 🇹🇼台湾 101 | 1x TW [4]
   - 🇹🇼台湾 102 | 1x TW [4]
   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
-  interval: 600
-  url: http://www.apple.com/library/test/success.html
+  interval: 60
+  url: http://www.gstatic.com/generate_204
 - name: 手动选择
   type: select
   proxies:
@@ -974,11 +907,53 @@ proxy-groups:
   - 🇹🇼台湾 101 | 1x TW [4]
   - 🇹🇼台湾 102 | 1x TW [4]
   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
+- name: AI 工具
+  type: url-test
+  proxies:
+  - 🇯🇵日本 101 | 1x JP
+  - 🇯🇵日本 103 | 1x JP
+  - 🇸🇬新加坡 101 | 1x SG
+  - 🇸🇬新加坡 102 | 1x SG
+  - 🇸🇬新加坡 103 | 1x SG
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US
+  - 🇹🇼台湾 101 | 1x TW
+  - 🇹🇼台湾 102 | 1x TW
+  - 🇯🇵日本 101 | 1x JP [2]
+  - 🇯🇵日本 103 | 1x JP [2]
+  - 🇸🇬新加坡 101 | 1x SG [2]
+  - 🇸🇬新加坡 102 | 1x SG [2]
+  - 🇸🇬新加坡 103 | 1x SG [2]
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US [2]
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US [2]
+  - 🇹🇼台湾 101 | 1x TW [2]
+  - 🇹🇼台湾 102 | 1x TW [2]
+  - 🇯🇵日本 101 | 1x JP [3]
+  - 🇯🇵日本 103 | 1x JP [3]
+  - 🇸🇬新加坡 101 | 1x SG [3]
+  - 🇸🇬新加坡 102 | 1x SG [3]
+  - 🇸🇬新加坡 103 | 1x SG [3]
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US [3]
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US [3]
+  - 🇹🇼台湾 101 | 1x TW [3]
+  - 🇹🇼台湾 102 | 1x TW [3]
+  - 🇯🇵日本 101 | 1x JP [4]
+  - 🇯🇵日本 103 | 1x JP [4]
+  - 🇸🇬新加坡 101 | 1x SG [4]
+  - 🇸🇬新加坡 102 | 1x SG [4]
+  - 🇸🇬新加坡 103 | 1x SG [4]
+  - 🇺🇸美国 101 ChatGPT专用 | 1x US [4]
+  - 🇺🇸美国 103 ChatGPT专用 | 1x US [4]
+  - 🇹🇼台湾 101 | 1x TW [4]
+  - 🇹🇼台湾 102 | 1x TW [4]
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png
+  interval: 60
+  url: http://www.gstatic.com/generate_204
 - name: 香港
   type: url-test
   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
-  interval: 600
-  url: http://www.apple.com/library/test/success.html
+  interval: 60
+  url: http://www.gstatic.com/generate_204
   tolerance: 50
   proxies:
   - 🇭🇰香港 101 | 1x HK
@@ -996,8 +971,8 @@ proxy-groups:
 - name: 台湾
   type: url-test
   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
-  interval: 600
-  url: http://www.apple.com/library/test/success.html
+  interval: 60
+  url: http://www.gstatic.com/generate_204
   tolerance: 50
   proxies:
   - 🇹🇼台湾 101 | 1x TW
@@ -1011,8 +986,8 @@ proxy-groups:
 - name: 新加坡
   type: url-test
   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
-  interval: 600
-  url: http://www.apple.com/library/test/success.html
+  interval: 60
+  url: http://www.gstatic.com/generate_204
   tolerance: 50
   proxies:
   - 🇸🇬新加坡 101 | 1x SG
@@ -1030,8 +1005,8 @@ proxy-groups:
 - name: 日本
   type: url-test
   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
-  interval: 600
-  url: http://www.apple.com/library/test/success.html
+  interval: 60
+  url: http://www.gstatic.com/generate_204
   tolerance: 50
   proxies:
   - 🇯🇵日本 101 | 1x JP
@@ -1045,8 +1020,8 @@ proxy-groups:
 - name: 美国
   type: url-test
   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
-  interval: 600
-  url: http://www.apple.com/library/test/success.html
+  interval: 60
+  url: http://www.gstatic.com/generate_204
   tolerance: 50
   proxies:
   - 🇺🇸美国 101 ChatGPT专用 | 1x US
@@ -1060,26 +1035,85 @@ proxy-groups:
 - name: 其他
   type: url-test
   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png
-  interval: 600
-  url: http://www.apple.com/library/test/success.html
+  interval: 60
+  url: http://www.gstatic.com/generate_204
   tolerance: 50
   proxies:
   - 剩余流量：0
   - 剩余流量：0 [2]
   - 剩余流量：0 [3]
   - 剩余流量：0 [4]
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
+    path: ./ruleset/reject.yaml
+    interval: 86400
+  icloud:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
+    path: ./ruleset/icloud.yaml
+    interval: 86400
+  apple:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
+    path: ./ruleset/apple.yaml
+    interval: 86400
+  google:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
+    path: ./ruleset/google.yaml
+    interval: 86400
+  proxy:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+  direct:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
+    path: ./ruleset/direct.yaml
+    interval: 86400
+  private:
+    type: http
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
+    path: ./ruleset/private.yaml
+    interval: 86400
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
+    path: ./ruleset/cncidr.yaml
+    interval: 86400
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
+    path: ./ruleset/lancidr.yaml
+    interval: 86400
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
+    path: ./ruleset/telegramcidr.yaml
+    interval: 86400
+  applications:
+    type: http
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt
+    path: ./ruleset/applications.yaml
+    interval: 86400
 rules:
+- DOMAIN,sub.datapipe.top,DIRECT
 - DOMAIN,suc-store.usuc.cc,DIRECT
 - DOMAIN,sub-aylz.koyeb.app,DIRECT
-- DOMAIN,ghfast.top,DIRECT
-- DOMAIN,wget.la,DIRECT
-- DOMAIN,hk.gh-proxy.org,DIRECT
-- DOMAIN,hub.glowp.xyz,DIRECT
-- DOMAIN,gh.catmak.name,DIRECT
-- DOMAIN,fastly.jsdelivr.net,DIRECT
-- DOMAIN,cdn.jsdelivr.net,DIRECT
-- DOMAIN,cdn.gh-proxy.org,DIRECT
-- DOMAIN,g.blfrp.cn,DIRECT
 - RULE-SET,applications,DIRECT
 - DOMAIN,clash.razord.top,DIRECT
 - DOMAIN,yacd.haishan.me,DIRECT
@@ -1087,6 +1121,12 @@ rules:
 - RULE-SET,reject,REJECT
 - RULE-SET,icloud,DIRECT
 - RULE-SET,apple,DIRECT
+- GEOSITE,openai,AI 工具
+- DOMAIN-SUFFIX,chatgpt.com,AI 工具
+- DOMAIN-SUFFIX,gemini.google.com,AI 工具
+- DOMAIN-KEYWORD,generativelanguage,AI 工具
+- GEOSITE,anthropic,AI 工具
+- DOMAIN-SUFFIX,claude.ai,AI 工具
 - RULE-SET,google,节点选择
 - RULE-SET,proxy,节点选择
 - RULE-SET,direct,DIRECT
