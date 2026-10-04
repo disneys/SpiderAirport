@@ -1,10 +1,10 @@
-# generated_at: 2026-10-05T01:10:57+08:00
+# generated_at: 2026-10-05T01:20:48+08:00
 # source_file: embedded_sources
 # reference_date: 2026-10-05
 # effective_date: 2026-10-05
 # rules_source: https://raw.githubusercontent.com/disneys/Mihomo-Dynamic-Overseer/refs/heads/main/main.js
 # rules_mode: remote-main-js-executed
-# success_sources: clashnodev2ray.github.io 58/97 200, clashmetagithub.github.io -/- -, freev2rayclash.github.io -/- -, stashgithub.github.io -/- -, windowsclashnode.github.io -/- -, clashnode.github.io -/- -, clashvergerev.github.io -/- -, clash-verge.github.io -/- -, vlessgithub.github.io -/- -, node.freeclashnode.com 12/30 200, yoyapai.com 0/0 404, mibei77.com 0/0 404, chengaopan/AutoMergePublicNodes 334/472 200, peasoft/NoMoreWalls 387/522 200
+# success_sources: clashnodev2ray.github.io 59/97 200, clashmetagithub.github.io -/- -, freev2rayclash.github.io -/- -, stashgithub.github.io -/- -, windowsclashnode.github.io -/- -, clashnode.github.io -/- -, clashvergerev.github.io -/- -, clash-verge.github.io -/- -, vlessgithub.github.io -/- -, node.freeclashnode.com 11/30 200, yoyapai.com 0/0 404, mibei77.com 0/0 404, chengaopan/AutoMergePublicNodes 330/472 200, peasoft/NoMoreWalls 385/522 200
 mixed-port: 7890
 allow-lan: false
 mode: rule
@@ -33,6 +33,14 @@ proxies:
     path: /
     host: germanytest.tulnaro.ir
     mode: auto
+  skip-cert-verify: true
+  udp: true
+- name: 波兰(海外账号:shop.tgaaaa.co) {src=clashnodev2ray.github.io}
+  type: trojan
+  server: pl.tronsg.com
+  port: 443
+  password: Trojan@82164024
+  sni: pl.tronsg.com
   skip-cert-verify: true
   udp: true
 - name: 美国(海外账号:shop.tgaaaa.co)_1 {src=clashnodev2ray.github.io}
@@ -813,23 +821,6 @@ proxies:
       Host: sub-ny.995677.xyz
   skip-cert-verify: true
   udp: true
-- name: 🇭🇰_HK_中国香港 {src=node.freeclashnode.com}
-  type: vmess
-  server: 47.86.167.194
-  port: 800
-  uuid: f2c67cae-c09d-4739-947d-f5302d87a3c0
-  alterId: 0
-  cipher: auto
-  tls: false
-  skip-cert-verify: true
-  network: http
-  http-opts:
-    path:
-    - /x
-    headers:
-      Host:
-      - sjskendn.dingtalk.com
-  udp: true
 - name: 🇦🇪_AE_阿拉伯联合酋长国->🇩🇪_DE_德国 {src=node.freeclashnode.com}
   type: vless
   server: 217.60.193.1
@@ -1407,6 +1398,20 @@ proxies:
   network: ws
   port: 2053
   server: 147.78.0.186
+  servername: free.cndyw.ggff.net
+  tls: true
+  type: vless
+  uuid: 04c808e2-0b59-47b0-a54b-32fc7ef1c902
+  ws-opts:
+    headers:
+      Host: free.cndyw.ggff.net
+    path: pyip=bpb.yousef.isegaro.com
+  udp: true
+- client-fingerprint: random
+  name: 🇦🇱[www.v2nodes.com] vless-AL-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  network: ws
+  port: 443
+  server: 89.125.139.115
   servername: free.cndyw.ggff.net
   tls: true
   type: vless
@@ -2103,20 +2108,6 @@ proxies:
       Host: www.baidu.com
     path: /04235e8c-cea8-4f16-8934-b704a89b40cb.live238.m3u8
   udp: true
-- alpn:
-  - h2
-  - http/1.1
-  client-fingerprint: chrome
-  encryption: none
-  name: '🇭🇰[www.v2nodes.com] vless-HK-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  network: tcp
-  port: 11907
-  server: 195.58.144.56
-  skip-cert-verify: false
-  tls: true
-  type: vless
-  uuid: 07cb07b9-0c4d-46c1-a15a-b147511b6b07
-  udp: true
 - client-fingerprint: random
   name: 🇭🇺[www.v2nodes.com] vless-HU-6... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   network: ws
@@ -2195,6 +2186,15 @@ proxies:
   uuid: 69ac162b-1643-4acb-9f49-09d8b0fad609
   ws-opts:
     path: /RoBeRt
+  udp: true
+- encryption: none
+  name: '🇮🇹[www.v2nodes.com] vless-IT-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
+  network: tcp
+  port: 10086
+  server: 204.216.216.23
+  tls: false
+  type: vless
+  uuid: 9f0285ee-20ca-4953-bcdb-86a920652923
   udp: true
 - name: 🇮🇹[www.v2nodes.com] vless-IT-7... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   network: ws
@@ -2554,18 +2554,6 @@ proxies:
     path: /ws
   udp: true
 - client-fingerprint: random
-  grpc-opts:
-    grpc-service-name: grpc-ru
-  name: '🇷🇺[www.v2nodes.com] vless-RU-1... #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  network: grpc
-  port: 443
-  server: xsru1.ddnsfree.com
-  servername: xsru1.ddnsfree.com
-  tls: true
-  type: vless
-  uuid: c90395e6-2140-47ad-a54d-9b166729d3ef
-  udp: true
-- client-fingerprint: random
   encryption: none
   name: '🇷🇺[www.v2nodes.com] vless-RU-1... #6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   network: ws
@@ -2636,6 +2624,15 @@ proxies:
     headers:
       Host: qcswhj2.edge-cache.danfeng4.xyz
     path: /danfeng-pw8lj2-nzliwt-h23l-978coeve?ed=2560fp=chrome
+  udp: true
+- encryption: none
+  name: 🇸🇬[www.v2nodes.com] vless-SG-1... {src=chengaopan/AutoMergePublicNodes}
+  network: tcp
+  port: 16263
+  server: 47.237.74.17
+  tls: false
+  type: vless
+  uuid: c538c9dd-2e3f-488f-a8ca-ac5b7c0773f3
   udp: true
 - name: '🇸🇬[www.v2nodes.com] vless-SG-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   network: ws
@@ -2839,13 +2836,6 @@ proxies:
   type: vless
   uuid: e0ff8a9b-dad3-4671-baf4-c8d466d1eb48
   udp: true
-- cipher: chacha20-ietf-poly1305
-  name: 🇦🇱[www.v2nodes.com] ss-AL-1490... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  password: IcovoXEMyjfGjN9RenzKs0/iPaZ3vtk9fkxJ0s/R5vw=
-  port: 43558
-  server: 130.49.189.158
-  type: ss
-  udp: true
 - cipher: aes-128-gcm
   name: 🇨🇦[www.v2nodes.com] ss-CA-1584... {src=chengaopan/AutoMergePublicNodes}
   password: 1cbb3e347ee86e1980a7c731e9dd00a0
@@ -2973,13 +2963,6 @@ proxies:
   type: ss
   udp: true
 - cipher: chacha20-ietf-poly1305
-  name: 🇮🇳[www.v2nodes.com] ss-IN-1587... {src=chengaopan/AutoMergePublicNodes}
-  password: Jeoq8ujfkqZKKvACQhoqBQ1PA3uq4242
-  port: 777
-  server: 45.149.114.171
-  type: ss
-  udp: true
-- cipher: chacha20-ietf-poly1305
   name: 🇰🇷[www.v2nodes.com] ss-KR-1587... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   password: 7e68e32f-8015-4f37-9082-70e8b0b58043
   port: 8443
@@ -2998,13 +2981,6 @@ proxies:
   password: TEzjfAYq2IjtuoS
   port: 6679
   server: 141.164.45.187
-  type: ss
-  udp: true
-- cipher: aes-256-gcm
-  name: 🇲🇽[www.v2nodes.com] ss-MX-1564... {src=chengaopan/AutoMergePublicNodes}
-  password: BWyPPTusFKhGgzKh
-  port: 8388
-  server: 64.177.90.30
   type: ss
   udp: true
 - cipher: chacha20-ietf-poly1305
@@ -3061,6 +3037,13 @@ proxies:
   password: tfAcRikawhNoZAhu
   port: 8388
   server: 139.84.247.164
+  type: ss
+  udp: true
+- cipher: chacha20-ietf-poly1305
+  name: 🇿🇦[www.v2nodes.com] ss-ZA-1336... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  password: aduB9HGxQHjA2SBMRjkHX6
+  port: 443
+  server: 102.37.156.224
   type: ss
   udp: true
 - cipher: chacha20-ietf-poly1305
@@ -4018,24 +4001,6 @@ proxies:
   tls: false
   type: hysteria2
   udp: true
-- alterId: 0
-  cipher: auto
-  http-opts:
-    headers:
-      Host:
-      - sjskendn.dingtalk.com
-    method: GET
-    path:
-    - /x
-  name: '🇭🇰 香港 | HKG #13 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  network: http
-  port: 800
-  server: 47.86.167.194
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: f2c67cae-c09d-4739-947d-f5302d87a3c0
 - auth: f7d95364-607b-11ee-93af-f23c91369f2d
   name: '🇭🇰 香港 | HKG #14 {src=chengaopan/AutoMergePublicNodes}'
   password: f7d95364-607b-11ee-93af-f23c91369f2d
@@ -4176,14 +4141,6 @@ proxies:
     headers:
       Host: ccc.010304.xyz
     path: /
-- name: '🇸🇬 新加坡 | SGP #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  password: UX82473651
-  port: 443
-  server: pet-antelope.rooster465.autos
-  skip-cert-verify: true
-  sni: pet-antelope.rooster465.autos
-  type: trojan
-  udp: true
 - name: 🇸🇬 新加坡 | SGP 3 {src=chengaopan/AutoMergePublicNodes}
   password: a7c5d30b-ce9b-4e34-b5cb-66f8308790ef
   port: 1008
@@ -4479,13 +4436,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: RO_speednode_0045 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  port: 9002
-  server: 193.176.84.17
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
 - name: RO_speednode_0082 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   port: 9002
   server: 193.176.84.24
@@ -4716,6 +4666,13 @@ proxies:
   ws-opts:
     path: /
   udp: true
+- name: 🇸🇬[www.v2nodes.com] vless-SG-1... {src=peasoft/NoMoreWalls}
+  port: 16263
+  server: 47.237.74.17
+  tls: false
+  type: vless
+  uuid: c538c9dd-2e3f-488f-a8ca-ac5b7c0773f3
+  udp: true
 - encryption: none
   name: '🇸🇬[www.v2nodes.com] vless-SG-1... #4 {src=peasoft/NoMoreWalls}'
   network: ws
@@ -4760,6 +4717,13 @@ proxies:
     headers:
       Host: ty986gfazs.cainiaohub.xyz
     path: /81574b6b-c9d7-44a0-b83d-dad56e8cb530
+  udp: true
+- cipher: aes-256-gcm
+  name: 🇮🇹[www.v2nodes.com] ss-IT-1549... {src=peasoft/NoMoreWalls}
+  password: itzvpn@321
+  port: 8388
+  server: 57.131.48.45
+  type: ss
   udp: true
 - cipher: aes-256-gcm
   name: 🇰🇷[www.v2nodes.com] ss-KR-1185... {src=peasoft/NoMoreWalls}
@@ -5210,13 +5174,6 @@ proxies:
 - name: 🇸🇪SE_2|1.5MB/s {src=peasoft/NoMoreWalls}
   port: 443
   server: 217.210.129.243
-  skip-cert-verify: true
-  tls: true
-  type: http
-  udp: true
-- name: 🇩🇪DE_9|3.1MB/s {src=peasoft/NoMoreWalls}
-  port: 443
-  server: 193.233.75.115
   skip-cert-verify: true
   tls: true
   type: http
@@ -5988,7 +5945,7 @@ dns:
     geosite:cn: https://dns.alidns.com/dns-query
     domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxy-groups:
-- name: 配置生成于：2026-10-05 01：10：57
+- name: 配置生成于：2026-10-05 01：20：48
   type: select
   proxies:
   - DIRECT
@@ -6020,6 +5977,7 @@ proxy-groups:
   type: url-test
   proxies:
   - 英国(海外账号:shop.tgaaaa.co) {src=clashnodev2ray.github.io}
+  - 波兰(海外账号:shop.tgaaaa.co) {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_1 {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_2 {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_3 {src=clashnodev2ray.github.io}
@@ -6077,7 +6035,6 @@ proxy-groups:
   - 美国(海外账号:shop.tgaaaa.co)_59 {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_60 {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_61 {src=clashnodev2ray.github.io}
-  - 🇭🇰_HK_中国香港 {src=node.freeclashnode.com}
   - 🇦🇪_AE_阿拉伯联合酋长国->🇩🇪_DE_德国 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇫🇮_FI_芬兰 {src=node.freeclashnode.com}
   - 🇩🇪_DE_德国_1 {src=node.freeclashnode.com}
@@ -6131,6 +6088,7 @@ proxy-groups:
   - 🇦🇪[www.v2nodes.com] vless-AE-1... {src=chengaopan/AutoMergePublicNodes}
   - '🇦🇪[www.v2nodes.com] vless-AE-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇦🇪[www.v2nodes.com] vless-AE-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - 🇦🇱[www.v2nodes.com] vless-AL-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇦🇹[www.v2nodes.com] vless-AT-3... #2 {src=chengaopan/AutoMergePublicNodes}'
   - '🇦🇹[www.v2nodes.com] vless-AT-3... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇧🇬[www.v2nodes.com] vless-BG-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -6184,13 +6142,13 @@ proxy-groups:
   - '🇬🇷[www.v2nodes.com] vless-GR-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇬🇷[www.v2nodes.com] vless-GR-3... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇭🇰[www.v2nodes.com] vless-HK-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - '🇭🇰[www.v2nodes.com] vless-HK-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇭🇺[www.v2nodes.com] vless-HU-6... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇪[www.v2nodes.com] vless-IE-3... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🏳[www.v2nodes.com] vless- #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇮🇳[www.v2nodes.com] vless-IN-3... {src=chengaopan/AutoMergePublicNodes}
   - 🇮🇸[www.v2nodes.com] vless-IS-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇹[www.v2nodes.com] vless-IT-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - '🇮🇹[www.v2nodes.com] vless-IT-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇮🇹[www.v2nodes.com] vless-IT-7... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇮🇹[www.v2nodes.com] vless-IT-4... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇮🇹[www.v2nodes.com] vless-IT-2... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -6219,12 +6177,12 @@ proxy-groups:
   - 🇷🇴[www.v2nodes.com] vless-RO-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇷🇸[www.v2nodes.com] vless-RS-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇷🇺[www.v2nodes.com] vless-RU-1... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇷🇺[www.v2nodes.com] vless-RU-1... #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇷🇺[www.v2nodes.com] vless-RU-1... #6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇪[www.v2nodes.com] vless-SE-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇸🇪[www.v2nodes.com] vless-SE-9... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇸🇪[www.v2nodes.com] vless-SE-3... {src=chengaopan/AutoMergePublicNodes}
   - '🇸🇪[www.v2nodes.com] vless-SE-9... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
+  - 🇸🇬[www.v2nodes.com] vless-SG-1... {src=chengaopan/AutoMergePublicNodes}
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -6241,7 +6199,6 @@ proxy-groups:
   - '🇺🇸[www.v2nodes.com] vless-US-1... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇺🇸[www.v2nodes.com] vless-US-1... #4 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇺🇸[www.v2nodes.com] vless-US-1... #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - 🇦🇱[www.v2nodes.com] ss-AL-1490... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇨🇦[www.v2nodes.com] ss-CA-1584... {src=chengaopan/AutoMergePublicNodes}
   - 🇨🇦[www.v2nodes.com] ss-CA-1574... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇨🇦[www.v2nodes.com] ss-CA-1559... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -6260,11 +6217,9 @@ proxy-groups:
   - 🇭🇰[www.v2nodes.com] ss-HK-1585... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇭🇰[www.v2nodes.com] ss-HK-1576... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇩[www.v2nodes.com] ss-ID-1553... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇮🇳[www.v2nodes.com] ss-IN-1587... {src=chengaopan/AutoMergePublicNodes}
   - 🇰🇷[www.v2nodes.com] ss-KR-1587... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇰🇷[www.v2nodes.com] ss-KR-1580... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇰🇷[www.v2nodes.com] ss-KR-1185... {src=chengaopan/AutoMergePublicNodes}
-  - 🇲🇽[www.v2nodes.com] ss-MX-1564... {src=chengaopan/AutoMergePublicNodes}
   - 🇳🇴[www.v2nodes.com] ss-NO-1220... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇵🇹[www.v2nodes.com] ss-PT-1585... {src=chengaopan/AutoMergePublicNodes}
   - 🇷🇴[www.v2nodes.com] ss-RO-1298... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -6273,6 +6228,7 @@ proxy-groups:
   - 🇺🇸[www.v2nodes.com] ss-US-1586... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇺🇸[www.v2nodes.com] ss-US-1586... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇿🇦[www.v2nodes.com] ss-ZA-1534... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - 🇿🇦[www.v2nodes.com] ss-ZA-1336... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇿🇦[www.v2nodes.com] ss-ZA-1333... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🏳[www.v2nodes.com] trojan- {src=chengaopan/AutoMergePublicNodes}
   - 🇩🇪[www.v2nodes.com] trojan-DE-... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -6361,7 +6317,6 @@ proxy-groups:
   - '🇭🇰 香港 | HKG #10 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #11 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #12 {src=chengaopan/AutoMergePublicNodes}'
-  - '🇭🇰 香港 | HKG #13 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇭🇰 香港 | HKG #14 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #15 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #16 {src=chengaopan/AutoMergePublicNodes}'
@@ -6376,7 +6331,6 @@ proxy-groups:
   - '🇳🇱 荷兰 | NLD #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇳🇱 荷兰 | NLD #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬 新加坡 | SGP #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇸🇬 新加坡 | SGP #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇸🇬 新加坡 | SGP 3 {src=chengaopan/AutoMergePublicNodes}
   - '🇸🇬 新加坡 | SGP #3 {src=chengaopan/AutoMergePublicNodes}'
   - '🇸🇬 新加坡 | SGP #4 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -6408,7 +6362,6 @@ proxy-groups:
   - RO_speednode_0041 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0042 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0044 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - RO_speednode_0045 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0082 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0083 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0087 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -6433,10 +6386,12 @@ proxy-groups:
   - '🇫🇷[www.v2nodes.com] vless-FR-1... #2 {src=peasoft/NoMoreWalls}'
   - '🇬🇧[www.v2nodes.com] vless-GB-1... #5 {src=peasoft/NoMoreWalls}'
   - 🇯🇵[www.v2nodes.com] vless-JP-1... {src=peasoft/NoMoreWalls}
+  - 🇸🇬[www.v2nodes.com] vless-SG-1... {src=peasoft/NoMoreWalls}
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #4 {src=peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #5 {src=peasoft/NoMoreWalls}'
   - '🇹🇷[www.v2nodes.com] vless-TR-1... #3 {src=peasoft/NoMoreWalls}'
   - '🇹🇼[www.v2nodes.com] vless-TW-1... #1 {src=peasoft/NoMoreWalls}'
+  - 🇮🇹[www.v2nodes.com] ss-IT-1549... {src=peasoft/NoMoreWalls}
   - 🇰🇷[www.v2nodes.com] ss-KR-1185... {src=peasoft/NoMoreWalls}
   - 🇺🇸[www.v2nodes.com] ss-US-1587... {src=peasoft/NoMoreWalls}
   - 🇩🇪DE_13|2.3MB/s {src=peasoft/NoMoreWalls}
@@ -6488,7 +6443,6 @@ proxy-groups:
   - 🇨🇦CA_1|2.9MB/s {src=peasoft/NoMoreWalls}
   - 🇨🇦CA_2|2.3MB/s {src=peasoft/NoMoreWalls}
   - 🇸🇪SE_2|1.5MB/s {src=peasoft/NoMoreWalls}
-  - 🇩🇪DE_9|3.1MB/s {src=peasoft/NoMoreWalls}
   - 🇫🇷FR_3|2.6MB/s {src=peasoft/NoMoreWalls}
   - 🇷🇴RO_6|3.7MB/s {src=peasoft/NoMoreWalls}
   - 🇨🇦CA_3|3.1MB/s {src=peasoft/NoMoreWalls}
@@ -6562,6 +6516,7 @@ proxy-groups:
   type: select
   proxies:
   - 英国(海外账号:shop.tgaaaa.co) {src=clashnodev2ray.github.io}
+  - 波兰(海外账号:shop.tgaaaa.co) {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_1 {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_2 {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_3 {src=clashnodev2ray.github.io}
@@ -6619,7 +6574,6 @@ proxy-groups:
   - 美国(海外账号:shop.tgaaaa.co)_59 {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_60 {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_61 {src=clashnodev2ray.github.io}
-  - 🇭🇰_HK_中国香港 {src=node.freeclashnode.com}
   - 🇦🇪_AE_阿拉伯联合酋长国->🇩🇪_DE_德国 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇫🇮_FI_芬兰 {src=node.freeclashnode.com}
   - 🇩🇪_DE_德国_1 {src=node.freeclashnode.com}
@@ -6673,6 +6627,7 @@ proxy-groups:
   - 🇦🇪[www.v2nodes.com] vless-AE-1... {src=chengaopan/AutoMergePublicNodes}
   - '🇦🇪[www.v2nodes.com] vless-AE-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇦🇪[www.v2nodes.com] vless-AE-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - 🇦🇱[www.v2nodes.com] vless-AL-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇦🇹[www.v2nodes.com] vless-AT-3... #2 {src=chengaopan/AutoMergePublicNodes}'
   - '🇦🇹[www.v2nodes.com] vless-AT-3... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇧🇬[www.v2nodes.com] vless-BG-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -6726,13 +6681,13 @@ proxy-groups:
   - '🇬🇷[www.v2nodes.com] vless-GR-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇬🇷[www.v2nodes.com] vless-GR-3... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇭🇰[www.v2nodes.com] vless-HK-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - '🇭🇰[www.v2nodes.com] vless-HK-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇭🇺[www.v2nodes.com] vless-HU-6... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇪[www.v2nodes.com] vless-IE-3... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🏳[www.v2nodes.com] vless- #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇮🇳[www.v2nodes.com] vless-IN-3... {src=chengaopan/AutoMergePublicNodes}
   - 🇮🇸[www.v2nodes.com] vless-IS-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇹[www.v2nodes.com] vless-IT-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - '🇮🇹[www.v2nodes.com] vless-IT-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇮🇹[www.v2nodes.com] vless-IT-7... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇮🇹[www.v2nodes.com] vless-IT-4... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇮🇹[www.v2nodes.com] vless-IT-2... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -6761,12 +6716,12 @@ proxy-groups:
   - 🇷🇴[www.v2nodes.com] vless-RO-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇷🇸[www.v2nodes.com] vless-RS-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇷🇺[www.v2nodes.com] vless-RU-1... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇷🇺[www.v2nodes.com] vless-RU-1... #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇷🇺[www.v2nodes.com] vless-RU-1... #6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇪[www.v2nodes.com] vless-SE-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇸🇪[www.v2nodes.com] vless-SE-9... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇸🇪[www.v2nodes.com] vless-SE-3... {src=chengaopan/AutoMergePublicNodes}
   - '🇸🇪[www.v2nodes.com] vless-SE-9... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
+  - 🇸🇬[www.v2nodes.com] vless-SG-1... {src=chengaopan/AutoMergePublicNodes}
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -6783,7 +6738,6 @@ proxy-groups:
   - '🇺🇸[www.v2nodes.com] vless-US-1... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇺🇸[www.v2nodes.com] vless-US-1... #4 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇺🇸[www.v2nodes.com] vless-US-1... #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - 🇦🇱[www.v2nodes.com] ss-AL-1490... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇨🇦[www.v2nodes.com] ss-CA-1584... {src=chengaopan/AutoMergePublicNodes}
   - 🇨🇦[www.v2nodes.com] ss-CA-1574... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇨🇦[www.v2nodes.com] ss-CA-1559... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -6802,11 +6756,9 @@ proxy-groups:
   - 🇭🇰[www.v2nodes.com] ss-HK-1585... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇭🇰[www.v2nodes.com] ss-HK-1576... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇩[www.v2nodes.com] ss-ID-1553... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇮🇳[www.v2nodes.com] ss-IN-1587... {src=chengaopan/AutoMergePublicNodes}
   - 🇰🇷[www.v2nodes.com] ss-KR-1587... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇰🇷[www.v2nodes.com] ss-KR-1580... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇰🇷[www.v2nodes.com] ss-KR-1185... {src=chengaopan/AutoMergePublicNodes}
-  - 🇲🇽[www.v2nodes.com] ss-MX-1564... {src=chengaopan/AutoMergePublicNodes}
   - 🇳🇴[www.v2nodes.com] ss-NO-1220... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇵🇹[www.v2nodes.com] ss-PT-1585... {src=chengaopan/AutoMergePublicNodes}
   - 🇷🇴[www.v2nodes.com] ss-RO-1298... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -6815,6 +6767,7 @@ proxy-groups:
   - 🇺🇸[www.v2nodes.com] ss-US-1586... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇺🇸[www.v2nodes.com] ss-US-1586... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇿🇦[www.v2nodes.com] ss-ZA-1534... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - 🇿🇦[www.v2nodes.com] ss-ZA-1336... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇿🇦[www.v2nodes.com] ss-ZA-1333... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🏳[www.v2nodes.com] trojan- {src=chengaopan/AutoMergePublicNodes}
   - 🇩🇪[www.v2nodes.com] trojan-DE-... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -6903,7 +6856,6 @@ proxy-groups:
   - '🇭🇰 香港 | HKG #10 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #11 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #12 {src=chengaopan/AutoMergePublicNodes}'
-  - '🇭🇰 香港 | HKG #13 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇭🇰 香港 | HKG #14 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #15 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #16 {src=chengaopan/AutoMergePublicNodes}'
@@ -6918,7 +6870,6 @@ proxy-groups:
   - '🇳🇱 荷兰 | NLD #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇳🇱 荷兰 | NLD #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬 新加坡 | SGP #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇸🇬 新加坡 | SGP #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇸🇬 新加坡 | SGP 3 {src=chengaopan/AutoMergePublicNodes}
   - '🇸🇬 新加坡 | SGP #3 {src=chengaopan/AutoMergePublicNodes}'
   - '🇸🇬 新加坡 | SGP #4 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -6950,7 +6901,6 @@ proxy-groups:
   - RO_speednode_0041 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0042 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0044 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - RO_speednode_0045 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0082 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0083 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0087 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -6975,10 +6925,12 @@ proxy-groups:
   - '🇫🇷[www.v2nodes.com] vless-FR-1... #2 {src=peasoft/NoMoreWalls}'
   - '🇬🇧[www.v2nodes.com] vless-GB-1... #5 {src=peasoft/NoMoreWalls}'
   - 🇯🇵[www.v2nodes.com] vless-JP-1... {src=peasoft/NoMoreWalls}
+  - 🇸🇬[www.v2nodes.com] vless-SG-1... {src=peasoft/NoMoreWalls}
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #4 {src=peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #5 {src=peasoft/NoMoreWalls}'
   - '🇹🇷[www.v2nodes.com] vless-TR-1... #3 {src=peasoft/NoMoreWalls}'
   - '🇹🇼[www.v2nodes.com] vless-TW-1... #1 {src=peasoft/NoMoreWalls}'
+  - 🇮🇹[www.v2nodes.com] ss-IT-1549... {src=peasoft/NoMoreWalls}
   - 🇰🇷[www.v2nodes.com] ss-KR-1185... {src=peasoft/NoMoreWalls}
   - 🇺🇸[www.v2nodes.com] ss-US-1587... {src=peasoft/NoMoreWalls}
   - 🇩🇪DE_13|2.3MB/s {src=peasoft/NoMoreWalls}
@@ -7030,7 +6982,6 @@ proxy-groups:
   - 🇨🇦CA_1|2.9MB/s {src=peasoft/NoMoreWalls}
   - 🇨🇦CA_2|2.3MB/s {src=peasoft/NoMoreWalls}
   - 🇸🇪SE_2|1.5MB/s {src=peasoft/NoMoreWalls}
-  - 🇩🇪DE_9|3.1MB/s {src=peasoft/NoMoreWalls}
   - 🇫🇷FR_3|2.6MB/s {src=peasoft/NoMoreWalls}
   - 🇷🇴RO_6|3.7MB/s {src=peasoft/NoMoreWalls}
   - 🇨🇦CA_3|3.1MB/s {src=peasoft/NoMoreWalls}
@@ -7105,10 +7056,8 @@ proxy-groups:
   url: http://www.apple.com/library/test/success.html
   tolerance: 50
   proxies:
-  - 🇭🇰_HK_中国香港 {src=node.freeclashnode.com}
   - 🇨🇳_CN_中国->🇭🇰_HK_中国香港 {src=node.freeclashnode.com}
   - 🇭🇰[www.v2nodes.com] vless-HK-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - '🇭🇰[www.v2nodes.com] vless-HK-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇭🇰[www.v2nodes.com] ss-HK-1585... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇭🇰[www.v2nodes.com] ss-HK-1576... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇭🇰[www.v2nodes.com] trojan-HK-... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -7132,7 +7081,6 @@ proxy-groups:
   - '🇭🇰 香港 | HKG #10 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #11 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #12 {src=chengaopan/AutoMergePublicNodes}'
-  - '🇭🇰 香港 | HKG #13 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇭🇰 香港 | HKG #14 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #15 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #16 {src=chengaopan/AutoMergePublicNodes}'
@@ -7164,6 +7112,7 @@ proxy-groups:
   tolerance: 50
   proxies:
   - 🇸🇬[www.v2nodes.com] vless-SG {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - 🇸🇬[www.v2nodes.com] vless-SG-1... {src=chengaopan/AutoMergePublicNodes}
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -7177,11 +7126,11 @@ proxy-groups:
   - 🇸🇬 新加坡|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇸🇬 新加坡2|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇸🇬 新加坡 | SGP #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇸🇬 新加坡 | SGP #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇸🇬 新加坡 | SGP 3 {src=chengaopan/AutoMergePublicNodes}
   - '🇸🇬 新加坡 | SGP #3 {src=chengaopan/AutoMergePublicNodes}'
   - '🇸🇬 新加坡 | SGP #4 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG #2 {src=peasoft/NoMoreWalls}'
+  - 🇸🇬[www.v2nodes.com] vless-SG-1... {src=peasoft/NoMoreWalls}
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #4 {src=peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #5 {src=peasoft/NoMoreWalls}'
   - 🇸🇬SG_1|3.7MB/s {src=peasoft/NoMoreWalls}
@@ -7400,6 +7349,7 @@ proxy-groups:
   tolerance: 50
   proxies:
   - 英国(海外账号:shop.tgaaaa.co) {src=clashnodev2ray.github.io}
+  - 波兰(海外账号:shop.tgaaaa.co) {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_1 {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_2 {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_3 {src=clashnodev2ray.github.io}
@@ -7457,7 +7407,6 @@ proxy-groups:
   - 美国(海外账号:shop.tgaaaa.co)_59 {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_60 {src=clashnodev2ray.github.io}
   - 美国(海外账号:shop.tgaaaa.co)_61 {src=clashnodev2ray.github.io}
-  - 🇭🇰_HK_中国香港 {src=node.freeclashnode.com}
   - 🇦🇪_AE_阿拉伯联合酋长国->🇩🇪_DE_德国 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇫🇮_FI_芬兰 {src=node.freeclashnode.com}
   - 🇩🇪_DE_德国_1 {src=node.freeclashnode.com}
@@ -7511,6 +7460,7 @@ proxy-groups:
   - 🇦🇪[www.v2nodes.com] vless-AE-1... {src=chengaopan/AutoMergePublicNodes}
   - '🇦🇪[www.v2nodes.com] vless-AE-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇦🇪[www.v2nodes.com] vless-AE-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - 🇦🇱[www.v2nodes.com] vless-AL-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇦🇹[www.v2nodes.com] vless-AT-3... #2 {src=chengaopan/AutoMergePublicNodes}'
   - '🇦🇹[www.v2nodes.com] vless-AT-3... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇧🇬[www.v2nodes.com] vless-BG-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -7564,13 +7514,13 @@ proxy-groups:
   - '🇬🇷[www.v2nodes.com] vless-GR-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇬🇷[www.v2nodes.com] vless-GR-3... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇭🇰[www.v2nodes.com] vless-HK-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - '🇭🇰[www.v2nodes.com] vless-HK-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇭🇺[www.v2nodes.com] vless-HU-6... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇪[www.v2nodes.com] vless-IE-3... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🏳[www.v2nodes.com] vless- #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇮🇳[www.v2nodes.com] vless-IN-3... {src=chengaopan/AutoMergePublicNodes}
   - 🇮🇸[www.v2nodes.com] vless-IS-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇹[www.v2nodes.com] vless-IT-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - '🇮🇹[www.v2nodes.com] vless-IT-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇮🇹[www.v2nodes.com] vless-IT-7... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇮🇹[www.v2nodes.com] vless-IT-4... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇮🇹[www.v2nodes.com] vless-IT-2... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -7599,12 +7549,12 @@ proxy-groups:
   - 🇷🇴[www.v2nodes.com] vless-RO-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇷🇸[www.v2nodes.com] vless-RS-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇷🇺[www.v2nodes.com] vless-RU-1... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇷🇺[www.v2nodes.com] vless-RU-1... #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇷🇺[www.v2nodes.com] vless-RU-1... #6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇪[www.v2nodes.com] vless-SE-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇸🇪[www.v2nodes.com] vless-SE-9... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇸🇪[www.v2nodes.com] vless-SE-3... {src=chengaopan/AutoMergePublicNodes}
   - '🇸🇪[www.v2nodes.com] vless-SE-9... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
+  - 🇸🇬[www.v2nodes.com] vless-SG-1... {src=chengaopan/AutoMergePublicNodes}
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -7621,7 +7571,6 @@ proxy-groups:
   - '🇺🇸[www.v2nodes.com] vless-US-1... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇺🇸[www.v2nodes.com] vless-US-1... #4 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇺🇸[www.v2nodes.com] vless-US-1... #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - 🇦🇱[www.v2nodes.com] ss-AL-1490... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇨🇦[www.v2nodes.com] ss-CA-1584... {src=chengaopan/AutoMergePublicNodes}
   - 🇨🇦[www.v2nodes.com] ss-CA-1574... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇨🇦[www.v2nodes.com] ss-CA-1559... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -7640,11 +7589,9 @@ proxy-groups:
   - 🇭🇰[www.v2nodes.com] ss-HK-1585... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇭🇰[www.v2nodes.com] ss-HK-1576... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇩[www.v2nodes.com] ss-ID-1553... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇮🇳[www.v2nodes.com] ss-IN-1587... {src=chengaopan/AutoMergePublicNodes}
   - 🇰🇷[www.v2nodes.com] ss-KR-1587... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇰🇷[www.v2nodes.com] ss-KR-1580... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇰🇷[www.v2nodes.com] ss-KR-1185... {src=chengaopan/AutoMergePublicNodes}
-  - 🇲🇽[www.v2nodes.com] ss-MX-1564... {src=chengaopan/AutoMergePublicNodes}
   - 🇳🇴[www.v2nodes.com] ss-NO-1220... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇵🇹[www.v2nodes.com] ss-PT-1585... {src=chengaopan/AutoMergePublicNodes}
   - 🇷🇴[www.v2nodes.com] ss-RO-1298... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -7653,6 +7600,7 @@ proxy-groups:
   - 🇺🇸[www.v2nodes.com] ss-US-1586... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇺🇸[www.v2nodes.com] ss-US-1586... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇿🇦[www.v2nodes.com] ss-ZA-1534... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - 🇿🇦[www.v2nodes.com] ss-ZA-1336... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇿🇦[www.v2nodes.com] ss-ZA-1333... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🏳[www.v2nodes.com] trojan- {src=chengaopan/AutoMergePublicNodes}
   - 🇩🇪[www.v2nodes.com] trojan-DE-... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -7741,7 +7689,6 @@ proxy-groups:
   - '🇭🇰 香港 | HKG #10 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #11 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #12 {src=chengaopan/AutoMergePublicNodes}'
-  - '🇭🇰 香港 | HKG #13 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇭🇰 香港 | HKG #14 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #15 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #16 {src=chengaopan/AutoMergePublicNodes}'
@@ -7756,7 +7703,6 @@ proxy-groups:
   - '🇳🇱 荷兰 | NLD #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇳🇱 荷兰 | NLD #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬 新加坡 | SGP #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇸🇬 新加坡 | SGP #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇸🇬 新加坡 | SGP 3 {src=chengaopan/AutoMergePublicNodes}
   - '🇸🇬 新加坡 | SGP #3 {src=chengaopan/AutoMergePublicNodes}'
   - '🇸🇬 新加坡 | SGP #4 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -7788,7 +7734,6 @@ proxy-groups:
   - RO_speednode_0041 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0042 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0044 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - RO_speednode_0045 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0082 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0083 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0087 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -7812,10 +7757,12 @@ proxy-groups:
   - '🇫🇷[www.v2nodes.com] vless-FR-1... #2 {src=peasoft/NoMoreWalls}'
   - '🇬🇧[www.v2nodes.com] vless-GB-1... #5 {src=peasoft/NoMoreWalls}'
   - 🇯🇵[www.v2nodes.com] vless-JP-1... {src=peasoft/NoMoreWalls}
+  - 🇸🇬[www.v2nodes.com] vless-SG-1... {src=peasoft/NoMoreWalls}
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #4 {src=peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #5 {src=peasoft/NoMoreWalls}'
   - '🇹🇷[www.v2nodes.com] vless-TR-1... #3 {src=peasoft/NoMoreWalls}'
   - '🇹🇼[www.v2nodes.com] vless-TW-1... #1 {src=peasoft/NoMoreWalls}'
+  - 🇮🇹[www.v2nodes.com] ss-IT-1549... {src=peasoft/NoMoreWalls}
   - 🇰🇷[www.v2nodes.com] ss-KR-1185... {src=peasoft/NoMoreWalls}
   - 🇺🇸[www.v2nodes.com] ss-US-1587... {src=peasoft/NoMoreWalls}
   - 🇩🇪DE_13|2.3MB/s {src=peasoft/NoMoreWalls}
@@ -7825,7 +7772,6 @@ proxy-groups:
   - 🇩🇪DE_6|2.3MB/s {src=peasoft/NoMoreWalls}
   - 🇩🇪DE_7|3.3MB/s {src=peasoft/NoMoreWalls}
   - 🇩🇪DE_8|3.0MB/s {src=peasoft/NoMoreWalls}
-  - 🇩🇪DE_9|3.1MB/s {src=peasoft/NoMoreWalls}
   - 🇩🇪DE_12|2.7MB/s {src=peasoft/NoMoreWalls}
   - RO_speednode_0126 {src=peasoft/NoMoreWalls}
   - '🇩🇪 德国 | DEU #1 {src=peasoft/NoMoreWalls}'
@@ -7844,7 +7790,6 @@ proxy-groups:
   url: http://www.apple.com/library/test/success.html
   tolerance: 50
   proxies:
-  - 🇭🇰_HK_中国香港 {src=node.freeclashnode.com}
   - 🇦🇪_AE_阿拉伯联合酋长国->🇩🇪_DE_德国 {src=node.freeclashnode.com}
   - 🇺🇸_US_美国->🇫🇮_FI_芬兰 {src=node.freeclashnode.com}
   - 🇩🇪_DE_德国_1 {src=node.freeclashnode.com}
@@ -7951,6 +7896,7 @@ proxy-groups:
   - 🇦🇪[www.v2nodes.com] vless-AE-1... {src=chengaopan/AutoMergePublicNodes}
   - '🇦🇪[www.v2nodes.com] vless-AE-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇦🇪[www.v2nodes.com] vless-AE-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - 🇦🇱[www.v2nodes.com] vless-AL-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇦🇹[www.v2nodes.com] vless-AT-3... #2 {src=chengaopan/AutoMergePublicNodes}'
   - '🇦🇹[www.v2nodes.com] vless-AT-3... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇧🇬[www.v2nodes.com] vless-BG-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -8004,13 +7950,13 @@ proxy-groups:
   - '🇬🇷[www.v2nodes.com] vless-GR-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇬🇷[www.v2nodes.com] vless-GR-3... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇭🇰[www.v2nodes.com] vless-HK-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - '🇭🇰[www.v2nodes.com] vless-HK-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇭🇺[www.v2nodes.com] vless-HU-6... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇪[www.v2nodes.com] vless-IE-3... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🏳[www.v2nodes.com] vless- #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇮🇳[www.v2nodes.com] vless-IN-3... {src=chengaopan/AutoMergePublicNodes}
   - 🇮🇸[www.v2nodes.com] vless-IS-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇹[www.v2nodes.com] vless-IT-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - '🇮🇹[www.v2nodes.com] vless-IT-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇮🇹[www.v2nodes.com] vless-IT-7... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇮🇹[www.v2nodes.com] vless-IT-4... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇮🇹[www.v2nodes.com] vless-IT-2... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -8039,12 +7985,12 @@ proxy-groups:
   - 🇷🇴[www.v2nodes.com] vless-RO-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇷🇸[www.v2nodes.com] vless-RS-4... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇷🇺[www.v2nodes.com] vless-RU-1... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇷🇺[www.v2nodes.com] vless-RU-1... #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇷🇺[www.v2nodes.com] vless-RU-1... #6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇪[www.v2nodes.com] vless-SE-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇸🇪[www.v2nodes.com] vless-SE-9... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇸🇪[www.v2nodes.com] vless-SE-3... {src=chengaopan/AutoMergePublicNodes}
   - '🇸🇪[www.v2nodes.com] vless-SE-9... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
+  - 🇸🇬[www.v2nodes.com] vless-SG-1... {src=chengaopan/AutoMergePublicNodes}
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬[www.v2nodes.com] vless-SG-1... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -8061,7 +8007,6 @@ proxy-groups:
   - '🇺🇸[www.v2nodes.com] vless-US-1... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇺🇸[www.v2nodes.com] vless-US-1... #4 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇺🇸[www.v2nodes.com] vless-US-1... #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - 🇦🇱[www.v2nodes.com] ss-AL-1490... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇨🇦[www.v2nodes.com] ss-CA-1584... {src=chengaopan/AutoMergePublicNodes}
   - 🇨🇦[www.v2nodes.com] ss-CA-1574... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇨🇦[www.v2nodes.com] ss-CA-1559... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -8080,11 +8025,9 @@ proxy-groups:
   - 🇭🇰[www.v2nodes.com] ss-HK-1585... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇭🇰[www.v2nodes.com] ss-HK-1576... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇩[www.v2nodes.com] ss-ID-1553... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇮🇳[www.v2nodes.com] ss-IN-1587... {src=chengaopan/AutoMergePublicNodes}
   - 🇰🇷[www.v2nodes.com] ss-KR-1587... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇰🇷[www.v2nodes.com] ss-KR-1580... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇰🇷[www.v2nodes.com] ss-KR-1185... {src=chengaopan/AutoMergePublicNodes}
-  - 🇲🇽[www.v2nodes.com] ss-MX-1564... {src=chengaopan/AutoMergePublicNodes}
   - 🇳🇴[www.v2nodes.com] ss-NO-1220... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇵🇹[www.v2nodes.com] ss-PT-1585... {src=chengaopan/AutoMergePublicNodes}
   - 🇷🇴[www.v2nodes.com] ss-RO-1298... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -8093,6 +8036,7 @@ proxy-groups:
   - 🇺🇸[www.v2nodes.com] ss-US-1586... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇺🇸[www.v2nodes.com] ss-US-1586... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇿🇦[www.v2nodes.com] ss-ZA-1534... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - 🇿🇦[www.v2nodes.com] ss-ZA-1336... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇿🇦[www.v2nodes.com] ss-ZA-1333... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🏳[www.v2nodes.com] trojan- {src=chengaopan/AutoMergePublicNodes}
   - 🇩🇪[www.v2nodes.com] trojan-DE-... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -8181,7 +8125,6 @@ proxy-groups:
   - '🇭🇰 香港 | HKG #10 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #11 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #12 {src=chengaopan/AutoMergePublicNodes}'
-  - '🇭🇰 香港 | HKG #13 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇭🇰 香港 | HKG #14 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #15 {src=chengaopan/AutoMergePublicNodes}'
   - '🇭🇰 香港 | HKG #16 {src=chengaopan/AutoMergePublicNodes}'
@@ -8196,7 +8139,6 @@ proxy-groups:
   - '🇳🇱 荷兰 | NLD #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇳🇱 荷兰 | NLD #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇸🇬 新加坡 | SGP #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇸🇬 新加坡 | SGP #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇸🇬 新加坡 | SGP 3 {src=chengaopan/AutoMergePublicNodes}
   - '🇸🇬 新加坡 | SGP #3 {src=chengaopan/AutoMergePublicNodes}'
   - '🇸🇬 新加坡 | SGP #4 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -8228,7 +8170,6 @@ proxy-groups:
   - RO_speednode_0041 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0042 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0044 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - RO_speednode_0045 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0082 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0083 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - RO_speednode_0087 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -8254,7 +8195,6 @@ proxy-groups:
   - 俄罗斯(海外账号:shop.tgaaaa.co)_5 {src=clashnodev2ray.github.io}
   - Telegram 🆔@cnetvpn 🇷🇺 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇷🇺[www.v2nodes.com] vless-RU-1... #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇷🇺[www.v2nodes.com] vless-RU-1... #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇷🇺[www.v2nodes.com] vless-RU-1... #6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇷🇺RU_2|3.4MB/s {src=peasoft/NoMoreWalls}
   - '🇷🇺 俄罗斯 | RUS #1 {src=peasoft/NoMoreWalls}'
@@ -8272,7 +8212,6 @@ proxy-groups:
   - '@KAFING_2 #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇺🇸US-🚀@VPNine1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇳[www.v2nodes.com] vless-IN-3... {src=chengaopan/AutoMergePublicNodes}
-  - 🇮🇳[www.v2nodes.com] ss-IN-1587... {src=chengaopan/AutoMergePublicNodes}
 - name: 土耳其
   type: url-test
   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Turkey.png
