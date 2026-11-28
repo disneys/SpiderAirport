@@ -1,10 +1,10 @@
-# generated_at: 2026-11-28T08:30:51+08:00
+# generated_at: 2026-11-28T08:40:55+08:00
 # source_file: embedded_sources
 # reference_date: 2026-11-28
 # effective_date: 2026-11-28
 # rules_source: https://raw.githubusercontent.com/disneys/Mihomo-Dynamic-Overseer/refs/heads/main/main.js
 # rules_mode: remote-main-js-executed
-# success_sources: clashnodev2ray.github.io 159/197 200, clashmetagithub.github.io -/- -, freev2rayclash.github.io -/- -, stashgithub.github.io -/- -, windowsclashnode.github.io -/- -, clashnode.github.io -/- -, clashvergerev.github.io -/- -, clash-verge.github.io -/- -, vlessgithub.github.io -/- -, node.freeclashnode.com 1817/2015 200, yoyapai.com 0/0 404, mibei77.com 0/0 404, chengaopan/AutoMergePublicNodes 325/342 200, peasoft/NoMoreWalls 247/267 200
+# success_sources: clashnodev2ray.github.io 159/197 200, clashmetagithub.github.io -/- -, freev2rayclash.github.io -/- -, stashgithub.github.io -/- -, windowsclashnode.github.io -/- -, clashnode.github.io -/- -, clashvergerev.github.io -/- -, clash-verge.github.io -/- -, vlessgithub.github.io -/- -, node.freeclashnode.com 1821/2015 200, yoyapai.com 0/0 404, mibei77.com 0/0 404, chengaopan/AutoMergePublicNodes 317/342 200, peasoft/NoMoreWalls 239/267 200
 mixed-port: 7890
 allow-lan: false
 mode: rule
@@ -1432,16 +1432,6 @@ proxies:
   servername: ruhongmicro2.gangplatform.com
   tls: false
   udp: true
-- type: anytls
-  name: 🇹🇼TW台湾丨yoyapai.com {src=node.freeclashnode.com}
-  server: rtifgjdr.df6h451rh.xin
-  port: 443
-  password: 2902c46c8493
-  udp: true
-  tls: true
-  servername: docs.microsoft.com
-  sni: docs.microsoft.com
-  skip-cert-verify: false
 - type: ss
   name: 🇩🇪DE德国丨yoyapai.com {src=node.freeclashnode.com}
   server: 47.254.128.109
@@ -2436,6 +2426,16 @@ proxies:
     path: /workspace/52eac742269e976f
     host: edge-d6d4b0609348.eu-cdn391.com
     mode: stream-one
+- type: vmess
+  name: 🇩🇪DE德国 {src=node.freeclashnode.com}
+  server: 23.165.200.150
+  port: 52080
+  uuid: 672cdade-bb05-4c86-b578-e5d09b79524a
+  cipher: auto
+  alterId: 0
+  udp: true
+  tls: false
+  skip-cert-verify: false
 - type: vless
   name: ❓未知丨yoyapai.com (43) {src=node.freeclashnode.com}
   server: api.ferrin.uk
@@ -2541,25 +2541,21 @@ proxies:
   network: grpc
   grpc-opts:
     grpc-service-name: Aparat-stream
-- type: vless
-  name: ❓未知丨yoyapai.com (49) {src=node.freeclashnode.com}
-  server: 185.14.29.29
-  port: 443
-  uuid: 6b1607f1-3a08-4681-8abd-83663a8155e7
+- type: vmess
+  name: 🇰🇷KR韩国 {src=node.freeclashnode.com}
+  server: dp8yk.xiaoyan.io
+  port: 16616
+  uuid: 904f0569-8695-466f-97cf-0de2face1b46
+  cipher: auto
+  alterId: 0
   udp: true
-  tls: true
-  servername: static.gcore.pro
-  sni: static.gcore.pro
+  tls: false
   skip-cert-verify: false
-  client-fingerprint: chrome
-  reality-opts:
-    public-key: bPxKgZHO13GJGKjbHz0BVnsw8UIcOjz2yz8VCgGv5BI
-    short-id: 6fce2d08
-  network: xhttp
-  xhttp-opts:
-    path: /js/libs
-    host: static.gcore.pro
-    mode: auto
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: f9309cc88637c26f552a1a64fb311cae.mobgslb.tbcache.com
 - type: vless
   name: ❓未知丨yoyapai.com (51) {src=node.freeclashnode.com}
   server: 104.17.136.102
@@ -3220,15 +3216,6 @@ proxies:
     headers:
       Host: imanvipreserved.pages.dev
 - type: ss
-  name: KR韩国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
-  server: 211.233.33.228
-  port: 8388
-  password: qpowi_vip_tunnel_2026_secure
-  cipher: aes-256-gcm
-  udp: true
-  tls: false
-  skip-cert-verify: false
-- type: ss
   name: JP日本(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   server: 8.211.129.80
   port: 5555
@@ -3745,6 +3732,14 @@ proxies:
   type: socks5
   username: JzufiJ62
   udp: true
+- name: 🇰🇷KR_43|393KB/s|R002-260618 [01246ba37aaa] {src=node.freeclashnode.com}
+  password: VDJjbE0wUWxNMFE2Og
+  port: 1090
+  server: 121.169.46.116
+  sub_tag: R002-260618
+  type: socks5
+  udp: true
+  username: VDJjbE0wUWxNMFE2Og
 - name: 🇺🇸US_269|925KB/s|M003-260806 [012980e5465f] {src=node.freeclashnode.com}
   client-fingerprint: chrome
   password: 242a3d8eee5e4ed1a6bfa4141d549a25
@@ -7872,6 +7867,14 @@ proxies:
   xudp: true
   packet-encoding: xudp
   servername: in-152.67.8.205-0250
+- name: 🇰🇷KR_42|289KB/s|R002-260618 [3805dcb92455] {src=node.freeclashnode.com}
+  password: Og%3D%3D
+  port: 1090
+  server: 121.169.46.116
+  sub_tag: R002-260618
+  type: socks5
+  udp: true
+  username: Og%3D%3D
 - name: 🇸🇬SG_72|384KB/s|M003-260806 [382aed36e1f5] {src=node.freeclashnode.com}
   network: ws
   port: 80
@@ -9111,17 +9114,6 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 🇯🇵JP_16|116KB/s|K001-260618 [4a732b04dd53] {src=node.freeclashnode.com}
-  password: 'null'
-  port: 443
-  server: fan.571589.xyz
-  skip-cert-verify: true
-  sub_tag: K001-260618
-  tls: true
-  type: http
-  username: 'null'
-  udp: true
-  sni: fan.571589.xyz
 - name: 🇫🇷FR_73|3.7MB/s|M003-260806 [4aaafff0fd6c] {src=node.freeclashnode.com}
   client-fingerprint: chrome
   network: ws
@@ -9332,15 +9324,6 @@ proxies:
   type: socks5
   username: ks878449260d
   udp: true
-- name: 🇯🇵JP_7|83KB/s|R002-260618 [4dcb2da810e7] {src=node.freeclashnode.com}
-  port: 443
-  server: fan.571589.xyz
-  skip-cert-verify: false
-  sub_tag: R002-260618
-  tls: true
-  type: http
-  udp: true
-  sni: fan.571589.xyz
 - name: 🇳🇱NL_260|4.9MB/s [4e3c585c028c] {src=node.freeclashnode.com}
   password: 'null'
   port: 19362
@@ -9573,6 +9556,14 @@ proxies:
   sni: www.indyourperfectremotetechjobfromthecomfortofhome.com
   sub_tag: C002-260622
   type: trojan
+  udp: true
+- name: 🇰🇷KR_39|176KB/s|R002-260618 [52c8cd54edd3] {src=node.freeclashnode.com}
+  port: 1090
+  server: 121.169.46.116
+  sub_tag: R002-260618
+  tls: false
+  type: socks5
+  username: Og%3D%3D
   udp: true
 - name: 🇺🇸US_434|1.2MB/s|K001-260618 [52f0e9977e29] {src=node.freeclashnode.com}
   alterId: '0'
@@ -9810,6 +9801,13 @@ proxies:
   type: trojan
   udp: true
   network: tcp
+- name: 🇸🇬SG_73|764KB/s [56445f611f5d] {src=node.freeclashnode.com}
+  port: 8443
+  server: 66.42.49.247
+  skip-cert-verify: true
+  tls: true
+  type: http
+  udp: true
 - name: 🇳🇱NL_86|4.0MB/s|R002-260618 [565ec6032e34] {src=node.freeclashnode.com}
   port: 9002
   server: 84.17.47.126
@@ -11674,6 +11672,23 @@ proxies:
   sub_tag: A004-260618
   type: trojan
   udp: true
+- name: 🇦🇪AE_3|803KB/s|T001-260618 [7072ee01bc9f] {src=node.freeclashnode.com}
+  network: ws
+  port: 22573
+  server: uae.unixzone.us
+  sub_tag: T001-260618
+  type: vless
+  udp: true
+  uuid: 39947382-3212-41c9-bc3a-589574ac8b23
+  ws-opts:
+    headers:
+      Host: uae.unixzone.us
+      User-Agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.30 (KHTML, like Gecko)
+        Chrome/12.0.742.100 Safari/534.30
+    path: /
+  xudp: true
+  packet-encoding: xudp
+  servername: uae.unixzone.us
 - name: 🇸🇬SG_30|417KB/s|K001-260618 [70b4ebb2f0c1] {src=node.freeclashnode.com}
   password: None
   port: 443
@@ -13560,6 +13575,23 @@ proxies:
   sub_tag: M003-260806
   type: trojan
   udp: true
+- name: 🇦🇪AE_4|895KB/s|M003-260806 [8b17dfea8ac8] {src=node.freeclashnode.com}
+  network: ws
+  port: 22573
+  server: 84.235.244.108
+  sub_tag: M003-260806
+  type: vless
+  udp: true
+  uuid: 39947382-3212-41c9-bc3a-589574ac8b23
+  ws-opts:
+    headers:
+      Host: uae.unixzone.us
+      User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/70.0.3538.77 Safari/537.36
+    path: /
+  xudp: true
+  packet-encoding: xudp
+  servername: uae.unixzone.us
 - name: 🇭🇰HK_81|414KB/s|M003-260806 [8b1b88dafe6e] {src=node.freeclashnode.com}
   client-fingerprint: chrome
   password: '12012'
@@ -20779,6 +20811,23 @@ proxies:
   server: 82.38.31.219
   type: ss
   udp: true
+- name: 🇦🇪AE_5|647KB/s|A003-260618 [f7942eacddc7] {src=node.freeclashnode.com}
+  encryption: none
+  network: ws
+  port: 22573
+  server: uae.unixzone.us
+  sub_tag: A003-260618
+  type: vless
+  udp: true
+  uuid: 39947382-3212-41c9-bc3a-589574ac8b23
+  ws-opts:
+    headers:
+      Host: uae.unixzone.us
+      User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/41.0.2272.118 Safari/537.36
+    path: /
+  xudp: true
+  packet-encoding: xudp
 - name: 🇺🇸US_511|607KB/s|B007-260618 [f7b00260ac13] {src=node.freeclashnode.com}
   client-fingerprint: chrome
   password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
@@ -22303,6 +22352,19 @@ proxies:
       Host: 95.174.68.188
     path: /vless
   udp: true
+- name: '🇦🇪[www.v2nodes.com] vless-AE-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
+  network: ws
+  port: 22573
+  server: 84.235.244.108
+  servername: uae.unixzone.us
+  tls: false
+  type: vless
+  uuid: 39947382-3212-41c9-bc3a-589574ac8b23
+  ws-opts:
+    headers:
+      Host: uae.unixzone.us
+    path: /
+  udp: true
 - name: ??[www.v2nodes.com] vless-AT-3... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   network: ws
   port: 80
@@ -23235,13 +23297,6 @@ proxies:
   server: 149.22.87.241
   type: ss
   udp: true
-- cipher: aes-256-gcm
-  name: 🇰🇷[www.v2nodes.com] ss-KR-1624... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  password: qpowi_vip_tunnel_2026_secure
-  port: 8388
-  server: 211.233.33.228
-  type: ss
-  udp: true
 - cipher: aes-128-gcm
   name: '🇱🇻 拉脱维亚 | LVA #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   password: EE2VWeKohIwTx6HGOo1X2p1jjNAUfRWS
@@ -23484,15 +23539,6 @@ proxies:
   server: er8u54dh.df6h451rh.xin
   skip-cert-verify: true
   sni: px.ads.linkedin.com
-  type: anytls
-  udp: true
-- client-fingerprint: chrome
-  name: 🇹🇼 🇨🇳 台湾 | TWN 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  password: 2902c46c8493
-  port: 443
-  server: rtifgjdr.df6h451rh.xin
-  skip-cert-verify: true
-  sni: docs.microsoft.com
   type: anytls
   udp: true
 - client-fingerprint: chrome
@@ -24266,41 +24312,11 @@ proxies:
     path: /announcement?ed=2048
 - alterId: 1
   cipher: auto
-  name: 🇯🇵 日本 | JPN {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  port: 11777
-  server: lkqf7pi-g05.jp02-e3-vm0.entry.fr0528.art
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 8ba17b4b-600f-34d1-b082-548a7bc05d1e
-- alterId: 1
-  cipher: auto
   name: 🇯🇵 日本 | JPN 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   port: 46486
   server: liqzf4z-g05.jp05-h6-vm0.entry.fr0528.art
   skip-cert-verify: true
   tls: false
-  type: vmess
-  udp: true
-  uuid: 8ba17b4b-600f-34d1-b082-548a7bc05d1e
-- alterId: 1
-  cipher: auto
-  name: 🇯🇵 日本 | JPN 5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  port: 28787
-  server: 2k2ff4t-g05.jp07-sh-vm0.entry.fr0528.art
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: 8ba17b4b-600f-34d1-b082-548a7bc05d1e
-- alterId: 1
-  cipher: auto
-  name: 🇯🇵 日本 | JPN 6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  port: 21585
-  server: 932zfpi-g05.jp01-nn-vm0.entry.fr0528.art
-  skip-cert-verify: true
-  tls: true
   type: vmess
   udp: true
   uuid: 8ba17b4b-600f-34d1-b082-548a7bc05d1e
@@ -24367,14 +24383,6 @@ proxies:
   type: vless
   udp: true
   uuid: 38308ff1-5aa9-494f-a25a-0f2870d56b3e
-- name: 🇹🇼 🇨🇳 台湾 | TWN {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  password: 0324fbc29561
-  port: 443
-  server: mfjh645drfj1dr6j5.df6h451rh.xin
-  skip-cert-verify: true
-  sni: px.ads.linkedin.com
-  type: anytls
-  udp: true
 - client-fingerprint: firefox
   name: '🇺🇸 美国 | USA #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   network: xhttp
@@ -24405,41 +24413,11 @@ proxies:
     path: /
 - alterId: 1
   cipher: auto
-  name: '🇯🇵 日本 | JPN #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  network: tcp
-  port: 11777
-  server: lkqf7pi-g05.jp02-e3-vm0.entry.fr0528.art
-  tls: false
-  type: vmess
-  uuid: 8ba17b4b-600f-34d1-b082-548a7bc05d1e
-  udp: true
-- alterId: 1
-  cipher: auto
   name: '🇯🇵 日本 | JPN #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   network: tcp
   port: 46486
   server: liqzf4z-g05.jp05-h6-vm0.entry.fr0528.art
   tls: false
-  type: vmess
-  uuid: 8ba17b4b-600f-34d1-b082-548a7bc05d1e
-  udp: true
-- alterId: 1
-  cipher: auto
-  name: '🇯🇵 日本 | JPN #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  network: tcp
-  port: 28787
-  server: 2k2ff4t-g05.jp07-sh-vm0.entry.fr0528.art
-  tls: false
-  type: vmess
-  uuid: 8ba17b4b-600f-34d1-b082-548a7bc05d1e
-  udp: true
-- alterId: 1
-  cipher: auto
-  name: '🇯🇵 日本 | JPN #6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  network: tcp
-  port: 21585
-  server: 932zfpi-g05.jp01-nn-vm0.entry.fr0528.art
-  tls: true
   type: vmess
   uuid: 8ba17b4b-600f-34d1-b082-548a7bc05d1e
   udp: true
@@ -24759,7 +24737,7 @@ dns:
     geosite:cn: https://dns.alidns.com/dns-query
     domain:sub.datapipe.top,suc-store.usuc.cc,sub-aylz.koyeb.app: 119.29.29.29
 proxy-groups:
-- name: 配置生成于：2026-11-28 08：30：51
+- name: 配置生成于：2026-11-28 08：40：55
   type: select
   proxies:
   - DIRECT
@@ -24949,7 +24927,6 @@ proxy-groups:
   - 美国(购买账号:shop.tgaaaa.com)_46 {src=clashnodev2ray.github.io}
   - 西班牙(购买账号:shop.tgaaaa.com)_9 {src=clashnodev2ray.github.io}
   - 俄罗斯(购买账号:shop.tgaaaa.com)_11 {src=clashnodev2ray.github.io}
-  - 🇹🇼TW台湾丨yoyapai.com {src=node.freeclashnode.com}
   - 🇩🇪DE德国丨yoyapai.com {src=node.freeclashnode.com}
   - 🇭🇰HK香港丨yoyapai.com {src=node.freeclashnode.com}
   - 🇬🇧GB英国丨yoyapai.com {src=node.freeclashnode.com}
@@ -25022,6 +24999,7 @@ proxy-groups:
   - 🇸🇬SG新加坡丨yoyapai.com (2) {src=node.freeclashnode.com}
   - 🇨🇦CA加拿大 {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (42) {src=node.freeclashnode.com}
+  - 🇩🇪DE德国 {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (43) {src=node.freeclashnode.com}
   - 🇩🇪DE德国丨yoyapai.com (10) {src=node.freeclashnode.com}
   - 🇺🇸US美国丨yoyapai.com (3) {src=node.freeclashnode.com}
@@ -25029,7 +25007,7 @@ proxy-groups:
   - 🇮🇱IL以色列丨yoyapai.com {src=node.freeclashnode.com}
   - 🇨🇦CA加拿大丨yoyapai.com (3) {src=node.freeclashnode.com}
   - 🇦🇪AE阿联酋丨yoyapai.com {src=node.freeclashnode.com}
-  - ❓未知丨yoyapai.com (49) {src=node.freeclashnode.com}
+  - 🇰🇷KR韩国 {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (51) {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (52) {src=node.freeclashnode.com}
   - 🇭🇰HK香港丨yoyapai.com (8) {src=node.freeclashnode.com}
@@ -25078,7 +25056,6 @@ proxy-groups:
   - RU俄罗斯(mibei77.com 米贝节点分享) (11) {src=node.freeclashnode.com}
   - RU俄罗斯(mibei77.com 米贝节点分享) (13) {src=node.freeclashnode.com}
   - NL荷兰(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
-  - KR韩国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - JP日本(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - JP日本(mibei77.com 米贝节点分享) (2) {src=node.freeclashnode.com}
   - JP日本(mibei77.com 米贝节点分享) (3) {src=node.freeclashnode.com}
@@ -25121,6 +25098,7 @@ proxy-groups:
   - 🇩🇪DE_56|3.0MB/s|K001-260618 [00b0076b54b6] {src=node.freeclashnode.com}
   - 🇳🇱NL_238|134KB/s|C002-260622 [00b16ee507c6] {src=node.freeclashnode.com}
   - 🇺🇸US_588|1.3MB/s|R002-260618 [00dad65c0bb7] {src=node.freeclashnode.com}
+  - 🇰🇷KR_43|393KB/s|R002-260618 [01246ba37aaa] {src=node.freeclashnode.com}
   - 🇺🇸US_269|925KB/s|M003-260806 [012980e5465f] {src=node.freeclashnode.com}
   - 🇺🇸US_223|774KB/s|P002-260618 [012da4b2957a] {src=node.freeclashnode.com}
   - 🇺🇸US_692|1002KB/s|M003-260806 [017a7bda32a8] {src=node.freeclashnode.com}
@@ -25492,6 +25470,7 @@ proxy-groups:
   - 🇩🇪DE_135|207KB/s|M001-260618 [37bb6a154d5d] {src=node.freeclashnode.com}
   - 🇺🇸US_426|1.1MB/s|B007-260618 [37bc229b7a21] {src=node.freeclashnode.com}
   - 🇮🇳IN_20|207KB/s|A004-260618 [37cc4bd17fb0] {src=node.freeclashnode.com}
+  - 🇰🇷KR_42|289KB/s|R002-260618 [3805dcb92455] {src=node.freeclashnode.com}
   - 🇸🇬SG_72|384KB/s|M003-260806 [382aed36e1f5] {src=node.freeclashnode.com}
   - 🇰🇷KR_52|403KB/s|M003-260806 [3840e8870183] {src=node.freeclashnode.com}
   - 🇺🇸US_363|973KB/s|K001-260618 [386af4af2bf0] {src=node.freeclashnode.com}
@@ -25607,7 +25586,6 @@ proxy-groups:
   - 🇷🇴RO_10|1.8MB/s|R002-260618 [4a5138d3dc84] {src=node.freeclashnode.com}
   - 🇺🇸US_585|332KB/s|R002-260618 [4a53bd159496] {src=node.freeclashnode.com}
   - 🇷🇴RO_46|1.3MB/s|P002-260618 [4a642eb93bc8] {src=node.freeclashnode.com}
-  - 🇯🇵JP_16|116KB/s|K001-260618 [4a732b04dd53] {src=node.freeclashnode.com}
   - 🇫🇷FR_73|3.7MB/s|M003-260806 [4aaafff0fd6c] {src=node.freeclashnode.com}
   - 🇷🇴RO_56|2.0MB/s|P002-260618 [4ac2e14c271d] {src=node.freeclashnode.com}
   - 🇺🇸US_155|779KB/s|R002-260618 [4ac5d05f7655] {src=node.freeclashnode.com}
@@ -25625,7 +25603,6 @@ proxy-groups:
   - 🇨🇿CZ_6|655KB/s|P002-260618 [4d5c4849945c] {src=node.freeclashnode.com}
   - 🇦🇹AT_6|850KB/s|S004-260618 [4d663961fad5] {src=node.freeclashnode.com}
   - 🇹🇭TH_12|549KB/s|R002-260618 [4d7f4c48ed29] {src=node.freeclashnode.com}
-  - 🇯🇵JP_7|83KB/s|R002-260618 [4dcb2da810e7] {src=node.freeclashnode.com}
   - 🇳🇱NL_260|4.9MB/s [4e3c585c028c] {src=node.freeclashnode.com}
   - 🇺🇸US_444|1.5MB/s|S004-260618 [4eaa3c8005c6] {src=node.freeclashnode.com}
   - 🇺🇸US_696|80KB/s|A004-260618 [4effeb583325] {src=node.freeclashnode.com}
@@ -25647,6 +25624,7 @@ proxy-groups:
   - 🇷🇴RO_68|1.5MB/s|K001-260618 [51d6c485128b] {src=node.freeclashnode.com}
   - 🇬🇧GB_41|4.7MB/s|M003-260806 [528a132c71b8] {src=node.freeclashnode.com}
   - 🇳🇱NL_231|69KB/s|C002-260622 [529bc2174213] {src=node.freeclashnode.com}
+  - 🇰🇷KR_39|176KB/s|R002-260618 [52c8cd54edd3] {src=node.freeclashnode.com}
   - 🇺🇸US_434|1.2MB/s|K001-260618 [52f0e9977e29] {src=node.freeclashnode.com}
   - 🇺🇸US_219|321KB/s|R002-260618 [535e13772931] {src=node.freeclashnode.com}
   - 🇺🇸US_77|828KB/s|R002-260618 [5385a051842e] {src=node.freeclashnode.com}
@@ -25667,6 +25645,7 @@ proxy-groups:
   - 🇨🇦CA_51|785KB/s|M003-260806 [55bcedcbdd53] {src=node.freeclashnode.com}
   - 🇺🇸US_232|839KB/s|A004-260618 [55d379d67daa] {src=node.freeclashnode.com}
   - 🇺🇸US_481|988KB/s|B007-260618 [55f48351e3df] {src=node.freeclashnode.com}
+  - 🇸🇬SG_73|764KB/s [56445f611f5d] {src=node.freeclashnode.com}
   - 🇳🇱NL_86|4.0MB/s|R002-260618 [565ec6032e34] {src=node.freeclashnode.com}
   - 🇺🇸US_607|1.0MB/s [567047a42e5b] {src=node.freeclashnode.com}
   - 🇺🇸US_285|718KB/s|K001-260618 [569c66c77b5f] {src=node.freeclashnode.com}
@@ -25850,6 +25829,7 @@ proxy-groups:
   - 🇨🇦CA_18|1.4MB/s|M003-260806 [6fddb8d5015a] {src=node.freeclashnode.com}
   - 🇳🇱NL_9|1.1MB/s [70324133c301] {src=node.freeclashnode.com}
   - 🇺🇸US_276|813KB/s|A004-260618 [707173c77d5e] {src=node.freeclashnode.com}
+  - 🇦🇪AE_3|803KB/s|T001-260618 [7072ee01bc9f] {src=node.freeclashnode.com}
   - 🇸🇬SG_30|417KB/s|K001-260618 [70b4ebb2f0c1] {src=node.freeclashnode.com}
   - 🇬🇧GB_18|865KB/s|A004-260618 [70c7619e3093] {src=node.freeclashnode.com}
   - 🇲🇽MX_4|524KB/s|R002-260618 [70e55aa5a678] {src=node.freeclashnode.com}
@@ -26025,6 +26005,7 @@ proxy-groups:
   - 🇮🇹IT_23|988KB/s|R002-260618 [8a6287be3f61] {src=node.freeclashnode.com}
   - 🇺🇸US_362|722KB/s|A004-260618 [8ab70337a68a] {src=node.freeclashnode.com}
   - 🇯🇵JP_32|326KB/s|M003-260806 [8ac1dc0f9623] {src=node.freeclashnode.com}
+  - 🇦🇪AE_4|895KB/s|M003-260806 [8b17dfea8ac8] {src=node.freeclashnode.com}
   - 🇭🇰HK_81|414KB/s|M003-260806 [8b1b88dafe6e] {src=node.freeclashnode.com}
   - 🇳🇱NL_229|522KB/s|R002-260618 [8b79f7273e58] {src=node.freeclashnode.com}
   - 🇲🇽MX_11|157KB/s|S001-260618 [8be23114a447] {src=node.freeclashnode.com}
@@ -26692,6 +26673,7 @@ proxy-groups:
   - 🇺🇸US_172|980KB/s|R002-260618 [f6ef7c53e70b] {src=node.freeclashnode.com}
   - 🇺🇸US_398|1.2MB/s|A004-260618 [f71a9469def3] {src=node.freeclashnode.com}
   - 🇳🇱NL_132|7.9MB/s [f792f247b209] {src=node.freeclashnode.com}
+  - 🇦🇪AE_5|647KB/s|A003-260618 [f7942eacddc7] {src=node.freeclashnode.com}
   - 🇺🇸US_511|607KB/s|B007-260618 [f7b00260ac13] {src=node.freeclashnode.com}
   - 🇺🇸US_248|1.2MB/s|A004-260618 [f7c0f859dfcb] {src=node.freeclashnode.com}
   - 🇳🇱NL_19|6.0MB/s|P002-260618 [f84dd5f92876] {src=node.freeclashnode.com}
@@ -26832,6 +26814,7 @@ proxy-groups:
   - 'Telegram@vpnjey #11 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 'Telegram@vpnjey #12 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇦🇪[www.v2nodes.com] vless-AE-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - '🇦🇪[www.v2nodes.com] vless-AE-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - ??[www.v2nodes.com] vless-AT-3... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇧🇾[www.v2nodes.com] vless-BY-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇧🇾[www.v2nodes.com] vless-BY-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -26924,7 +26907,6 @@ proxy-groups:
   - 🇯🇵[www.v2nodes.com] ss-JP-5141... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵[www.v2nodes.com] ss-JP-1291... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵[www.v2nodes.com] ss-JP-9223... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇰🇷[www.v2nodes.com] ss-KR-1624... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇱🇻 拉脱维亚 | LVA #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇳🇱[www.v2nodes.com] ss-NL-1618... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇳🇱[www.v2nodes.com] ss-NL-1614... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -26960,7 +26942,6 @@ proxy-groups:
   - 🇭🇰 香港 | HKG 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇹🇼 台湾2|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇹🇼 台湾3|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇹🇼 🇨🇳 台湾 | TWN 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇺🇸US_1|2.1MB/s {src=chengaopan/AutoMergePublicNodes}
   - 🇩🇪DE_2|3.2MB/s {src=chengaopan/AutoMergePublicNodes}
   - 🇫🇷FR_1|1.7MB/s {src=chengaopan/AutoMergePublicNodes}
@@ -27039,22 +27020,15 @@ proxy-groups:
   - 🇭🇰 香港 | HKG 3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇳 印度 | IND {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇮🇹 意大利 | ITA #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - 🇯🇵 日本 | JPN {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵 日本 | JPN 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇯🇵 日本 | JPN 5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇯🇵 日本 | JPN 6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵 日本 | JPN 7 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇰🇿 哈萨克斯坦 | KAZ #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇳🇱 荷兰 | NLD #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇷🇺 俄罗斯 | RUS {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇷🇺 俄罗斯 | RUS 3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇹🇼 🇨🇳 台湾 | TWN {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇺🇸 美国 | USA #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇺🇸 美国 | USA #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇯🇵 日本 | JPN #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇯🇵 日本 | JPN #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇯🇵 日本 | JPN #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇯🇵 日本 | JPN #6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇯🇵 日本 | JPN #7 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇷🇺 俄罗斯 | RUS #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇷🇺 俄罗斯 | RUS #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -27245,7 +27219,6 @@ proxy-groups:
   - 美国(购买账号:shop.tgaaaa.com)_46 {src=clashnodev2ray.github.io}
   - 西班牙(购买账号:shop.tgaaaa.com)_9 {src=clashnodev2ray.github.io}
   - 俄罗斯(购买账号:shop.tgaaaa.com)_11 {src=clashnodev2ray.github.io}
-  - 🇹🇼TW台湾丨yoyapai.com {src=node.freeclashnode.com}
   - 🇩🇪DE德国丨yoyapai.com {src=node.freeclashnode.com}
   - 🇭🇰HK香港丨yoyapai.com {src=node.freeclashnode.com}
   - 🇬🇧GB英国丨yoyapai.com {src=node.freeclashnode.com}
@@ -27318,6 +27291,7 @@ proxy-groups:
   - 🇸🇬SG新加坡丨yoyapai.com (2) {src=node.freeclashnode.com}
   - 🇨🇦CA加拿大 {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (42) {src=node.freeclashnode.com}
+  - 🇩🇪DE德国 {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (43) {src=node.freeclashnode.com}
   - 🇩🇪DE德国丨yoyapai.com (10) {src=node.freeclashnode.com}
   - 🇺🇸US美国丨yoyapai.com (3) {src=node.freeclashnode.com}
@@ -27325,7 +27299,7 @@ proxy-groups:
   - 🇮🇱IL以色列丨yoyapai.com {src=node.freeclashnode.com}
   - 🇨🇦CA加拿大丨yoyapai.com (3) {src=node.freeclashnode.com}
   - 🇦🇪AE阿联酋丨yoyapai.com {src=node.freeclashnode.com}
-  - ❓未知丨yoyapai.com (49) {src=node.freeclashnode.com}
+  - 🇰🇷KR韩国 {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (51) {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (52) {src=node.freeclashnode.com}
   - 🇭🇰HK香港丨yoyapai.com (8) {src=node.freeclashnode.com}
@@ -27374,7 +27348,6 @@ proxy-groups:
   - RU俄罗斯(mibei77.com 米贝节点分享) (11) {src=node.freeclashnode.com}
   - RU俄罗斯(mibei77.com 米贝节点分享) (13) {src=node.freeclashnode.com}
   - NL荷兰(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
-  - KR韩国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - JP日本(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - JP日本(mibei77.com 米贝节点分享) (2) {src=node.freeclashnode.com}
   - JP日本(mibei77.com 米贝节点分享) (3) {src=node.freeclashnode.com}
@@ -27417,6 +27390,7 @@ proxy-groups:
   - 🇩🇪DE_56|3.0MB/s|K001-260618 [00b0076b54b6] {src=node.freeclashnode.com}
   - 🇳🇱NL_238|134KB/s|C002-260622 [00b16ee507c6] {src=node.freeclashnode.com}
   - 🇺🇸US_588|1.3MB/s|R002-260618 [00dad65c0bb7] {src=node.freeclashnode.com}
+  - 🇰🇷KR_43|393KB/s|R002-260618 [01246ba37aaa] {src=node.freeclashnode.com}
   - 🇺🇸US_269|925KB/s|M003-260806 [012980e5465f] {src=node.freeclashnode.com}
   - 🇺🇸US_223|774KB/s|P002-260618 [012da4b2957a] {src=node.freeclashnode.com}
   - 🇺🇸US_692|1002KB/s|M003-260806 [017a7bda32a8] {src=node.freeclashnode.com}
@@ -27788,6 +27762,7 @@ proxy-groups:
   - 🇩🇪DE_135|207KB/s|M001-260618 [37bb6a154d5d] {src=node.freeclashnode.com}
   - 🇺🇸US_426|1.1MB/s|B007-260618 [37bc229b7a21] {src=node.freeclashnode.com}
   - 🇮🇳IN_20|207KB/s|A004-260618 [37cc4bd17fb0] {src=node.freeclashnode.com}
+  - 🇰🇷KR_42|289KB/s|R002-260618 [3805dcb92455] {src=node.freeclashnode.com}
   - 🇸🇬SG_72|384KB/s|M003-260806 [382aed36e1f5] {src=node.freeclashnode.com}
   - 🇰🇷KR_52|403KB/s|M003-260806 [3840e8870183] {src=node.freeclashnode.com}
   - 🇺🇸US_363|973KB/s|K001-260618 [386af4af2bf0] {src=node.freeclashnode.com}
@@ -27903,7 +27878,6 @@ proxy-groups:
   - 🇷🇴RO_10|1.8MB/s|R002-260618 [4a5138d3dc84] {src=node.freeclashnode.com}
   - 🇺🇸US_585|332KB/s|R002-260618 [4a53bd159496] {src=node.freeclashnode.com}
   - 🇷🇴RO_46|1.3MB/s|P002-260618 [4a642eb93bc8] {src=node.freeclashnode.com}
-  - 🇯🇵JP_16|116KB/s|K001-260618 [4a732b04dd53] {src=node.freeclashnode.com}
   - 🇫🇷FR_73|3.7MB/s|M003-260806 [4aaafff0fd6c] {src=node.freeclashnode.com}
   - 🇷🇴RO_56|2.0MB/s|P002-260618 [4ac2e14c271d] {src=node.freeclashnode.com}
   - 🇺🇸US_155|779KB/s|R002-260618 [4ac5d05f7655] {src=node.freeclashnode.com}
@@ -27921,7 +27895,6 @@ proxy-groups:
   - 🇨🇿CZ_6|655KB/s|P002-260618 [4d5c4849945c] {src=node.freeclashnode.com}
   - 🇦🇹AT_6|850KB/s|S004-260618 [4d663961fad5] {src=node.freeclashnode.com}
   - 🇹🇭TH_12|549KB/s|R002-260618 [4d7f4c48ed29] {src=node.freeclashnode.com}
-  - 🇯🇵JP_7|83KB/s|R002-260618 [4dcb2da810e7] {src=node.freeclashnode.com}
   - 🇳🇱NL_260|4.9MB/s [4e3c585c028c] {src=node.freeclashnode.com}
   - 🇺🇸US_444|1.5MB/s|S004-260618 [4eaa3c8005c6] {src=node.freeclashnode.com}
   - 🇺🇸US_696|80KB/s|A004-260618 [4effeb583325] {src=node.freeclashnode.com}
@@ -27943,6 +27916,7 @@ proxy-groups:
   - 🇷🇴RO_68|1.5MB/s|K001-260618 [51d6c485128b] {src=node.freeclashnode.com}
   - 🇬🇧GB_41|4.7MB/s|M003-260806 [528a132c71b8] {src=node.freeclashnode.com}
   - 🇳🇱NL_231|69KB/s|C002-260622 [529bc2174213] {src=node.freeclashnode.com}
+  - 🇰🇷KR_39|176KB/s|R002-260618 [52c8cd54edd3] {src=node.freeclashnode.com}
   - 🇺🇸US_434|1.2MB/s|K001-260618 [52f0e9977e29] {src=node.freeclashnode.com}
   - 🇺🇸US_219|321KB/s|R002-260618 [535e13772931] {src=node.freeclashnode.com}
   - 🇺🇸US_77|828KB/s|R002-260618 [5385a051842e] {src=node.freeclashnode.com}
@@ -27963,6 +27937,7 @@ proxy-groups:
   - 🇨🇦CA_51|785KB/s|M003-260806 [55bcedcbdd53] {src=node.freeclashnode.com}
   - 🇺🇸US_232|839KB/s|A004-260618 [55d379d67daa] {src=node.freeclashnode.com}
   - 🇺🇸US_481|988KB/s|B007-260618 [55f48351e3df] {src=node.freeclashnode.com}
+  - 🇸🇬SG_73|764KB/s [56445f611f5d] {src=node.freeclashnode.com}
   - 🇳🇱NL_86|4.0MB/s|R002-260618 [565ec6032e34] {src=node.freeclashnode.com}
   - 🇺🇸US_607|1.0MB/s [567047a42e5b] {src=node.freeclashnode.com}
   - 🇺🇸US_285|718KB/s|K001-260618 [569c66c77b5f] {src=node.freeclashnode.com}
@@ -28146,6 +28121,7 @@ proxy-groups:
   - 🇨🇦CA_18|1.4MB/s|M003-260806 [6fddb8d5015a] {src=node.freeclashnode.com}
   - 🇳🇱NL_9|1.1MB/s [70324133c301] {src=node.freeclashnode.com}
   - 🇺🇸US_276|813KB/s|A004-260618 [707173c77d5e] {src=node.freeclashnode.com}
+  - 🇦🇪AE_3|803KB/s|T001-260618 [7072ee01bc9f] {src=node.freeclashnode.com}
   - 🇸🇬SG_30|417KB/s|K001-260618 [70b4ebb2f0c1] {src=node.freeclashnode.com}
   - 🇬🇧GB_18|865KB/s|A004-260618 [70c7619e3093] {src=node.freeclashnode.com}
   - 🇲🇽MX_4|524KB/s|R002-260618 [70e55aa5a678] {src=node.freeclashnode.com}
@@ -28321,6 +28297,7 @@ proxy-groups:
   - 🇮🇹IT_23|988KB/s|R002-260618 [8a6287be3f61] {src=node.freeclashnode.com}
   - 🇺🇸US_362|722KB/s|A004-260618 [8ab70337a68a] {src=node.freeclashnode.com}
   - 🇯🇵JP_32|326KB/s|M003-260806 [8ac1dc0f9623] {src=node.freeclashnode.com}
+  - 🇦🇪AE_4|895KB/s|M003-260806 [8b17dfea8ac8] {src=node.freeclashnode.com}
   - 🇭🇰HK_81|414KB/s|M003-260806 [8b1b88dafe6e] {src=node.freeclashnode.com}
   - 🇳🇱NL_229|522KB/s|R002-260618 [8b79f7273e58] {src=node.freeclashnode.com}
   - 🇲🇽MX_11|157KB/s|S001-260618 [8be23114a447] {src=node.freeclashnode.com}
@@ -28988,6 +28965,7 @@ proxy-groups:
   - 🇺🇸US_172|980KB/s|R002-260618 [f6ef7c53e70b] {src=node.freeclashnode.com}
   - 🇺🇸US_398|1.2MB/s|A004-260618 [f71a9469def3] {src=node.freeclashnode.com}
   - 🇳🇱NL_132|7.9MB/s [f792f247b209] {src=node.freeclashnode.com}
+  - 🇦🇪AE_5|647KB/s|A003-260618 [f7942eacddc7] {src=node.freeclashnode.com}
   - 🇺🇸US_511|607KB/s|B007-260618 [f7b00260ac13] {src=node.freeclashnode.com}
   - 🇺🇸US_248|1.2MB/s|A004-260618 [f7c0f859dfcb] {src=node.freeclashnode.com}
   - 🇳🇱NL_19|6.0MB/s|P002-260618 [f84dd5f92876] {src=node.freeclashnode.com}
@@ -29128,6 +29106,7 @@ proxy-groups:
   - 'Telegram@vpnjey #11 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 'Telegram@vpnjey #12 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇦🇪[www.v2nodes.com] vless-AE-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - '🇦🇪[www.v2nodes.com] vless-AE-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - ??[www.v2nodes.com] vless-AT-3... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇧🇾[www.v2nodes.com] vless-BY-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇧🇾[www.v2nodes.com] vless-BY-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -29220,7 +29199,6 @@ proxy-groups:
   - 🇯🇵[www.v2nodes.com] ss-JP-5141... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵[www.v2nodes.com] ss-JP-1291... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵[www.v2nodes.com] ss-JP-9223... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇰🇷[www.v2nodes.com] ss-KR-1624... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇱🇻 拉脱维亚 | LVA #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇳🇱[www.v2nodes.com] ss-NL-1618... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇳🇱[www.v2nodes.com] ss-NL-1614... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -29256,7 +29234,6 @@ proxy-groups:
   - 🇭🇰 香港 | HKG 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇹🇼 台湾2|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇹🇼 台湾3|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇹🇼 🇨🇳 台湾 | TWN 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇺🇸US_1|2.1MB/s {src=chengaopan/AutoMergePublicNodes}
   - 🇩🇪DE_2|3.2MB/s {src=chengaopan/AutoMergePublicNodes}
   - 🇫🇷FR_1|1.7MB/s {src=chengaopan/AutoMergePublicNodes}
@@ -29335,22 +29312,15 @@ proxy-groups:
   - 🇭🇰 香港 | HKG 3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇳 印度 | IND {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇮🇹 意大利 | ITA #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - 🇯🇵 日本 | JPN {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵 日本 | JPN 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇯🇵 日本 | JPN 5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇯🇵 日本 | JPN 6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵 日本 | JPN 7 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇰🇿 哈萨克斯坦 | KAZ #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇳🇱 荷兰 | NLD #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇷🇺 俄罗斯 | RUS {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇷🇺 俄罗斯 | RUS 3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇹🇼 🇨🇳 台湾 | TWN {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇺🇸 美国 | USA #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇺🇸 美国 | USA #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇯🇵 日本 | JPN #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇯🇵 日本 | JPN #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇯🇵 日本 | JPN #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇯🇵 日本 | JPN #6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇯🇵 日本 | JPN #7 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇷🇺 俄罗斯 | RUS #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇷🇺 俄罗斯 | RUS #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -29415,12 +29385,9 @@ proxy-groups:
   url: http://www.apple.com/library/test/success.html
   tolerance: 50
   proxies:
-  - 🇹🇼TW台湾丨yoyapai.com {src=node.freeclashnode.com}
   - 🇹🇼TW台湾丨yoyapai.com (2) {src=node.freeclashnode.com}
   - 🇹🇼 台湾2|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇹🇼 台湾3|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇹🇼 🇨🇳 台湾 | TWN 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇹🇼 🇨🇳 台湾 | TWN {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
 - name: 新加坡
   type: url-test
   icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
@@ -29454,6 +29421,7 @@ proxy-groups:
   - 🇸🇬SG_18|558KB/s|R002-260618 [442d4a2779d1] {src=node.freeclashnode.com}
   - 🇸🇬SG_64|305KB/s|M003-260806 [44f623619b41] {src=node.freeclashnode.com}
   - 🇸🇬SG_24|1.0MB/s|M003-260806 [4a280760256b] {src=node.freeclashnode.com}
+  - 🇸🇬SG_73|764KB/s [56445f611f5d] {src=node.freeclashnode.com}
   - 🇸🇬SG_63|424KB/s|M003-260806 [56af472b98d4] {src=node.freeclashnode.com}
   - 🇸🇬SG_6|631KB/s [61dec4b6ad88] {src=node.freeclashnode.com}
   - 🇸🇬SG_65|420KB/s|M003-260806 [61e8f01e865b] {src=node.freeclashnode.com}
@@ -29620,9 +29588,7 @@ proxy-groups:
   - 🇯🇵JP_25|85KB/s|F003-260618 [15ad61e3e80c] {src=node.freeclashnode.com}
   - 🇯🇵JP_30|576KB/s|F003-260618 [2f1e1fa56248] {src=node.freeclashnode.com}
   - 🇯🇵JP_31|577KB/s|K001-260618 [34fe89e16c93] {src=node.freeclashnode.com}
-  - 🇯🇵JP_16|116KB/s|K001-260618 [4a732b04dd53] {src=node.freeclashnode.com}
   - 🇯🇵JP_11|727KB/s|A001-260618 [4bce72d61cc4] {src=node.freeclashnode.com}
-  - 🇯🇵JP_7|83KB/s|R002-260618 [4dcb2da810e7] {src=node.freeclashnode.com}
   - 🇯🇵JP_29|590KB/s|F003-260618 [511ad9ef02bb] {src=node.freeclashnode.com}
   - 🇯🇵JP_13|726KB/s|A001-260618 [59de9e59ba13] {src=node.freeclashnode.com}
   - 🇯🇵JP_23|116KB/s|M003-260806 [6f9acc892dc2] {src=node.freeclashnode.com}
@@ -29643,15 +29609,9 @@ proxy-groups:
   - 🇯🇵[www.v2nodes.com] ss-JP-1291... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵[www.v2nodes.com] ss-JP-9223... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵JP_1|3.8MB/s {src=chengaopan/AutoMergePublicNodes}
-  - 🇯🇵 日本 | JPN {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵 日本 | JPN 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇯🇵 日本 | JPN 5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇯🇵 日本 | JPN 6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵 日本 | JPN 7 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - '🇯🇵 日本 | JPN #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇯🇵 日本 | JPN #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇯🇵 日本 | JPN #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇯🇵 日本 | JPN #6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇯🇵 日本 | JPN #7 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
 - name: 美国
   type: url-test
@@ -30436,12 +30396,15 @@ proxy-groups:
   tolerance: 50
   proxies:
   - 🇰🇷KR韩國丨yoyapai.com {src=node.freeclashnode.com}
-  - KR韩国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
+  - 🇰🇷KR韩国 {src=node.freeclashnode.com}
+  - 🇰🇷KR_43|393KB/s|R002-260618 [01246ba37aaa] {src=node.freeclashnode.com}
   - 🇰🇷KR_18|526KB/s|A001-260618 [03b20b317232] {src=node.freeclashnode.com}
   - 🇰🇷KR_50|183KB/s|M003-260806 [21b9cf3ebc56] {src=node.freeclashnode.com}
   - 🇰🇷KR_22|321KB/s|A004-260618 [2d4c30493584] {src=node.freeclashnode.com}
   - 🇰🇷KR_21|640KB/s|A004-260618 [3549fdd29de4] {src=node.freeclashnode.com}
+  - 🇰🇷KR_42|289KB/s|R002-260618 [3805dcb92455] {src=node.freeclashnode.com}
   - 🇰🇷KR_52|403KB/s|M003-260806 [3840e8870183] {src=node.freeclashnode.com}
+  - 🇰🇷KR_39|176KB/s|R002-260618 [52c8cd54edd3] {src=node.freeclashnode.com}
   - 🇰🇷KR_38|669KB/s|M002-260618 [62beea3b6fba] {src=node.freeclashnode.com}
   - 🇰🇷KR_41|579KB/s|A004-260618 [753b23d820b6] {src=node.freeclashnode.com}
   - 🇰🇷KR_37|635KB/s|M002-260618 [8cfc7c6e7123] {src=node.freeclashnode.com}
@@ -30459,7 +30422,6 @@ proxy-groups:
   - '🇰🇷 韩国 | KOR #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇰🇷[www.v2nodes.com] vless-KR-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇰🇷[www.v2nodes.com] vless-KR-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - 🇰🇷[www.v2nodes.com] ss-KR-1624... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇰🇷KR_1|3.8MB/s {src=chengaopan/AutoMergePublicNodes}
   - 🇰🇷KR-🚀@VPNine1 {src=peasoft/NoMoreWalls}
 - name: 英国
@@ -30699,7 +30661,6 @@ proxy-groups:
   - 美国(购买账号:shop.tgaaaa.com)_46 {src=clashnodev2ray.github.io}
   - 西班牙(购买账号:shop.tgaaaa.com)_9 {src=clashnodev2ray.github.io}
   - 俄罗斯(购买账号:shop.tgaaaa.com)_11 {src=clashnodev2ray.github.io}
-  - 🇹🇼TW台湾丨yoyapai.com {src=node.freeclashnode.com}
   - 🇩🇪DE德国丨yoyapai.com {src=node.freeclashnode.com}
   - 🇭🇰HK香港丨yoyapai.com {src=node.freeclashnode.com}
   - 🇬🇧GB英国丨yoyapai.com {src=node.freeclashnode.com}
@@ -30772,6 +30733,7 @@ proxy-groups:
   - 🇸🇬SG新加坡丨yoyapai.com (2) {src=node.freeclashnode.com}
   - 🇨🇦CA加拿大 {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (42) {src=node.freeclashnode.com}
+  - 🇩🇪DE德国 {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (43) {src=node.freeclashnode.com}
   - 🇩🇪DE德国丨yoyapai.com (10) {src=node.freeclashnode.com}
   - 🇺🇸US美国丨yoyapai.com (3) {src=node.freeclashnode.com}
@@ -30779,7 +30741,7 @@ proxy-groups:
   - 🇮🇱IL以色列丨yoyapai.com {src=node.freeclashnode.com}
   - 🇨🇦CA加拿大丨yoyapai.com (3) {src=node.freeclashnode.com}
   - 🇦🇪AE阿联酋丨yoyapai.com {src=node.freeclashnode.com}
-  - ❓未知丨yoyapai.com (49) {src=node.freeclashnode.com}
+  - 🇰🇷KR韩国 {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (51) {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (52) {src=node.freeclashnode.com}
   - 🇭🇰HK香港丨yoyapai.com (8) {src=node.freeclashnode.com}
@@ -30828,7 +30790,6 @@ proxy-groups:
   - RU俄罗斯(mibei77.com 米贝节点分享) (11) {src=node.freeclashnode.com}
   - RU俄罗斯(mibei77.com 米贝节点分享) (13) {src=node.freeclashnode.com}
   - NL荷兰(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
-  - KR韩国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - JP日本(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - JP日本(mibei77.com 米贝节点分享) (2) {src=node.freeclashnode.com}
   - JP日本(mibei77.com 米贝节点分享) (3) {src=node.freeclashnode.com}
@@ -30871,6 +30832,7 @@ proxy-groups:
   - 🇩🇪DE_56|3.0MB/s|K001-260618 [00b0076b54b6] {src=node.freeclashnode.com}
   - 🇳🇱NL_238|134KB/s|C002-260622 [00b16ee507c6] {src=node.freeclashnode.com}
   - 🇺🇸US_588|1.3MB/s|R002-260618 [00dad65c0bb7] {src=node.freeclashnode.com}
+  - 🇰🇷KR_43|393KB/s|R002-260618 [01246ba37aaa] {src=node.freeclashnode.com}
   - 🇺🇸US_269|925KB/s|M003-260806 [012980e5465f] {src=node.freeclashnode.com}
   - 🇺🇸US_223|774KB/s|P002-260618 [012da4b2957a] {src=node.freeclashnode.com}
   - 🇺🇸US_692|1002KB/s|M003-260806 [017a7bda32a8] {src=node.freeclashnode.com}
@@ -31242,6 +31204,7 @@ proxy-groups:
   - 🇩🇪DE_135|207KB/s|M001-260618 [37bb6a154d5d] {src=node.freeclashnode.com}
   - 🇺🇸US_426|1.1MB/s|B007-260618 [37bc229b7a21] {src=node.freeclashnode.com}
   - 🇮🇳IN_20|207KB/s|A004-260618 [37cc4bd17fb0] {src=node.freeclashnode.com}
+  - 🇰🇷KR_42|289KB/s|R002-260618 [3805dcb92455] {src=node.freeclashnode.com}
   - 🇸🇬SG_72|384KB/s|M003-260806 [382aed36e1f5] {src=node.freeclashnode.com}
   - 🇰🇷KR_52|403KB/s|M003-260806 [3840e8870183] {src=node.freeclashnode.com}
   - 🇺🇸US_363|973KB/s|K001-260618 [386af4af2bf0] {src=node.freeclashnode.com}
@@ -31357,7 +31320,6 @@ proxy-groups:
   - 🇷🇴RO_10|1.8MB/s|R002-260618 [4a5138d3dc84] {src=node.freeclashnode.com}
   - 🇺🇸US_585|332KB/s|R002-260618 [4a53bd159496] {src=node.freeclashnode.com}
   - 🇷🇴RO_46|1.3MB/s|P002-260618 [4a642eb93bc8] {src=node.freeclashnode.com}
-  - 🇯🇵JP_16|116KB/s|K001-260618 [4a732b04dd53] {src=node.freeclashnode.com}
   - 🇫🇷FR_73|3.7MB/s|M003-260806 [4aaafff0fd6c] {src=node.freeclashnode.com}
   - 🇷🇴RO_56|2.0MB/s|P002-260618 [4ac2e14c271d] {src=node.freeclashnode.com}
   - 🇺🇸US_155|779KB/s|R002-260618 [4ac5d05f7655] {src=node.freeclashnode.com}
@@ -31375,7 +31337,6 @@ proxy-groups:
   - 🇨🇿CZ_6|655KB/s|P002-260618 [4d5c4849945c] {src=node.freeclashnode.com}
   - 🇦🇹AT_6|850KB/s|S004-260618 [4d663961fad5] {src=node.freeclashnode.com}
   - 🇹🇭TH_12|549KB/s|R002-260618 [4d7f4c48ed29] {src=node.freeclashnode.com}
-  - 🇯🇵JP_7|83KB/s|R002-260618 [4dcb2da810e7] {src=node.freeclashnode.com}
   - 🇳🇱NL_260|4.9MB/s [4e3c585c028c] {src=node.freeclashnode.com}
   - 🇺🇸US_444|1.5MB/s|S004-260618 [4eaa3c8005c6] {src=node.freeclashnode.com}
   - 🇺🇸US_696|80KB/s|A004-260618 [4effeb583325] {src=node.freeclashnode.com}
@@ -31397,6 +31358,7 @@ proxy-groups:
   - 🇷🇴RO_68|1.5MB/s|K001-260618 [51d6c485128b] {src=node.freeclashnode.com}
   - 🇬🇧GB_41|4.7MB/s|M003-260806 [528a132c71b8] {src=node.freeclashnode.com}
   - 🇳🇱NL_231|69KB/s|C002-260622 [529bc2174213] {src=node.freeclashnode.com}
+  - 🇰🇷KR_39|176KB/s|R002-260618 [52c8cd54edd3] {src=node.freeclashnode.com}
   - 🇺🇸US_434|1.2MB/s|K001-260618 [52f0e9977e29] {src=node.freeclashnode.com}
   - 🇺🇸US_219|321KB/s|R002-260618 [535e13772931] {src=node.freeclashnode.com}
   - 🇺🇸US_77|828KB/s|R002-260618 [5385a051842e] {src=node.freeclashnode.com}
@@ -31417,6 +31379,7 @@ proxy-groups:
   - 🇨🇦CA_51|785KB/s|M003-260806 [55bcedcbdd53] {src=node.freeclashnode.com}
   - 🇺🇸US_232|839KB/s|A004-260618 [55d379d67daa] {src=node.freeclashnode.com}
   - 🇺🇸US_481|988KB/s|B007-260618 [55f48351e3df] {src=node.freeclashnode.com}
+  - 🇸🇬SG_73|764KB/s [56445f611f5d] {src=node.freeclashnode.com}
   - 🇳🇱NL_86|4.0MB/s|R002-260618 [565ec6032e34] {src=node.freeclashnode.com}
   - 🇺🇸US_607|1.0MB/s [567047a42e5b] {src=node.freeclashnode.com}
   - 🇺🇸US_285|718KB/s|K001-260618 [569c66c77b5f] {src=node.freeclashnode.com}
@@ -31600,6 +31563,7 @@ proxy-groups:
   - 🇨🇦CA_18|1.4MB/s|M003-260806 [6fddb8d5015a] {src=node.freeclashnode.com}
   - 🇳🇱NL_9|1.1MB/s [70324133c301] {src=node.freeclashnode.com}
   - 🇺🇸US_276|813KB/s|A004-260618 [707173c77d5e] {src=node.freeclashnode.com}
+  - 🇦🇪AE_3|803KB/s|T001-260618 [7072ee01bc9f] {src=node.freeclashnode.com}
   - 🇸🇬SG_30|417KB/s|K001-260618 [70b4ebb2f0c1] {src=node.freeclashnode.com}
   - 🇬🇧GB_18|865KB/s|A004-260618 [70c7619e3093] {src=node.freeclashnode.com}
   - 🇲🇽MX_4|524KB/s|R002-260618 [70e55aa5a678] {src=node.freeclashnode.com}
@@ -31775,6 +31739,7 @@ proxy-groups:
   - 🇮🇹IT_23|988KB/s|R002-260618 [8a6287be3f61] {src=node.freeclashnode.com}
   - 🇺🇸US_362|722KB/s|A004-260618 [8ab70337a68a] {src=node.freeclashnode.com}
   - 🇯🇵JP_32|326KB/s|M003-260806 [8ac1dc0f9623] {src=node.freeclashnode.com}
+  - 🇦🇪AE_4|895KB/s|M003-260806 [8b17dfea8ac8] {src=node.freeclashnode.com}
   - 🇭🇰HK_81|414KB/s|M003-260806 [8b1b88dafe6e] {src=node.freeclashnode.com}
   - 🇳🇱NL_229|522KB/s|R002-260618 [8b79f7273e58] {src=node.freeclashnode.com}
   - 🇲🇽MX_11|157KB/s|S001-260618 [8be23114a447] {src=node.freeclashnode.com}
@@ -32442,6 +32407,7 @@ proxy-groups:
   - 🇺🇸US_172|980KB/s|R002-260618 [f6ef7c53e70b] {src=node.freeclashnode.com}
   - 🇺🇸US_398|1.2MB/s|A004-260618 [f71a9469def3] {src=node.freeclashnode.com}
   - 🇳🇱NL_132|7.9MB/s [f792f247b209] {src=node.freeclashnode.com}
+  - 🇦🇪AE_5|647KB/s|A003-260618 [f7942eacddc7] {src=node.freeclashnode.com}
   - 🇺🇸US_511|607KB/s|B007-260618 [f7b00260ac13] {src=node.freeclashnode.com}
   - 🇺🇸US_248|1.2MB/s|A004-260618 [f7c0f859dfcb] {src=node.freeclashnode.com}
   - 🇳🇱NL_19|6.0MB/s|P002-260618 [f84dd5f92876] {src=node.freeclashnode.com}
@@ -32582,6 +32548,7 @@ proxy-groups:
   - 'Telegram@vpnjey #11 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 'Telegram@vpnjey #12 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇦🇪[www.v2nodes.com] vless-AE-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - '🇦🇪[www.v2nodes.com] vless-AE-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - ??[www.v2nodes.com] vless-AT-3... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇧🇾[www.v2nodes.com] vless-BY-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇧🇾[www.v2nodes.com] vless-BY-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -32674,7 +32641,6 @@ proxy-groups:
   - 🇯🇵[www.v2nodes.com] ss-JP-5141... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵[www.v2nodes.com] ss-JP-1291... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵[www.v2nodes.com] ss-JP-9223... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇰🇷[www.v2nodes.com] ss-KR-1624... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇱🇻 拉脱维亚 | LVA #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇳🇱[www.v2nodes.com] ss-NL-1618... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇳🇱[www.v2nodes.com] ss-NL-1614... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -32710,7 +32676,6 @@ proxy-groups:
   - 🇭🇰 香港 | HKG 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇹🇼 台湾2|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇹🇼 台湾3|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇹🇼 🇨🇳 台湾 | TWN 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇺🇸US_1|2.1MB/s {src=chengaopan/AutoMergePublicNodes}
   - 🇩🇪DE_2|3.2MB/s {src=chengaopan/AutoMergePublicNodes}
   - 🇫🇷FR_1|1.7MB/s {src=chengaopan/AutoMergePublicNodes}
@@ -32789,22 +32754,15 @@ proxy-groups:
   - 🇭🇰 香港 | HKG 3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇳 印度 | IND {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇮🇹 意大利 | ITA #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - 🇯🇵 日本 | JPN {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵 日本 | JPN 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇯🇵 日本 | JPN 5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇯🇵 日本 | JPN 6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵 日本 | JPN 7 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇰🇿 哈萨克斯坦 | KAZ #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇳🇱 荷兰 | NLD #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇷🇺 俄罗斯 | RUS {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇷🇺 俄罗斯 | RUS 3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇹🇼 🇨🇳 台湾 | TWN {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇺🇸 美国 | USA #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇺🇸 美国 | USA #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇯🇵 日本 | JPN #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇯🇵 日本 | JPN #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇯🇵 日本 | JPN #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇯🇵 日本 | JPN #6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇯🇵 日本 | JPN #7 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇷🇺 俄罗斯 | RUS #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇷🇺 俄罗斯 | RUS #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -32829,7 +32787,6 @@ proxy-groups:
   url: http://www.apple.com/library/test/success.html
   tolerance: 50
   proxies:
-  - 🇹🇼TW台湾丨yoyapai.com {src=node.freeclashnode.com}
   - 🇩🇪DE德国丨yoyapai.com {src=node.freeclashnode.com}
   - 🇭🇰HK香港丨yoyapai.com {src=node.freeclashnode.com}
   - 🇬🇧GB英国丨yoyapai.com {src=node.freeclashnode.com}
@@ -32902,6 +32859,7 @@ proxy-groups:
   - 🇸🇬SG新加坡丨yoyapai.com (2) {src=node.freeclashnode.com}
   - 🇨🇦CA加拿大 {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (42) {src=node.freeclashnode.com}
+  - 🇩🇪DE德国 {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (43) {src=node.freeclashnode.com}
   - 🇩🇪DE德国丨yoyapai.com (10) {src=node.freeclashnode.com}
   - 🇺🇸US美国丨yoyapai.com (3) {src=node.freeclashnode.com}
@@ -32909,7 +32867,7 @@ proxy-groups:
   - 🇮🇱IL以色列丨yoyapai.com {src=node.freeclashnode.com}
   - 🇨🇦CA加拿大丨yoyapai.com (3) {src=node.freeclashnode.com}
   - 🇦🇪AE阿联酋丨yoyapai.com {src=node.freeclashnode.com}
-  - ❓未知丨yoyapai.com (49) {src=node.freeclashnode.com}
+  - 🇰🇷KR韩国 {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (51) {src=node.freeclashnode.com}
   - ❓未知丨yoyapai.com (52) {src=node.freeclashnode.com}
   - 🇭🇰HK香港丨yoyapai.com (8) {src=node.freeclashnode.com}
@@ -32958,7 +32916,6 @@ proxy-groups:
   - RU俄罗斯(mibei77.com 米贝节点分享) (11) {src=node.freeclashnode.com}
   - RU俄罗斯(mibei77.com 米贝节点分享) (13) {src=node.freeclashnode.com}
   - NL荷兰(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
-  - KR韩国(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - JP日本(mibei77.com 米贝节点分享) {src=node.freeclashnode.com}
   - JP日本(mibei77.com 米贝节点分享) (2) {src=node.freeclashnode.com}
   - JP日本(mibei77.com 米贝节点分享) (3) {src=node.freeclashnode.com}
@@ -33001,6 +32958,7 @@ proxy-groups:
   - 🇩🇪DE_56|3.0MB/s|K001-260618 [00b0076b54b6] {src=node.freeclashnode.com}
   - 🇳🇱NL_238|134KB/s|C002-260622 [00b16ee507c6] {src=node.freeclashnode.com}
   - 🇺🇸US_588|1.3MB/s|R002-260618 [00dad65c0bb7] {src=node.freeclashnode.com}
+  - 🇰🇷KR_43|393KB/s|R002-260618 [01246ba37aaa] {src=node.freeclashnode.com}
   - 🇺🇸US_269|925KB/s|M003-260806 [012980e5465f] {src=node.freeclashnode.com}
   - 🇺🇸US_223|774KB/s|P002-260618 [012da4b2957a] {src=node.freeclashnode.com}
   - 🇺🇸US_692|1002KB/s|M003-260806 [017a7bda32a8] {src=node.freeclashnode.com}
@@ -33372,6 +33330,7 @@ proxy-groups:
   - 🇩🇪DE_135|207KB/s|M001-260618 [37bb6a154d5d] {src=node.freeclashnode.com}
   - 🇺🇸US_426|1.1MB/s|B007-260618 [37bc229b7a21] {src=node.freeclashnode.com}
   - 🇮🇳IN_20|207KB/s|A004-260618 [37cc4bd17fb0] {src=node.freeclashnode.com}
+  - 🇰🇷KR_42|289KB/s|R002-260618 [3805dcb92455] {src=node.freeclashnode.com}
   - 🇸🇬SG_72|384KB/s|M003-260806 [382aed36e1f5] {src=node.freeclashnode.com}
   - 🇰🇷KR_52|403KB/s|M003-260806 [3840e8870183] {src=node.freeclashnode.com}
   - 🇺🇸US_363|973KB/s|K001-260618 [386af4af2bf0] {src=node.freeclashnode.com}
@@ -33487,7 +33446,6 @@ proxy-groups:
   - 🇷🇴RO_10|1.8MB/s|R002-260618 [4a5138d3dc84] {src=node.freeclashnode.com}
   - 🇺🇸US_585|332KB/s|R002-260618 [4a53bd159496] {src=node.freeclashnode.com}
   - 🇷🇴RO_46|1.3MB/s|P002-260618 [4a642eb93bc8] {src=node.freeclashnode.com}
-  - 🇯🇵JP_16|116KB/s|K001-260618 [4a732b04dd53] {src=node.freeclashnode.com}
   - 🇫🇷FR_73|3.7MB/s|M003-260806 [4aaafff0fd6c] {src=node.freeclashnode.com}
   - 🇷🇴RO_56|2.0MB/s|P002-260618 [4ac2e14c271d] {src=node.freeclashnode.com}
   - 🇺🇸US_155|779KB/s|R002-260618 [4ac5d05f7655] {src=node.freeclashnode.com}
@@ -33505,7 +33463,6 @@ proxy-groups:
   - 🇨🇿CZ_6|655KB/s|P002-260618 [4d5c4849945c] {src=node.freeclashnode.com}
   - 🇦🇹AT_6|850KB/s|S004-260618 [4d663961fad5] {src=node.freeclashnode.com}
   - 🇹🇭TH_12|549KB/s|R002-260618 [4d7f4c48ed29] {src=node.freeclashnode.com}
-  - 🇯🇵JP_7|83KB/s|R002-260618 [4dcb2da810e7] {src=node.freeclashnode.com}
   - 🇳🇱NL_260|4.9MB/s [4e3c585c028c] {src=node.freeclashnode.com}
   - 🇺🇸US_444|1.5MB/s|S004-260618 [4eaa3c8005c6] {src=node.freeclashnode.com}
   - 🇺🇸US_696|80KB/s|A004-260618 [4effeb583325] {src=node.freeclashnode.com}
@@ -33527,6 +33484,7 @@ proxy-groups:
   - 🇷🇴RO_68|1.5MB/s|K001-260618 [51d6c485128b] {src=node.freeclashnode.com}
   - 🇬🇧GB_41|4.7MB/s|M003-260806 [528a132c71b8] {src=node.freeclashnode.com}
   - 🇳🇱NL_231|69KB/s|C002-260622 [529bc2174213] {src=node.freeclashnode.com}
+  - 🇰🇷KR_39|176KB/s|R002-260618 [52c8cd54edd3] {src=node.freeclashnode.com}
   - 🇺🇸US_434|1.2MB/s|K001-260618 [52f0e9977e29] {src=node.freeclashnode.com}
   - 🇺🇸US_219|321KB/s|R002-260618 [535e13772931] {src=node.freeclashnode.com}
   - 🇺🇸US_77|828KB/s|R002-260618 [5385a051842e] {src=node.freeclashnode.com}
@@ -33547,6 +33505,7 @@ proxy-groups:
   - 🇨🇦CA_51|785KB/s|M003-260806 [55bcedcbdd53] {src=node.freeclashnode.com}
   - 🇺🇸US_232|839KB/s|A004-260618 [55d379d67daa] {src=node.freeclashnode.com}
   - 🇺🇸US_481|988KB/s|B007-260618 [55f48351e3df] {src=node.freeclashnode.com}
+  - 🇸🇬SG_73|764KB/s [56445f611f5d] {src=node.freeclashnode.com}
   - 🇳🇱NL_86|4.0MB/s|R002-260618 [565ec6032e34] {src=node.freeclashnode.com}
   - 🇺🇸US_607|1.0MB/s [567047a42e5b] {src=node.freeclashnode.com}
   - 🇺🇸US_285|718KB/s|K001-260618 [569c66c77b5f] {src=node.freeclashnode.com}
@@ -33730,6 +33689,7 @@ proxy-groups:
   - 🇨🇦CA_18|1.4MB/s|M003-260806 [6fddb8d5015a] {src=node.freeclashnode.com}
   - 🇳🇱NL_9|1.1MB/s [70324133c301] {src=node.freeclashnode.com}
   - 🇺🇸US_276|813KB/s|A004-260618 [707173c77d5e] {src=node.freeclashnode.com}
+  - 🇦🇪AE_3|803KB/s|T001-260618 [7072ee01bc9f] {src=node.freeclashnode.com}
   - 🇸🇬SG_30|417KB/s|K001-260618 [70b4ebb2f0c1] {src=node.freeclashnode.com}
   - 🇬🇧GB_18|865KB/s|A004-260618 [70c7619e3093] {src=node.freeclashnode.com}
   - 🇲🇽MX_4|524KB/s|R002-260618 [70e55aa5a678] {src=node.freeclashnode.com}
@@ -33905,6 +33865,7 @@ proxy-groups:
   - 🇮🇹IT_23|988KB/s|R002-260618 [8a6287be3f61] {src=node.freeclashnode.com}
   - 🇺🇸US_362|722KB/s|A004-260618 [8ab70337a68a] {src=node.freeclashnode.com}
   - 🇯🇵JP_32|326KB/s|M003-260806 [8ac1dc0f9623] {src=node.freeclashnode.com}
+  - 🇦🇪AE_4|895KB/s|M003-260806 [8b17dfea8ac8] {src=node.freeclashnode.com}
   - 🇭🇰HK_81|414KB/s|M003-260806 [8b1b88dafe6e] {src=node.freeclashnode.com}
   - 🇳🇱NL_229|522KB/s|R002-260618 [8b79f7273e58] {src=node.freeclashnode.com}
   - 🇲🇽MX_11|157KB/s|S001-260618 [8be23114a447] {src=node.freeclashnode.com}
@@ -34572,6 +34533,7 @@ proxy-groups:
   - 🇺🇸US_172|980KB/s|R002-260618 [f6ef7c53e70b] {src=node.freeclashnode.com}
   - 🇺🇸US_398|1.2MB/s|A004-260618 [f71a9469def3] {src=node.freeclashnode.com}
   - 🇳🇱NL_132|7.9MB/s [f792f247b209] {src=node.freeclashnode.com}
+  - 🇦🇪AE_5|647KB/s|A003-260618 [f7942eacddc7] {src=node.freeclashnode.com}
   - 🇺🇸US_511|607KB/s|B007-260618 [f7b00260ac13] {src=node.freeclashnode.com}
   - 🇺🇸US_248|1.2MB/s|A004-260618 [f7c0f859dfcb] {src=node.freeclashnode.com}
   - 🇳🇱NL_19|6.0MB/s|P002-260618 [f84dd5f92876] {src=node.freeclashnode.com}
@@ -34921,6 +34883,7 @@ proxy-groups:
   - 'Telegram@vpnjey #11 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 'Telegram@vpnjey #12 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇦🇪[www.v2nodes.com] vless-AE-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
+  - '🇦🇪[www.v2nodes.com] vless-AE-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - ??[www.v2nodes.com] vless-AT-3... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇧🇾[www.v2nodes.com] vless-BY-1... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇧🇾[www.v2nodes.com] vless-BY-1... #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
@@ -35013,7 +34976,6 @@ proxy-groups:
   - 🇯🇵[www.v2nodes.com] ss-JP-5141... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵[www.v2nodes.com] ss-JP-1291... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵[www.v2nodes.com] ss-JP-9223... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇰🇷[www.v2nodes.com] ss-KR-1624... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇱🇻 拉脱维亚 | LVA #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇳🇱[www.v2nodes.com] ss-NL-1618... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇳🇱[www.v2nodes.com] ss-NL-1614... {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
@@ -35049,7 +35011,6 @@ proxy-groups:
   - 🇭🇰 香港 | HKG 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇹🇼 台湾2|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇹🇼 台湾3|@ripaojiedian {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇹🇼 🇨🇳 台湾 | TWN 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇺🇸US_1|2.1MB/s {src=chengaopan/AutoMergePublicNodes}
   - 🇩🇪DE_2|3.2MB/s {src=chengaopan/AutoMergePublicNodes}
   - 🇫🇷FR_1|1.7MB/s {src=chengaopan/AutoMergePublicNodes}
@@ -35128,22 +35089,15 @@ proxy-groups:
   - 🇭🇰 香港 | HKG 3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇮🇳 印度 | IND {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇮🇹 意大利 | ITA #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - 🇯🇵 日本 | JPN {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵 日本 | JPN 2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇯🇵 日本 | JPN 5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇯🇵 日本 | JPN 6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇯🇵 日本 | JPN 7 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇰🇿 哈萨克斯坦 | KAZ #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇳🇱 荷兰 | NLD #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - 🇷🇺 俄罗斯 | RUS {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - 🇷🇺 俄罗斯 | RUS 3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
-  - 🇹🇼 🇨🇳 台湾 | TWN {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}
   - '🇺🇸 美国 | USA #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇺🇸 美国 | USA #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇯🇵 日本 | JPN #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇯🇵 日本 | JPN #2 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇯🇵 日本 | JPN #5 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
-  - '🇯🇵 日本 | JPN #6 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇯🇵 日本 | JPN #7 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇷🇺 俄罗斯 | RUS #1 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
   - '🇷🇺 俄罗斯 | RUS #3 {src=chengaopan/AutoMergePublicNodes|peasoft/NoMoreWalls}'
